@@ -34,8 +34,6 @@ Repositorio:
 - `QFS_based_on_NA/`: código base y artefactos asociados al enfoque QFS con
   átomos neutros.
 - `large_files_parts/`: fragmentos de archivos demasiado grandes para GitHub.
-- `scripts/reconstruct_split_files.py`: utilidad mínima para reconstruir esos
-  archivos grandes.
 
 ## Estructura Del Trabajo
 
@@ -94,15 +92,10 @@ GitHub no permite subir archivos individuales de más de 100 MB. Por eso algunos
 CSV de predicciones se han dividido en fragmentos dentro de
 `large_files_parts/`.
 
-Para reconstruirlos en sus rutas originales:
-
-```powershell
-python scripts\reconstruct_split_files.py
-```
-
 El manifiesto `large_files_parts/manifest.json` guarda, para cada archivo
-dividido, su ruta original, tamaño, SHA-256 y lista de fragmentos. El script
-comprueba el tamaño y el hash al reconstruir.
+dividido, su ruta original, tamaño, SHA-256 y lista de fragmentos. Si se quiere
+reconstruir alguno de esos CSV, basta con concatenar sus partes en el orden
+indicado por el manifiesto y comprobar que el hash resultante coincide.
 
 ## Nota De Lectura
 
