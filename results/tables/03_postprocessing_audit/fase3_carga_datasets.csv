@@ -1,0 +1,5 @@
+dataset,filas_raw,filas_processed,columnas_raw,columnas_processed,target_raw,target_processed,target_processed_presente
+breast_cancer_wisconsin,569,569,32,31,target,target,True
+customer_churn,440832,440832,12,11,Churn,target,True
+madelon,2000,2000,501,501,target,target,True
+olive_oil,572,572,12,11,target,target,True

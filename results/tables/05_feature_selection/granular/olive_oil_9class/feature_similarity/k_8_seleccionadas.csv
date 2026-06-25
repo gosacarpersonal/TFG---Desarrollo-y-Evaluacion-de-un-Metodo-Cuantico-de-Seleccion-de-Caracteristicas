@@ -1,0 +1,25 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+olive_oil_9class,feature_similarity,redundancia pura,13,8,palmitoleic,1,4.0,True,0.000301131047308445,400,ok
+olive_oil_9class,feature_similarity,redundancia pura,13,8,stearic,2,4.0,True,0.000301131047308445,400,ok
+olive_oil_9class,feature_similarity,redundancia pura,13,8,oleic,3,4.0,True,0.000301131047308445,400,ok
+olive_oil_9class,feature_similarity,redundancia pura,13,8,linoleic,4,4.0,True,0.000301131047308445,400,ok
+olive_oil_9class,feature_similarity,redundancia pura,13,8,linolenic,5,4.0,True,0.000301131047308445,400,ok
+olive_oil_9class,feature_similarity,redundancia pura,13,8,arachidic,6,4.0,True,0.000301131047308445,400,ok
+olive_oil_9class,feature_similarity,redundancia pura,13,8,eicosenoic,7,4.0,True,0.000301131047308445,400,ok
+olive_oil_9class,feature_similarity,redundancia pura,13,8,other,8,4.0,True,0.000301131047308445,400,ok
+olive_oil_9class,feature_similarity,redundancia pura,42,8,palmitoleic,1,4.0,True,0.00027905311435461044,400,ok
+olive_oil_9class,feature_similarity,redundancia pura,42,8,stearic,2,4.0,True,0.00027905311435461044,400,ok
+olive_oil_9class,feature_similarity,redundancia pura,42,8,oleic,3,4.0,True,0.00027905311435461044,400,ok
+olive_oil_9class,feature_similarity,redundancia pura,42,8,linoleic,4,4.0,True,0.00027905311435461044,400,ok
+olive_oil_9class,feature_similarity,redundancia pura,42,8,linolenic,5,4.0,True,0.00027905311435461044,400,ok
+olive_oil_9class,feature_similarity,redundancia pura,42,8,arachidic,6,4.0,True,0.00027905311435461044,400,ok
+olive_oil_9class,feature_similarity,redundancia pura,42,8,eicosenoic,7,4.0,True,0.00027905311435461044,400,ok
+olive_oil_9class,feature_similarity,redundancia pura,42,8,other,8,4.0,True,0.00027905311435461044,400,ok
+olive_oil_9class,feature_similarity,redundancia pura,97,8,palmitoleic,1,4.0,True,0.0002649826928973198,400,ok
+olive_oil_9class,feature_similarity,redundancia pura,97,8,stearic,2,4.0,True,0.0002649826928973198,400,ok
+olive_oil_9class,feature_similarity,redundancia pura,97,8,oleic,3,4.0,True,0.0002649826928973198,400,ok
+olive_oil_9class,feature_similarity,redundancia pura,97,8,linoleic,4,4.0,True,0.0002649826928973198,400,ok
+olive_oil_9class,feature_similarity,redundancia pura,97,8,linolenic,5,4.0,True,0.0002649826928973198,400,ok
+olive_oil_9class,feature_similarity,redundancia pura,97,8,arachidic,6,4.0,True,0.0002649826928973198,400,ok
+olive_oil_9class,feature_similarity,redundancia pura,97,8,eicosenoic,7,4.0,True,0.0002649826928973198,400,ok
+olive_oil_9class,feature_similarity,redundancia pura,97,8,other,8,4.0,True,0.0002649826928973198,400,ok

@@ -1,0 +1,116 @@
+\section{Estado del arte}
+\label{sec:mt-estado-arte}
+
+Esta sección revisa los trabajos previos sobre los que se apoya la
+propuesta, organizados por familias de enfoques. Se examinan primero
+los métodos clásicos de selección de características y, a continuación,
+las líneas de optimización cuántica de problemas combinatorios y el uso
+de átomos de Rydberg en tareas de optimización. La última subsección se
+centra en las formulaciones cuánticas de la selección de
+características, que constituyen el antecedente directo del método
+estudiado.
+
+\subsection{Métodos clásicos de selección de características}
+
+Sobre las tres familias descritas en el marco teórico
+(sección~\ref{sec:mt-fs}), la literatura ha consolidado un repertorio de
+selectores que reaparecen de forma
+recurrente como referencia. Entre los \emph{filter}, la puntuación F de ANOVA
+y la información mutua son los criterios supervisados más utilizados por
+su bajo coste, y la varianza se mantiene como criterio no supervisado de
+control~\cite{solorio2020}. Entre los métodos \emph{embedded}, los más
+extendidos son la regularización $\ell_1$ y las importancias por
+impureza de los bosques aleatorios~\cite{breiman2001}, mientras que el
+criterio mRMR~\cite{peng2005} sigue siendo la referencia para incorporar
+la redundancia de forma explícita. Entre los \emph{wrapper}, el algoritmo
+Boruta~\cite{kursa2010}, que compara la importancia de cada variable con
+la de copias permutadas (variables \textit{sombra}) y retiene solo las
+que la superan de forma consistente, se ha convertido en uno de los
+puntos de comparación habituales en la literatura reciente de selección
+cuántica, pese a que su coste crece con los reentrenos del modelo base.
+
+Esa misma literatura ha señalado que el rendimiento predictivo no basta
+para caracterizar un selector. La estabilidad de los subconjuntos ante
+perturbaciones como el cambio de semilla o de muestra se cuantifica con
+índices de solape corregidos por azar, como el de
+Kuncheva~\cite{kuncheva2007}: un selector inestable produce subconjuntos
+poco reproducibles aunque su rendimiento medio sea alto. La estabilidad
+y la redundancia interna se han establecido así como dimensiones de
+evaluación complementarias al rendimiento.
+
+\subsection{Optimización cuántica de problemas combinatorios}
+
+La resolución de problemas QUBO es una de las aplicaciones más
+estudiadas de la computación cuántica actual~\cite{schuld2021,
+wittek2014}. Se han explorado tres líneas principales: el
+\textit{quantum annealing} o recocido cuántico, un hardware dedicado que
+relaja lentamente el sistema hacia el estado fundamental de un
+hamiltoniano para hallar el mínimo de la función de coste; los algoritmos
+variacionales sobre procesadores de puertas; y la simulación
+hamiltoniana analógica sobre plataformas como los átomos neutros. Las
+tres comparten el mismo esquema conceptual, codificar la función de
+coste en un hamiltoniano y buscar su estado fundamental, y se
+diferencian en el mecanismo de búsqueda y en las restricciones que el
+hardware impone al problema. Para problemas con restricciones de
+exclusión, la vía analógica resulta especialmente natural porque la
+propia física implementa la restricción, sin penalizaciones añadidas
+en la función de coste.
+
+\subsection{Átomos de Rydberg en optimización}
+
+La demostración experimental de mayor escala de esta vía es la
+resolución del conjunto independiente máximo sobre grafos de discos
+unitarios con matrices de hasta 289 átomos~\cite{ebadi2022}, que
+mostró tanto el potencial de la plataforma como la dependencia del
+rendimiento respecto de la dureza de la instancia. En paralelo, una
+línea activa de investigación, a la que pertenece el grupo en el que
+se enmarca este TFG, estudia cómo diseñar los perfiles de control
+para preservar la adiabaticidad: desde el control asistido por
+aprendizaje profundo~\cite{ding2021} hasta la optimización de
+\textit{drivings} y la caracterización espectral de la dificultad de
+instancias MWIS en simuladores de átomos neutros~\cite{arribas2025}.
+Estos trabajos delimitan qué tamaños y geometrías de problema son
+tratables hoy en simulación y motivan la envolvente operativa que se
+define en el capítulo~\ref{cap:metodos}.
+
+\subsection{Selección de características mediante formulaciones cuánticas}
+
+La formulación de la selección de características como problema QUBO,
+combinando relevancia e información mutua par a par, fue introducida
+por Mücke et al.~\cite{mucke2023}, que la evaluaron sobre hardware
+cuántico de puertas y \textit{annealers} con resultados competitivos
+frente a heurísticas clásicas en problemas de tamaño moderado. Sobre
+átomos neutros, la propuesta de referencia es el método QFS del grupo
+en el que se desarrolla este trabajo~\cite{orquin2026}, que adapta esa
+misma formulación QUBO al hardware de Rydberg: codifica la relevancia
+por información mutua en los campos de control locales y la redundancia
+en la disposición espacial de los átomos. En sus experimentos sobre
+problemas binarios de hasta una veintena de variables, QFS iguala el
+área bajo la curva de Boruta empleando subconjuntos más compactos y, en
+uno de los conjuntos, la supera. Un hallazgo relevante de esa
+evaluación es que el rendimiento se estabiliza más allá de unas siete
+variables, lo que sugiere que Boruta tiende a sobreestimar el número de
+características relevantes; el método cuántico ofrece subconjuntos más
+parcos sin pérdida apreciable. La propia línea de trabajo contrasta
+además las soluciones del simulador con el óptimo de la formulación
+QUBO obtenido mediante optimización clásica exacta~\cite{orquin2026},
+una práctica de control que la evaluación diseñada en este trabajo
+adopta.
+
+El hueco que este TFG aborda se sitúa precisamente ahí: la evidencia
+preliminar disponible del método se limita a problemas binarios de
+dimensionalidad moderada, evaluados con un único protocolo de
+clasificación. Queda pendiente una evaluación contra una referencia
+clásica contrastada que cubra también escenarios multiclase,
+desbalanceados y de alta dimensionalidad.
+
+La laguna no es únicamente cuantitativa. Para valorar un método como
+QFS no basta con registrar si iguala o no al baseline: su función de
+coste mezcla relevancia y redundancia, y su implementación física añade
+un segundo nivel de dificultad al embebido geométrico y a la dinámica
+analógica. Por ello, una evaluación útil debe permitir separar tres
+preguntas: qué régimen del dato se está resolviendo, qué familia de
+selectores clásicos constituye el espejo apropiado y si un fallo, en
+caso de aparecer, procede del criterio o del optimizador. Construir esa
+referencia y convertirla en un diagnóstico variable a variable es la
+contribución de este trabajo.

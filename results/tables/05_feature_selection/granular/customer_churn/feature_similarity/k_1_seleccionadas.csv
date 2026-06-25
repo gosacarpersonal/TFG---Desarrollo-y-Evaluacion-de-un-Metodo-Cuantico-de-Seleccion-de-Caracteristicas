@@ -1,0 +1,4 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+customer_churn,feature_similarity,redundancia pura,13,1,age,1,7.5,True,0.17729406617581844,308582,ok
+customer_churn,feature_similarity,redundancia pura,42,1,age,1,7.5,True,0.1765007209032774,308582,ok
+customer_churn,feature_similarity,redundancia pura,97,1,age,1,7.5,True,0.176690268330276,308582,ok

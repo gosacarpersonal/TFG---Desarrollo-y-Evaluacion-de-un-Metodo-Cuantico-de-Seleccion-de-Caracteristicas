@@ -1,0 +1,4 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+customer_churn,linear_svm,embedded,13,1,contract_length_Monthly,1,1.4233297907005067,True,0.0029727425426244736,5000,ok
+customer_churn,linear_svm,embedded,42,1,contract_length_Monthly,1,1.425030380517491,True,0.003095819614827633,5000,ok
+customer_churn,linear_svm,embedded,97,1,contract_length_Monthly,1,1.4636603568146955,True,0.0030840011313557625,5000,ok

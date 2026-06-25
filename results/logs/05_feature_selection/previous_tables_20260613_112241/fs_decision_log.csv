@@ -1,0 +1,2 @@
+timestamp,section,dataset,method,evidence,decision,action,impact,residual_risk,status
+2026-06-12T21:44:40,5.x,GLOBAL,,Fase 4 exige variantes separadas de olive_oil y train-only,ejecutar cinco datasets finales y bloquear olive_oil ambiguo,DATASETS no contiene olive_oil,trazabilidad metodológica,comparabilidad entre variantes requiere cautela,aplicado

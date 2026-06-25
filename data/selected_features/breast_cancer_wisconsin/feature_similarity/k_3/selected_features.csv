@@ -1,0 +1,4 @@
+feature,rank
+radius_mean,1
+texture_mean,2
+perimeter_mean,3

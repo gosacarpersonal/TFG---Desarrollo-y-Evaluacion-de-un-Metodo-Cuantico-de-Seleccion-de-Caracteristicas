@@ -1,0 +1,12 @@
+dataset,beta,k,alpha_oracle_k,hamming_distance,q_na_alpha05,q_oracle_alpha05,delta_cost_alpha05,qfs_na_features,oracle_features
+olive_oil_3class,0.0,5,0.875,2,1.155574660567809,1.320370335923831,-0.16479567535602202,stearic|linolenic|arachidic|eicosenoic|other,linoleic|linolenic|arachidic|eicosenoic|other
+olive_oil_3class,0.1,5,0.875,2,0.9867824484111849,1.320370335923831,-0.3335878875126461,oleic|linoleic|linolenic|arachidic|other,linoleic|linolenic|arachidic|eicosenoic|other
+olive_oil_3class,0.2,5,0.875,0,1.320370335923831,1.320370335923831,0.0,linoleic|linolenic|arachidic|eicosenoic|other,linoleic|linolenic|arachidic|eicosenoic|other
+olive_oil_3class,0.3,5,0.875,0,1.320370335923831,1.320370335923831,0.0,linoleic|linolenic|arachidic|eicosenoic|other,linoleic|linolenic|arachidic|eicosenoic|other
+olive_oil_3class,0.4,5,0.875,0,1.320370335923831,1.320370335923831,0.0,linoleic|linolenic|arachidic|eicosenoic|other,linoleic|linolenic|arachidic|eicosenoic|other
+olive_oil_3class,0.5,5,0.875,0,1.320370335923831,1.320370335923831,0.0,linoleic|linolenic|arachidic|eicosenoic|other,linoleic|linolenic|arachidic|eicosenoic|other
+olive_oil_3class,0.6,5,0.875,2,1.5651354683185468,1.320370335923831,0.24476513239471576,palmitoleic|linoleic|linolenic|arachidic|other,linoleic|linolenic|arachidic|eicosenoic|other
+olive_oil_3class,0.7,5,0.875,4,1.9245083750581058,1.320370335923831,0.6041380391342748,palmitoleic|stearic|linoleic|arachidic|other,linoleic|linolenic|arachidic|eicosenoic|other
+olive_oil_3class,0.8,5,0.875,2,1.6810659264119905,1.320370335923831,0.36069559048815947,stearic|linoleic|linolenic|arachidic|other,linoleic|linolenic|arachidic|eicosenoic|other
+olive_oil_3class,0.9,5,0.875,2,1.5651354683185468,1.320370335923831,0.24476513239471576,palmitoleic|linoleic|linolenic|arachidic|other,linoleic|linolenic|arachidic|eicosenoic|other
+olive_oil_3class,1.0,5,0.875,4,2.3516040143009715,1.320370335923831,1.0312336783771405,palmitoleic|stearic|linoleic|linolenic|other,linoleic|linolenic|arachidic|eicosenoic|other

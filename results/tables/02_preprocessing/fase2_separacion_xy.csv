@@ -1,0 +1,6 @@
+dataset,problema,target,filas,columnas_originales,predictoras,target_nulos,target_clases,target_en_predictoras,etiquetas_alternativas_en_predictoras
+breast_cancer_wisconsin,breast_cancer_wisconsin,target,569,32,31,0,2,False,0
+customer_churn,customer_churn,Churn,440832,12,11,0,2,False,0
+madelon,madelon,target,2000,501,500,0,2,False,0
+olive_oil,olive_oil_3class,area,572,12,11,0,3,False,1
+olive_oil,olive_oil_9class,target,572,12,11,0,9,False,1

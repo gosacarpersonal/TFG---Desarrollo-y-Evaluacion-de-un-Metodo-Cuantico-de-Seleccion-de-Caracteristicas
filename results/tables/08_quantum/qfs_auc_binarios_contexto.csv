@@ -1,0 +1,7 @@
+dataset,fuente,model_name,auc_roc
+breast_cancer_wisconsin,baseline_fase6,linear_svm,0.976273148148148
+breast_cancer_wisconsin,qfs_na,random_forest,0.9620949074074074
+breast_cancer_wisconsin,qfs_oracle_mucke,linear_svm,0.9594907407407408
+customer_churn,baseline_fase6,xgboost,0.9999992565938864
+customer_churn,qfs_na,xgboost,0.9950523905676857
+customer_churn,qfs_oracle_mucke,xgboost,0.9999739714701602

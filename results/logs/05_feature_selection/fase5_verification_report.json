@@ -1,0 +1,225 @@
+{
+  "outputs_without_observation": [],
+  "n_observations": 26,
+  "observation_numeric_ratio": 1.0,
+  "repeated_long_phrases": {},
+  "section_intros": [
+    {
+      "section": "5.1",
+      "word_count": 55,
+      "mentions_criterion": true,
+      "ok": true
+    },
+    {
+      "section": "5.2",
+      "word_count": 47,
+      "mentions_criterion": true,
+      "ok": true
+    },
+    {
+      "section": "5.3",
+      "word_count": 249,
+      "mentions_criterion": true,
+      "ok": true
+    },
+    {
+      "section": "5.4",
+      "word_count": 43,
+      "mentions_criterion": true,
+      "ok": true
+    },
+    {
+      "section": "5.5",
+      "word_count": 48,
+      "mentions_criterion": true,
+      "ok": true
+    },
+    {
+      "section": "5.6",
+      "word_count": 76,
+      "mentions_criterion": true,
+      "ok": true
+    },
+    {
+      "section": "5.7",
+      "word_count": 46,
+      "mentions_criterion": true,
+      "ok": true
+    },
+    {
+      "section": "5.8",
+      "word_count": 43,
+      "mentions_criterion": true,
+      "ok": true
+    },
+    {
+      "section": "5.9",
+      "word_count": 37,
+      "mentions_criterion": true,
+      "ok": true
+    },
+    {
+      "section": "5.10",
+      "word_count": 40,
+      "mentions_criterion": true,
+      "ok": true
+    },
+    {
+      "section": "5.11",
+      "word_count": 65,
+      "mentions_criterion": true,
+      "ok": true
+    },
+    {
+      "section": "5.12",
+      "word_count": 41,
+      "mentions_criterion": true,
+      "ok": true
+    },
+    {
+      "section": "5.13",
+      "word_count": 36,
+      "mentions_criterion": true,
+      "ok": true
+    },
+    {
+      "section": "5.14",
+      "word_count": 49,
+      "mentions_criterion": true,
+      "ok": true
+    },
+    {
+      "section": "5.15",
+      "word_count": 42,
+      "mentions_criterion": true,
+      "ok": true
+    }
+  ],
+  "figures": {
+    "saved_png": 13,
+    "saved_pdf": 13,
+    "displayed_images": 13,
+    "png_without_pdf": [],
+    "pdf_without_png": [],
+    "ok": true
+  },
+  "execution_errors": [],
+  "source": {
+    "big_bang_hits": [],
+    "imports_fine_grain_src": true
+  },
+  "visible_text": {
+    "pipeline_words": [],
+    "internal_audit_words": [],
+    "table_forbidden_words": []
+  },
+  "diff_unaffected_methods": {
+    "available": true,
+    "ok": true,
+    "previous_dir": "results/logs/05_feature_selection/previous_tables_20260613_112241",
+    "methods": [
+      {
+        "method": "variance",
+        "previous_rows": 11409,
+        "current_rows": 11409,
+        "identical": true
+      },
+      {
+        "method": "f_classif",
+        "previous_rows": 11409,
+        "current_rows": 11409,
+        "identical": true
+      },
+      {
+        "method": "l1_logistic",
+        "previous_rows": 11409,
+        "current_rows": 11409,
+        "identical": true
+      },
+      {
+        "method": "random_forest",
+        "previous_rows": 11409,
+        "current_rows": 11409,
+        "identical": true
+      },
+      {
+        "method": "linear_svm",
+        "previous_rows": 11409,
+        "current_rows": 11409,
+        "identical": true
+      }
+    ]
+  },
+  "roster": {
+    "methods": [
+      "boruta",
+      "f_classif",
+      "feature_similarity",
+      "l1_logistic",
+      "linear_svm",
+      "mrmr_approx",
+      "mutual_correlation",
+      "mutual_info",
+      "random_forest",
+      "rfe",
+      "rrfs",
+      "variance"
+    ],
+    "methods_by_dataset": {
+      "breast_cancer_wisconsin": 12,
+      "customer_churn": 12,
+      "madelon": 12,
+      "olive_oil_3class": 12,
+      "olive_oil_9class": 12
+    },
+    "all_12_present": true,
+    "boruta_natural": [
+      {
+        "dataset": "breast_cancer_wisconsin",
+        "method": "boruta",
+        "k_confirmed": 22,
+        "n_features": 30
+      },
+      {
+        "dataset": "customer_churn",
+        "method": "boruta",
+        "k_confirmed": 12,
+        "n_features": 15
+      },
+      {
+        "dataset": "madelon",
+        "method": "boruta",
+        "k_confirmed": 19,
+        "n_features": 500
+      },
+      {
+        "dataset": "olive_oil_3class",
+        "method": "boruta",
+        "k_confirmed": 8,
+        "n_features": 8
+      },
+      {
+        "dataset": "olive_oil_9class",
+        "method": "boruta",
+        "k_confirmed": 8,
+        "n_features": 8
+      }
+    ],
+    "boruta_ok": true
+  },
+  "checks": {
+    "a_outputs_have_observation": true,
+    "b_no_repeated_long_phrases": true,
+    "c_numeric_observations_ge_70pct": true,
+    "d_section_intros_ok": true,
+    "e_figures_saved_match_displayed": true,
+    "f_execution_clean": true,
+    "g_no_big_bang": true,
+    "h_no_internal_audit_visible": true,
+    "i_no_forbidden_visible_tables": true,
+    "j_src_import_present": true,
+    "k_no_pipeline_vocabulary": true,
+    "l_unaffected_methods_identical": true,
+    "m_roster_and_boruta_ok": true
+  }
+}

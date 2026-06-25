@@ -1,0 +1,76 @@
+experiment_id,dataset,feature_set,model_name,warnings
+breast_cancer_wisconsin__all_features__logistic_regression,breast_cancer_wisconsin,all_features,logistic_regression,"'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning."
+breast_cancer_wisconsin__all_features__linear_svm,breast_cancer_wisconsin,all_features,linear_svm,
+breast_cancer_wisconsin__all_features__random_forest,breast_cancer_wisconsin,all_features,random_forest,
+breast_cancer_wisconsin__f_classif_k10__logistic_regression,breast_cancer_wisconsin,f_classif_k10,logistic_regression,"'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning."
+breast_cancer_wisconsin__f_classif_k10__linear_svm,breast_cancer_wisconsin,f_classif_k10,linear_svm,
+breast_cancer_wisconsin__f_classif_k10__random_forest,breast_cancer_wisconsin,f_classif_k10,random_forest,
+breast_cancer_wisconsin__mrmr_approx_k10__logistic_regression,breast_cancer_wisconsin,mrmr_approx_k10,logistic_regression,"'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning."
+breast_cancer_wisconsin__mrmr_approx_k10__linear_svm,breast_cancer_wisconsin,mrmr_approx_k10,linear_svm,
+breast_cancer_wisconsin__mrmr_approx_k10__random_forest,breast_cancer_wisconsin,mrmr_approx_k10,random_forest,
+breast_cancer_wisconsin__mutual_info_k10__logistic_regression,breast_cancer_wisconsin,mutual_info_k10,logistic_regression,"'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning."
+breast_cancer_wisconsin__mutual_info_k10__linear_svm,breast_cancer_wisconsin,mutual_info_k10,linear_svm,
+breast_cancer_wisconsin__mutual_info_k10__random_forest,breast_cancer_wisconsin,mutual_info_k10,random_forest,
+breast_cancer_wisconsin__random_forest_k10__logistic_regression,breast_cancer_wisconsin,random_forest_k10,logistic_regression,"'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning."
+breast_cancer_wisconsin__random_forest_k10__linear_svm,breast_cancer_wisconsin,random_forest_k10,linear_svm,
+breast_cancer_wisconsin__random_forest_k10__random_forest,breast_cancer_wisconsin,random_forest_k10,random_forest,
+customer_churn__all_features__logistic_regression,customer_churn,all_features,logistic_regression,"'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning."
+customer_churn__all_features__linear_svm,customer_churn,all_features,linear_svm,
+customer_churn__all_features__random_forest,customer_churn,all_features,random_forest,
+customer_churn__f_classif_k10__logistic_regression,customer_churn,f_classif_k10,logistic_regression,"'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning."
+customer_churn__f_classif_k10__linear_svm,customer_churn,f_classif_k10,linear_svm,
+customer_churn__f_classif_k10__random_forest,customer_churn,f_classif_k10,random_forest,
+customer_churn__mrmr_approx_k10__logistic_regression,customer_churn,mrmr_approx_k10,logistic_regression,"'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning."
+customer_churn__mrmr_approx_k10__linear_svm,customer_churn,mrmr_approx_k10,linear_svm,
+customer_churn__mrmr_approx_k10__random_forest,customer_churn,mrmr_approx_k10,random_forest,
+customer_churn__mutual_info_k10__logistic_regression,customer_churn,mutual_info_k10,logistic_regression,"'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning."
+customer_churn__mutual_info_k10__linear_svm,customer_churn,mutual_info_k10,linear_svm,
+customer_churn__mutual_info_k10__random_forest,customer_churn,mutual_info_k10,random_forest,
+customer_churn__random_forest_k10__logistic_regression,customer_churn,random_forest_k10,logistic_regression,"'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning."
+customer_churn__random_forest_k10__linear_svm,customer_churn,random_forest_k10,linear_svm,
+customer_churn__random_forest_k10__random_forest,customer_churn,random_forest_k10,random_forest,
+madelon__all_features__logistic_regression,madelon,all_features,logistic_regression,"'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning."
+madelon__all_features__linear_svm,madelon,all_features,linear_svm,
+madelon__all_features__random_forest,madelon,all_features,random_forest,
+madelon__f_classif_k10__logistic_regression,madelon,f_classif_k10,logistic_regression,"'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning."
+madelon__f_classif_k10__linear_svm,madelon,f_classif_k10,linear_svm,
+madelon__f_classif_k10__random_forest,madelon,f_classif_k10,random_forest,
+madelon__mrmr_approx_k10__logistic_regression,madelon,mrmr_approx_k10,logistic_regression,"'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning."
+madelon__mrmr_approx_k10__linear_svm,madelon,mrmr_approx_k10,linear_svm,
+madelon__mrmr_approx_k10__random_forest,madelon,mrmr_approx_k10,random_forest,
+madelon__mutual_info_k10__logistic_regression,madelon,mutual_info_k10,logistic_regression,"'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning."
+madelon__mutual_info_k10__linear_svm,madelon,mutual_info_k10,linear_svm,
+madelon__mutual_info_k10__random_forest,madelon,mutual_info_k10,random_forest,
+madelon__random_forest_k10__logistic_regression,madelon,random_forest_k10,logistic_regression,"'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning."
+madelon__random_forest_k10__linear_svm,madelon,random_forest_k10,linear_svm,
+madelon__random_forest_k10__random_forest,madelon,random_forest_k10,random_forest,
+olive_oil_3class__all_features__logistic_regression,olive_oil_3class,all_features,logistic_regression,"'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning."
+olive_oil_3class__all_features__linear_svm,olive_oil_3class,all_features,linear_svm,
+olive_oil_3class__all_features__random_forest,olive_oil_3class,all_features,random_forest,
+olive_oil_3class__f_classif_k8__logistic_regression,olive_oil_3class,f_classif_k8,logistic_regression,"'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning."
+olive_oil_3class__f_classif_k8__linear_svm,olive_oil_3class,f_classif_k8,linear_svm,
+olive_oil_3class__f_classif_k8__random_forest,olive_oil_3class,f_classif_k8,random_forest,
+olive_oil_3class__mrmr_approx_k8__logistic_regression,olive_oil_3class,mrmr_approx_k8,logistic_regression,"'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning."
+olive_oil_3class__mrmr_approx_k8__linear_svm,olive_oil_3class,mrmr_approx_k8,linear_svm,
+olive_oil_3class__mrmr_approx_k8__random_forest,olive_oil_3class,mrmr_approx_k8,random_forest,
+olive_oil_3class__mutual_info_k8__logistic_regression,olive_oil_3class,mutual_info_k8,logistic_regression,"'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning."
+olive_oil_3class__mutual_info_k8__linear_svm,olive_oil_3class,mutual_info_k8,linear_svm,
+olive_oil_3class__mutual_info_k8__random_forest,olive_oil_3class,mutual_info_k8,random_forest,
+olive_oil_3class__random_forest_k8__logistic_regression,olive_oil_3class,random_forest_k8,logistic_regression,"'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning."
+olive_oil_3class__random_forest_k8__linear_svm,olive_oil_3class,random_forest_k8,linear_svm,
+olive_oil_3class__random_forest_k8__random_forest,olive_oil_3class,random_forest_k8,random_forest,
+olive_oil_9class__all_features__logistic_regression,olive_oil_9class,all_features,logistic_regression,"'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning."
+olive_oil_9class__all_features__linear_svm,olive_oil_9class,all_features,linear_svm,
+olive_oil_9class__all_features__random_forest,olive_oil_9class,all_features,random_forest,
+olive_oil_9class__f_classif_k8__logistic_regression,olive_oil_9class,f_classif_k8,logistic_regression,"'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning."
+olive_oil_9class__f_classif_k8__linear_svm,olive_oil_9class,f_classif_k8,linear_svm,
+olive_oil_9class__f_classif_k8__random_forest,olive_oil_9class,f_classif_k8,random_forest,
+olive_oil_9class__mrmr_approx_k8__logistic_regression,olive_oil_9class,mrmr_approx_k8,logistic_regression,"'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning."
+olive_oil_9class__mrmr_approx_k8__linear_svm,olive_oil_9class,mrmr_approx_k8,linear_svm,
+olive_oil_9class__mrmr_approx_k8__random_forest,olive_oil_9class,mrmr_approx_k8,random_forest,
+olive_oil_9class__mutual_info_k8__logistic_regression,olive_oil_9class,mutual_info_k8,logistic_regression,"'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning."
+olive_oil_9class__mutual_info_k8__linear_svm,olive_oil_9class,mutual_info_k8,linear_svm,
+olive_oil_9class__mutual_info_k8__random_forest,olive_oil_9class,mutual_info_k8,random_forest,
+olive_oil_9class__random_forest_k8__logistic_regression,olive_oil_9class,random_forest_k8,logistic_regression,"'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning."
+olive_oil_9class__random_forest_k8__linear_svm,olive_oil_9class,random_forest_k8,linear_svm,
+olive_oil_9class__random_forest_k8__random_forest,olive_oil_9class,random_forest_k8,random_forest,

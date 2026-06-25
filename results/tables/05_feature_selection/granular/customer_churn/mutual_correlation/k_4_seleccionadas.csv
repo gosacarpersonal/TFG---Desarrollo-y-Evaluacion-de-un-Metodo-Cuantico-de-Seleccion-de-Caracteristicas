@@ -1,0 +1,13 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+customer_churn,mutual_correlation,redundancia pura,13,4,contract_length_Monthly,1,15.0,True,0.14997678715735674,308582,ok
+customer_churn,mutual_correlation,redundancia pura,13,4,gender_Female,2,14.0,True,0.14997678715735674,308582,ok
+customer_churn,mutual_correlation,redundancia pura,13,4,subscription_type_Basic,3,13.0,True,0.14997678715735674,308582,ok
+customer_churn,mutual_correlation,redundancia pura,13,4,contract_length_Annual,4,12.0,True,0.14997678715735674,308582,ok
+customer_churn,mutual_correlation,redundancia pura,42,4,contract_length_Monthly,1,15.0,True,0.14833796955645084,308582,ok
+customer_churn,mutual_correlation,redundancia pura,42,4,gender_Female,2,14.0,True,0.14833796955645084,308582,ok
+customer_churn,mutual_correlation,redundancia pura,42,4,subscription_type_Basic,3,13.0,True,0.14833796955645084,308582,ok
+customer_churn,mutual_correlation,redundancia pura,42,4,contract_length_Annual,4,12.0,True,0.14833796955645084,308582,ok
+customer_churn,mutual_correlation,redundancia pura,97,4,contract_length_Monthly,1,15.0,True,0.1500494722276926,308582,ok
+customer_churn,mutual_correlation,redundancia pura,97,4,gender_Female,2,14.0,True,0.1500494722276926,308582,ok
+customer_churn,mutual_correlation,redundancia pura,97,4,subscription_type_Basic,3,13.0,True,0.1500494722276926,308582,ok
+customer_churn,mutual_correlation,redundancia pura,97,4,contract_length_Annual,4,12.0,True,0.1500494722276926,308582,ok

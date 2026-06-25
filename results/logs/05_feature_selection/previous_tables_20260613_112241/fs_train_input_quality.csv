@@ -1,0 +1,6 @@
+dataset,n_missing_train,n_infinite_train,duplicated_feature_names,status
+breast_cancer_wisconsin,0,0,0,ok
+customer_churn,0,0,0,ok
+madelon,0,0,0,ok
+olive_oil_3class,0,0,0,ok
+olive_oil_9class,0,0,0,ok

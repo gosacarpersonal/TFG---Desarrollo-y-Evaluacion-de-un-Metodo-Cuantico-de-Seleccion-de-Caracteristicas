@@ -1,0 +1,16 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+customer_churn,variance,filtros,13,5,usage_frequency,1,1.0000032406402213,True,0.031685831025242805,308582,ok
+customer_churn,variance,filtros,13,5,total_spend,2,1.0000032406402213,True,0.031685831025242805,308582,ok
+customer_churn,variance,filtros,13,5,last_interaction,3,1.000003240640221,True,0.031685831025242805,308582,ok
+customer_churn,variance,filtros,13,5,age,4,1.0000032406402208,True,0.031685831025242805,308582,ok
+customer_churn,variance,filtros,13,5,payment_delay,5,1.0000032406402208,True,0.031685831025242805,308582,ok
+customer_churn,variance,filtros,42,5,usage_frequency,1,1.0000032406402213,True,0.031286382116377354,308582,ok
+customer_churn,variance,filtros,42,5,total_spend,2,1.0000032406402213,True,0.031286382116377354,308582,ok
+customer_churn,variance,filtros,42,5,last_interaction,3,1.000003240640221,True,0.031286382116377354,308582,ok
+customer_churn,variance,filtros,42,5,age,4,1.0000032406402208,True,0.031286382116377354,308582,ok
+customer_churn,variance,filtros,42,5,payment_delay,5,1.0000032406402208,True,0.031286382116377354,308582,ok
+customer_churn,variance,filtros,97,5,usage_frequency,1,1.0000032406402213,True,0.031526606529951096,308582,ok
+customer_churn,variance,filtros,97,5,total_spend,2,1.0000032406402213,True,0.031526606529951096,308582,ok
+customer_churn,variance,filtros,97,5,last_interaction,3,1.000003240640221,True,0.031526606529951096,308582,ok
+customer_churn,variance,filtros,97,5,age,4,1.0000032406402208,True,0.031526606529951096,308582,ok
+customer_churn,variance,filtros,97,5,payment_delay,5,1.0000032406402208,True,0.031526606529951096,308582,ok

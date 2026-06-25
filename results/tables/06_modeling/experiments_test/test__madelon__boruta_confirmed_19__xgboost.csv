@@ -1,0 +1,2 @@
+experiment_id,dataset,feature_set,selector,k,model_name,candidate_label,validation_macro_f1,validation_balanced_accuracy,test_macro_f1,test_balanced_accuracy,test_accuracy,test_auc_roc,n_test,n_features_used
+madelon__boruta_confirmed_19__xgboost,madelon,boruta_confirmed_19,boruta,19,xgboost,subconjunto_top_1_validation,0.8564737035347523,0.8566666666666667,0.9066625183341481,0.9066666666666667,0.9066666666666666,,300,19

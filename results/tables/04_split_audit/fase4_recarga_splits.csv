@@ -1,0 +1,16 @@
+dataset,split,filas_X,filas_y,columnas_X,len_X_eq_y,columnas_ok,indice_ok
+breast_cancer_wisconsin,train,398,398,30,True,True,True
+breast_cancer_wisconsin,validation,85,85,30,True,True,True
+breast_cancer_wisconsin,test,86,86,30,True,True,True
+customer_churn,train,308582,308582,10,True,True,True
+customer_churn,validation,66125,66125,10,True,True,True
+customer_churn,test,66125,66125,10,True,True,True
+madelon,train,1400,1400,500,True,True,True
+madelon,validation,300,300,500,True,True,True
+madelon,test,300,300,500,True,True,True
+olive_oil_3class,train,400,400,8,True,True,True
+olive_oil_3class,validation,86,86,8,True,True,True
+olive_oil_3class,test,86,86,8,True,True,True
+olive_oil_9class,train,400,400,8,True,True,True
+olive_oil_9class,validation,86,86,8,True,True,True
+olive_oil_9class,test,86,86,8,True,True,True

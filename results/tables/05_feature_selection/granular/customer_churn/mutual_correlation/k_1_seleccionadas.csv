@@ -1,0 +1,4 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+customer_churn,mutual_correlation,redundancia pura,13,1,contract_length_Monthly,1,15.0,True,0.14997678715735674,308582,ok
+customer_churn,mutual_correlation,redundancia pura,42,1,contract_length_Monthly,1,15.0,True,0.14833796955645084,308582,ok
+customer_churn,mutual_correlation,redundancia pura,97,1,contract_length_Monthly,1,15.0,True,0.1500494722276926,308582,ok

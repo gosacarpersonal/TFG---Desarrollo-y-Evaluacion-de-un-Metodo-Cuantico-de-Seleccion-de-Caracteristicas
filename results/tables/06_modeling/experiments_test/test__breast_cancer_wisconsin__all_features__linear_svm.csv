@@ -1,0 +1,2 @@
+experiment_id,dataset,feature_set,selector,k,model_name,candidate_label,validation_macro_f1,validation_balanced_accuracy,test_macro_f1,test_balanced_accuracy,test_accuracy,test_auc_roc,n_test,n_features_used
+breast_cancer_wisconsin__all_features__linear_svm,breast_cancer_wisconsin,all_features,all_features,30,linear_svm,baseline_mejor_en_validation,0.9749410377358491,0.9749410377358491,0.9373816805009465,0.9346064814814814,0.9418604651162791,0.9762731481481481,86,30

@@ -1,0 +1,25 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+olive_oil_3class,mutual_correlation,redundancia pura,13,5,linoleic,1,8.0,True,0.00018878094851970673,400,ok
+olive_oil_3class,mutual_correlation,redundancia pura,13,5,palmitoleic,2,7.0,True,0.00018878094851970673,400,ok
+olive_oil_3class,mutual_correlation,redundancia pura,13,5,other,3,6.0,True,0.00018878094851970673,400,ok
+olive_oil_3class,mutual_correlation,redundancia pura,13,5,stearic,4,5.0,True,0.00018878094851970673,400,ok
+olive_oil_3class,mutual_correlation,redundancia pura,13,5,eicosenoic,5,4.0,True,0.00018878094851970673,400,ok
+olive_oil_3class,mutual_correlation,redundancia pura,13,5,linolenic,6,3.0,False,0.00018878094851970673,400,ok
+olive_oil_3class,mutual_correlation,redundancia pura,13,5,oleic,7,2.0,False,0.00018878094851970673,400,ok
+olive_oil_3class,mutual_correlation,redundancia pura,13,5,arachidic,8,1.0,False,0.00018878094851970673,400,ok
+olive_oil_3class,mutual_correlation,redundancia pura,42,5,linoleic,1,8.0,True,0.00015752948820590973,400,ok
+olive_oil_3class,mutual_correlation,redundancia pura,42,5,palmitoleic,2,7.0,True,0.00015752948820590973,400,ok
+olive_oil_3class,mutual_correlation,redundancia pura,42,5,other,3,6.0,True,0.00015752948820590973,400,ok
+olive_oil_3class,mutual_correlation,redundancia pura,42,5,stearic,4,5.0,True,0.00015752948820590973,400,ok
+olive_oil_3class,mutual_correlation,redundancia pura,42,5,eicosenoic,5,4.0,True,0.00015752948820590973,400,ok
+olive_oil_3class,mutual_correlation,redundancia pura,42,5,linolenic,6,3.0,False,0.00015752948820590973,400,ok
+olive_oil_3class,mutual_correlation,redundancia pura,42,5,oleic,7,2.0,False,0.00015752948820590973,400,ok
+olive_oil_3class,mutual_correlation,redundancia pura,42,5,arachidic,8,1.0,False,0.00015752948820590973,400,ok
+olive_oil_3class,mutual_correlation,redundancia pura,97,5,linoleic,1,8.0,True,0.00016149133443832397,400,ok
+olive_oil_3class,mutual_correlation,redundancia pura,97,5,palmitoleic,2,7.0,True,0.00016149133443832397,400,ok
+olive_oil_3class,mutual_correlation,redundancia pura,97,5,other,3,6.0,True,0.00016149133443832397,400,ok
+olive_oil_3class,mutual_correlation,redundancia pura,97,5,stearic,4,5.0,True,0.00016149133443832397,400,ok
+olive_oil_3class,mutual_correlation,redundancia pura,97,5,eicosenoic,5,4.0,True,0.00016149133443832397,400,ok
+olive_oil_3class,mutual_correlation,redundancia pura,97,5,linolenic,6,3.0,False,0.00016149133443832397,400,ok
+olive_oil_3class,mutual_correlation,redundancia pura,97,5,oleic,7,2.0,False,0.00016149133443832397,400,ok
+olive_oil_3class,mutual_correlation,redundancia pura,97,5,arachidic,8,1.0,False,0.00016149133443832397,400,ok

@@ -1,0 +1,24 @@
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# LaTeX build intermediates
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+
+# Carpeta local de ruido apartado (no versionar)
+/basura/
+
+# Tooling local de agentes/Codex, no entregable del TFG
+/.agents/
+/.codex/

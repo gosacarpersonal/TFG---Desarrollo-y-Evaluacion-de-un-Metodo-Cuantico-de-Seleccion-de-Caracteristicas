@@ -1,0 +1,6 @@
+dataset,seccion,tipo_riesgo,evidencia,impacto,accion,riesgo_residual,estado
+breast_cancer_wisconsin,5.1-5.16,riesgo_cientifico,selección ajustada exclusivamente con train,validation/test no deciden columnas,aplicar columnas seleccionadas ya fijadas,posibles proxies no detectados automaticamente,controlado
+customer_churn,5.1-5.16,riesgo_cientifico,selección ajustada exclusivamente con train,validation/test no deciden columnas,aplicar columnas seleccionadas ya fijadas,posibles proxies no detectados automaticamente,controlado
+madelon,5.1-5.16,riesgo_cientifico,selección ajustada exclusivamente con train,validation/test no deciden columnas,aplicar columnas seleccionadas ya fijadas,posibles proxies no detectados automaticamente,controlado
+olive_oil_3class,5.1-5.16,riesgo_cientifico,selección ajustada exclusivamente con train,validation/test no deciden columnas,aplicar columnas seleccionadas ya fijadas,posibles proxies no detectados automaticamente,controlado
+olive_oil_9class,5.1-5.16,riesgo_cientifico,selección ajustada exclusivamente con train,validation/test no deciden columnas,aplicar columnas seleccionadas ya fijadas,posibles proxies no detectados automaticamente,controlado

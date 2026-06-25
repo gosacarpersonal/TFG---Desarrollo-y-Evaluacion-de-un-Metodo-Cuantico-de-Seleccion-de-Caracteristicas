@@ -1,0 +1,5 @@
+dataset,variable,target,valores_unicos,nmi_con_target,auc_abs_binaria
+olive_oil_3class,target,area,9,0.6652209450357045,
+olive_oil_3class,palmitic,area,9,0.6652209450357045,
+olive_oil_9class,area,target,3,0.6652209450357045,
+olive_oil_9class,palmitic,target,9,1.0,

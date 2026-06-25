@@ -1,0 +1,5 @@
+dataset,chi2_stat,chi2_p_value,chi2_dof,fisher_oddsratio,fisher_p_value,max_delta_proporcion,ratio_may_min_raw,ratio_may_min_processed,delta_ratio_may_min,entropia_raw,entropia_processed,delta_entropia
+breast_cancer_wisconsin,0.0,1.0,1,1.0,1.0,0.0,1.6839622641509435,1.6839622641509435,0.0,0.9526351224018599,0.9526351224018599,0.0
+customer_churn,0.0,1.0,1,1.0,1.0,0.0,1.3100407162283252,1.3100407162283252,0.0,0.9869667086905443,0.9869667086905443,0.0
+madelon,0.0,1.0,1,1.0,1.0,0.0,1.0,1.0,0.0,1.0,1.0,0.0
+olive_oil,0.0,1.0,8,,,0.0,8.24,8.24,0.0,2.8269291790249675,2.8269291790249675,0.0

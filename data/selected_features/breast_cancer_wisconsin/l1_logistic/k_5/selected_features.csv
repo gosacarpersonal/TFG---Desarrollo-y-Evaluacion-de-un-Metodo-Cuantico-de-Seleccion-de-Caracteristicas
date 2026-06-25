@@ -1,0 +1,6 @@
+feature,rank
+radius_worst,1
+texture_worst,2
+concave_points_mean,3
+concave_points_worst,4
+smoothness_worst,5

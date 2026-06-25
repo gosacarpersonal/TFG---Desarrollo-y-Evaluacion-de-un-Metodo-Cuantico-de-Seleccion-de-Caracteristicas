@@ -1,0 +1,6 @@
+dataset,method,seed,k_confirmed,n_features
+breast_cancer_wisconsin,boruta,42,22,30
+customer_churn,boruta,42,12,15
+madelon,boruta,42,19,500
+olive_oil_3class,boruta,42,8,8
+olive_oil_9class,boruta,42,8,8

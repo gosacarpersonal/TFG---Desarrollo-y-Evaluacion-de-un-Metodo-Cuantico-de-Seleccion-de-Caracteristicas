@@ -1,0 +1,6 @@
+dataset,filas,features,target,target_clases,target_en_X,categoricas_en_X
+breast_cancer_wisconsin,569,30,target,2,False,0
+customer_churn,440832,10,target,2,False,3
+madelon,2000,500,target,2,False,0
+olive_oil_3class,572,8,area,3,False,0
+olive_oil_9class,572,8,target,9,False,0

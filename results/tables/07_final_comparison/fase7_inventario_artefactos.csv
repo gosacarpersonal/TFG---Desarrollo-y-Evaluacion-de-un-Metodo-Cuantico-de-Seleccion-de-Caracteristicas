@@ -1,0 +1,16 @@
+artefacto,ruta,existe,filas,estado
+fase1_sintesis,results/tables/01_raw_eda/fase1_sintesis_evidencias.csv,True,4,ok
+fase3_metricas_split,results/tables/03_postprocessing_audit/fase3_resumen_metricas_split.csv,True,4,ok
+fase4_resumen,results/tables/04_split_audit/fase4_resumen_para_fase5.csv,True,5,ok
+fase5_jaccard,results/tables/05_feature_selection/fs_jaccard_stability.csv,True,504,ok
+fase5_redundancia,results/tables/05_feature_selection/fs_redundancy_vs_full.csv,True,168,ok
+fase5_permutacion,results/tables/05_feature_selection/fs_permutation_summary.csv,True,10,ok
+fase5_recomendaciones,results/tables/05_feature_selection/fs_phase6_input_recommendations.csv,True,168,ok
+fase6_validacion,results/tables/06_modeling/modeling_validation_results_all.csv,True,75,ok
+fase6_test,results/tables/06_modeling/modeling_test_results_candidates.csv,True,15,ok
+fase6_intervalos_test,results/tables/06_modeling/modeling_test_confidence_intervals.csv,True,45,ok
+fase6_comparaciones,results/tables/06_modeling/modeling_pairwise_comparison_tests.csv,True,10,ok
+fase6_permutacion,results/tables/06_modeling/modeling_permutation_test_results.csv,True,15,ok
+fase6_coste,results/tables/06_modeling/modeling_cost_performance.csv,True,75,ok
+fase6_importancias,results/tables/06_modeling/modeling_candidate_importances.csv,True,132,ok
+fase5_qfs_matrices_index,results/tables/05_feature_selection/fs_qfs_handoff_matrices_index.csv,True,5,ok

@@ -1,0 +1,4 @@
+elemento,evidencia,accion,impacto,riesgo_residual,estado,n_caracteres_notebook_previo
+notebook_fase5_actual,contiene referencias a olive_oil ambiguo y celdas de lógica larga,reescribir como orquestador y mover ejecución a src/fase5_feature_selection.py,evita reutilizar una plantilla no compatible con Fase 4,la narrativa depende de artefactos generados al ejecutar,reescrito,29609
+autoridad_fase5,promtps_raw/fase5.txt exige fit solo con X_train/y_train,codificar contrato de selección train-only,reduce riesgo de leakage por validation/test,no prueba ausencia semántica absoluta de proxies,aplicado,29609
+olive_oil,Fase 4 separa olive_oil_3class y olive_oil_9class,bloquear el dataset ambiguo y ejecutar solo las dos formulaciones,mantiene trazabilidad de targets y columnas excluidas,comparaciones entre formulaciones no son promediables,aplicado,29609

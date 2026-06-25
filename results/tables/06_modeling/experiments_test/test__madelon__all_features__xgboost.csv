@@ -1,0 +1,2 @@
+experiment_id,dataset,feature_set,selector,k,model_name,candidate_label,validation_macro_f1,validation_balanced_accuracy,test_macro_f1,test_balanced_accuracy,test_accuracy,test_auc_roc,n_test,n_features_used
+madelon__all_features__xgboost,madelon,all_features,all_features,500,xgboost,baseline_mejor_en_validation,0.7433076640997434,0.7433333333333333,0.813034188034188,0.8133333333333334,0.8133333333333334,,300,500

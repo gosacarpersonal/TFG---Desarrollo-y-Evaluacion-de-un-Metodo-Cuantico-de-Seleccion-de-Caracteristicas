@@ -1,0 +1,11 @@
+dataset,method,n_features_above_null,median_empirical_p_value,n_permutations
+breast_cancer_wisconsin,f_classif,10,0.047619047619047616,20
+breast_cancer_wisconsin,mutual_info,10,0.047619047619047616,20
+customer_churn,f_classif,10,0.047619047619047616,20
+customer_churn,mutual_info,10,0.047619047619047616,20
+madelon,f_classif,10,0.047619047619047616,20
+madelon,mutual_info,10,0.047619047619047616,20
+olive_oil_3class,f_classif,7,0.047619047619047616,20
+olive_oil_3class,mutual_info,8,0.047619047619047616,20
+olive_oil_9class,f_classif,8,0.047619047619047616,20
+olive_oil_9class,mutual_info,8,0.047619047619047616,20

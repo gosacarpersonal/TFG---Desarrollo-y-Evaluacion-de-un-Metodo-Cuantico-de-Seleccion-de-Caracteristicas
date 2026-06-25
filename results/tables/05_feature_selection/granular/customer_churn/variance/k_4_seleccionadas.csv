@@ -1,0 +1,13 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+customer_churn,variance,base mínima,13,4,usage_frequency,1,1.0000032406402213,True,0.032464757561683655,308582,ok
+customer_churn,variance,base mínima,13,4,total_spend,2,1.0000032406402213,True,0.032464757561683655,308582,ok
+customer_churn,variance,base mínima,13,4,last_interaction,3,1.000003240640221,True,0.032464757561683655,308582,ok
+customer_churn,variance,base mínima,13,4,age,4,1.0000032406402208,True,0.032464757561683655,308582,ok
+customer_churn,variance,base mínima,42,4,usage_frequency,1,1.0000032406402213,True,0.03178846091032028,308582,ok
+customer_churn,variance,base mínima,42,4,total_spend,2,1.0000032406402213,True,0.03178846091032028,308582,ok
+customer_churn,variance,base mínima,42,4,last_interaction,3,1.000003240640221,True,0.03178846091032028,308582,ok
+customer_churn,variance,base mínima,42,4,age,4,1.0000032406402208,True,0.03178846091032028,308582,ok
+customer_churn,variance,base mínima,97,4,usage_frequency,1,1.0000032406402213,True,0.03146829176694155,308582,ok
+customer_churn,variance,base mínima,97,4,total_spend,2,1.0000032406402213,True,0.03146829176694155,308582,ok
+customer_churn,variance,base mínima,97,4,last_interaction,3,1.000003240640221,True,0.03146829176694155,308582,ok
+customer_churn,variance,base mínima,97,4,age,4,1.0000032406402208,True,0.03146829176694155,308582,ok

@@ -1,0 +1,16 @@
+dataset,split_a,split_b,index_overlap,row_hash_overlap
+breast_cancer_wisconsin,train,validation,0,0
+breast_cancer_wisconsin,train,test,0,0
+breast_cancer_wisconsin,validation,test,0,0
+customer_churn,train,validation,0,0
+customer_churn,train,test,0,0
+customer_churn,validation,test,0,0
+madelon,train,validation,0,0
+madelon,train,test,0,0
+madelon,validation,test,0,0
+olive_oil_3class,train,validation,0,0
+olive_oil_3class,train,test,0,0
+olive_oil_3class,validation,test,0,0
+olive_oil_9class,train,validation,0,0
+olive_oil_9class,train,test,0,0
+olive_oil_9class,validation,test,0,0

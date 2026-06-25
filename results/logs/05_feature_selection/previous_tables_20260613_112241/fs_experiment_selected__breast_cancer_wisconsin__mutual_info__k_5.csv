@@ -1,0 +1,16 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+breast_cancer_wisconsin,mutual_info,filtros supervisados,13,5,perimeter_worst,1,0.503385110427043,True,0.025028062984347343,398,ok
+breast_cancer_wisconsin,mutual_info,filtros supervisados,13,5,radius_worst,2,0.48029277618277866,True,0.025028062984347343,398,ok
+breast_cancer_wisconsin,mutual_info,filtros supervisados,13,5,area_worst,3,0.4752316741825471,True,0.025028062984347343,398,ok
+breast_cancer_wisconsin,mutual_info,filtros supervisados,13,5,concave_points_mean,4,0.45447924623810976,True,0.025028062984347343,398,ok
+breast_cancer_wisconsin,mutual_info,filtros supervisados,13,5,concave_points_worst,5,0.4387819798112311,True,0.025028062984347343,398,ok
+breast_cancer_wisconsin,mutual_info,filtros supervisados,42,5,perimeter_worst,1,0.5056424287647632,True,0.024712467566132545,398,ok
+breast_cancer_wisconsin,mutual_info,filtros supervisados,42,5,radius_worst,2,0.47854281690245704,True,0.024712467566132545,398,ok
+breast_cancer_wisconsin,mutual_info,filtros supervisados,42,5,area_worst,3,0.47565225988398896,True,0.024712467566132545,398,ok
+breast_cancer_wisconsin,mutual_info,filtros supervisados,42,5,concave_points_mean,4,0.4544343790450014,True,0.024712467566132545,398,ok
+breast_cancer_wisconsin,mutual_info,filtros supervisados,42,5,concave_points_worst,5,0.4371667608593288,True,0.024712467566132545,398,ok
+breast_cancer_wisconsin,mutual_info,filtros supervisados,97,5,perimeter_worst,1,0.5066993004246501,True,0.02477332204580307,398,ok
+breast_cancer_wisconsin,mutual_info,filtros supervisados,97,5,radius_worst,2,0.4812873346665836,True,0.02477332204580307,398,ok
+breast_cancer_wisconsin,mutual_info,filtros supervisados,97,5,area_worst,3,0.4773445110943788,True,0.02477332204580307,398,ok
+breast_cancer_wisconsin,mutual_info,filtros supervisados,97,5,concave_points_mean,4,0.4561094209210481,True,0.02477332204580307,398,ok
+breast_cancer_wisconsin,mutual_info,filtros supervisados,97,5,concave_points_worst,5,0.4381189424019625,True,0.02477332204580307,398,ok

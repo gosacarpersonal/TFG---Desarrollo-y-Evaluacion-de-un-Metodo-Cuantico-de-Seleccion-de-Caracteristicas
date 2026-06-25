@@ -1,0 +1,16 @@
+dataset,target,valor_original,codigo,n,proporcion
+breast_cancer_wisconsin,target,B,0,357,0.6274165202108963
+breast_cancer_wisconsin,target,M,1,212,0.37258347978910367
+customer_churn,target,1.0,1,249999,0.5671071972996515
+customer_churn,target,0.0,0,190833,0.4328928027003484
+madelon,target,-1,0,1000,0.5
+madelon,target,1,1,1000,0.5
+olive_oil,target,South-Apulia,6,206,0.36013986013986016
+olive_oil,target,Inland-Sardinia,3,65,0.11363636363636363
+olive_oil,target,Calabria,0,56,0.0979020979020979
+olive_oil,target,Umbria,7,51,0.08916083916083917
+olive_oil,target,West-Liguria,8,50,0.08741258741258741
+olive_oil,target,East-Liguria,2,50,0.08741258741258741
+olive_oil,target,Sicily,5,36,0.06293706293706294
+olive_oil,target,Coast-Sardinia,1,33,0.057692307692307696
+olive_oil,target,North-Apulia,4,25,0.043706293706293704

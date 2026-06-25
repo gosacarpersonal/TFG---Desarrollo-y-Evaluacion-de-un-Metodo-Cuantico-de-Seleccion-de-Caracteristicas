@@ -1,0 +1,30 @@
+{
+  "chunk_size_bytes": 52428800,
+  "files": [
+    {
+      "original_path": "results/predictions/06_modeling/modeling_validation_predictions.csv",
+      "size_bytes": 133869024,
+      "sha256": "b5c0089debd1547b9402188e25e232b6c93ba0cde28ff33ea55042b861e1929d",
+      "parts": [
+        "large_files_parts/results__predictions__06_modeling__modeling_validation_predictions.csv/modeling_validation_predictions.csv.part001",
+        "large_files_parts/results__predictions__06_modeling__modeling_validation_predictions.csv/modeling_validation_predictions.csv.part002",
+        "large_files_parts/results__predictions__06_modeling__modeling_validation_predictions.csv/modeling_validation_predictions.csv.part003"
+      ]
+    },
+    {
+      "original_path": "results/predictions/06_modeling/validation_predictions.csv",
+      "size_bytes": 401257203,
+      "sha256": "1f84cd953a695e38e8d1a6ea034c92ef842855f7222462a604ff6721f791abbf",
+      "parts": [
+        "large_files_parts/results__predictions__06_modeling__validation_predictions.csv/validation_predictions.csv.part001",
+        "large_files_parts/results__predictions__06_modeling__validation_predictions.csv/validation_predictions.csv.part002",
+        "large_files_parts/results__predictions__06_modeling__validation_predictions.csv/validation_predictions.csv.part003",
+        "large_files_parts/results__predictions__06_modeling__validation_predictions.csv/validation_predictions.csv.part004",
+        "large_files_parts/results__predictions__06_modeling__validation_predictions.csv/validation_predictions.csv.part005",
+        "large_files_parts/results__predictions__06_modeling__validation_predictions.csv/validation_predictions.csv.part006",
+        "large_files_parts/results__predictions__06_modeling__validation_predictions.csv/validation_predictions.csv.part007",
+        "large_files_parts/results__predictions__06_modeling__validation_predictions.csv/validation_predictions.csv.part008"
+      ]
+    }
+  ]
+}

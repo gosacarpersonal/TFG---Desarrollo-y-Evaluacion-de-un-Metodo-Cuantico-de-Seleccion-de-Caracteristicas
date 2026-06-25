@@ -1,0 +1,16 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+customer_churn,random_forest,embedded,13,5,support_calls,1,0.2822860804827794,True,0.8476258590817451,5000,ok
+customer_churn,random_forest,embedded,13,5,total_spend,2,0.198277006726428,True,0.8476258590817451,5000,ok
+customer_churn,random_forest,embedded,13,5,age,3,0.14347417825812334,True,0.8476258590817451,5000,ok
+customer_churn,random_forest,embedded,13,5,payment_delay,4,0.11531189160992766,True,0.8476258590817451,5000,ok
+customer_churn,random_forest,embedded,13,5,contract_length_Monthly,5,0.11356169323509929,True,0.8476258590817451,5000,ok
+customer_churn,random_forest,embedded,42,5,support_calls,1,0.2880677490820594,True,0.7782305246219039,5000,ok
+customer_churn,random_forest,embedded,42,5,total_spend,2,0.21327323129259002,True,0.7782305246219039,5000,ok
+customer_churn,random_forest,embedded,42,5,age,3,0.12591116782238138,True,0.7782305246219039,5000,ok
+customer_churn,random_forest,embedded,42,5,payment_delay,4,0.12207115179835067,True,0.7782305246219039,5000,ok
+customer_churn,random_forest,embedded,42,5,contract_length_Monthly,5,0.1050418888910453,True,0.7782305246219039,5000,ok
+customer_churn,random_forest,embedded,97,5,support_calls,1,0.28939368506836244,True,0.7998927934095263,5000,ok
+customer_churn,random_forest,embedded,97,5,total_spend,2,0.2170611519073428,True,0.7998927934095263,5000,ok
+customer_churn,random_forest,embedded,97,5,payment_delay,3,0.12476261098744512,True,0.7998927934095263,5000,ok
+customer_churn,random_forest,embedded,97,5,age,4,0.11804613777905001,True,0.7998927934095263,5000,ok
+customer_churn,random_forest,embedded,97,5,contract_length_Monthly,5,0.11206893165978833,True,0.7998927934095263,5000,ok

@@ -1,0 +1,114 @@
+% Capítulo 1: Introducción, motivación y objetivos.
+
+Este primer capítulo sitúa el problema de la selección de
+características en el contexto de la Ciencia de Datos y delimita el
+propósito del trabajo. En primer lugar se expone la motivación, que
+conecta la reducción de dimensionalidad con la estabilidad, la
+interpretabilidad y la validez de los modelos supervisados. A
+continuación se fijan el objetivo general y los objetivos específicos
+que guían el estudio.
+
+\section{Motivación}
+
+La selección de características es una de las etapas centrales del
+aprendizaje automático supervisado. Su objetivo es identificar el
+subconjunto de variables que conserva la capacidad predictiva del
+problema reduciendo dimensionalidad, redundancia y coste
+computacional~\cite{guyon2003}. En espacios de alta dimensionalidad,
+una buena selección no es solo una optimización: condiciona la
+estabilidad de los modelos, su interpretabilidad y la propia validez
+de las conclusiones, como puso de manifiesto el desafío de selección
+de características de NIPS~2003, un banco de referencia clásico para
+problemas de alta dimensionalidad~\cite{guyon2004}.
+
+El problema de seleccionar el mejor subconjunto de $k$ variables entre
+$p$ candidatas es combinatorio y, en general, intratable de forma
+exacta. Los métodos clásicos lo abordan mediante heurísticas: filtros
+univariantes, métodos basados en regularización, importancias de
+modelos de conjunto o criterios de relevancia--redundancia como
+mRMR (\textit{minimum Redundancy Maximum Relevance})~\cite{peng2005}. En paralelo, la computación cuántica ofrece una
+vía alternativa: formular la selección como un problema de
+optimización binaria cuadrática sin restricciones (QUBO,
+\textit{Quadratic Unconstrained Binary Optimization}) que combine
+relevancia y redundancia en una única función objetivo, y resolverlo
+sobre hardware cuántico~\cite{mucke2023}. En particular, las plataformas de átomos
+neutros permiten codificar este tipo de problemas aprovechando el
+fenómeno del bloqueo de Rydberg, que impide la excitación simultánea
+de átomos vecinos y actúa de forma natural como una restricción de
+exclusión entre variables redundantes~\cite{henriet2020}.
+
+Este Trabajo de Fin de Grado analiza la viabilidad de un método
+cuántico de selección de características (QFS, \textit{Quantum Feature
+Selection}) basado en dicho fenómeno. El atractivo de esta vía es
+computacional: QFS asigna un átomo (un cúbit) a cada variable
+candidata y resuelve el compromiso relevancia--redundancia de forma
+global sobre el hardware, de modo que un dispositivo de $n$ átomos puede
+seleccionar características sobre un espacio de hasta $n$ variables en un
+tiempo de ejecución muy corto, frente al coste combinatorio de la
+búsqueda exacta clásica. Evaluar esa viabilidad de forma interpretable
+exige caracterizar primero cada conjunto de datos: dónde reside la señal
+predictiva, cómo se distribuye la redundancia, qué dimensionalidad
+efectiva tiene y si las particiones permiten atribuir los resultados al
+método y no al azar o a fugas de información. Con ese fin se construye
+una referencia clásica que aporta, además de un baseline de rendimiento,
+un sistema de coordenadas de relevancia, redundancia, estabilidad y coste
+sobre el que situar el método cuántico.
+
+De ahí la tesis que guía la memoria: el bloque clásico no es un mero
+punto de comparación, sino el instrumento que permite leer el método
+cuántico. Una caracterización clásica rigurosa anticipa qué componente
+de QFS puede fallar en cada régimen de datos; y el contraste con el
+óptimo exacto del problema de optimización subyacente permite, cuando
+aparece un deterioro, separar si procede del criterio de información
+mutua o del optimizador analógico que intenta alcanzarlo.
+
+\section{Objetivos}
+
+El objetivo general del TFG es analizar la viabilidad de un método de
+selección de características que hace uso del bloqueo de Rydberg,
+presente en tecnologías de átomos neutros, dentro de un protocolo
+supervisado de Ciencia de Datos. La pregunta no es solo si QFS mejora
+una métrica final, sino si puede competir con referencias clásicas
+contrastadas y si sus resultados pueden atribuirse al criterio de
+selección o al proceso de optimización. La propuesta del trabajo lo
+desarrolla en seis objetivos específicos:
+
+\begin{enumerate}
+\item Revisar métodos clásicos de selección de características
+  ampliamente utilizados y representativos de distintas familias de
+  selección.
+\item Seleccionar conjuntos de datos de referencia, diversos en número
+  de muestras, dimensionalidad y tipo de variables, sobre los que
+  evaluar los métodos de selección.
+\item Realizar un estudio comparativo del rendimiento de los métodos
+  clásicos sobre los conjuntos seleccionados.
+\item Implementar y evaluar un método cuántico de selección de
+  características basado en el bloqueo de Rydberg, conservando el núcleo
+  de la formulación de referencia e incorporando adaptaciones operativas
+  propias: un parámetro de separación $\beta$, una envolvente híbrida de
+  preselección y la extensión del banco de pruebas a problemas
+  multiclase y de alta dimensionalidad.
+\item Comparar el rendimiento del método cuántico frente a los mejores
+  selectores clásicos identificados, bajo un protocolo de evaluación
+  común.
+\item Analizar, mediante el óptimo exacto de la formulación QUBO, si las
+  diferencias observadas entre el método cuántico y las referencias
+  clásicas proceden del criterio de selección o del proceso de
+  optimización analógica.
+\end{enumerate}
+
+El estudio clásico (objetivos 1--3) no se limita a ejecutar selectores:
+se construye sobre datos validados, particiones sin fuga de información y
+contrastes estadísticos explícitos, y mide propiedades que el rendimiento
+no captura, como la estabilidad, la redundancia interna, la separación
+frente al azar y la coherencia con las variables que usa el modelo. Sobre
+esa base, los objetivos 4 a 6 implementan y evalúan el método cuántico
+(su formulación, su codificación física y su contrato de evaluación), lo
+comparan con los mejores selectores clásicos bajo el mismo protocolo y
+añaden un control frente al óptimo exacto de la función de coste que
+permite separar la calidad del criterio de la del optimizador. La
+evaluación del método cuántico se realiza en un entorno simulado y bajo
+una envolvente operativa controlada, por lo que las conclusiones se
+refieren al protocolo experimental evaluado y no a una demostración en
+hardware físico.
+

@@ -1,0 +1,25 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+olive_oil_3class,mutual_info,filtros supervisados,13,8,other,1,0.6590143244246947,True,0.00868639349937439,400,ok
+olive_oil_3class,mutual_info,filtros supervisados,13,8,stearic,2,0.580696090013298,True,0.00868639349937439,400,ok
+olive_oil_3class,mutual_info,filtros supervisados,13,8,linoleic,3,0.5110554148924817,True,0.00868639349937439,400,ok
+olive_oil_3class,mutual_info,filtros supervisados,13,8,palmitoleic,4,0.47257703469877854,True,0.00868639349937439,400,ok
+olive_oil_3class,mutual_info,filtros supervisados,13,8,linolenic,5,0.4132339861818577,True,0.00868639349937439,400,ok
+olive_oil_3class,mutual_info,filtros supervisados,13,8,arachidic,6,0.40421277209840545,True,0.00868639349937439,400,ok
+olive_oil_3class,mutual_info,filtros supervisados,13,8,eicosenoic,7,0.3416222577694923,True,0.00868639349937439,400,ok
+olive_oil_3class,mutual_info,filtros supervisados,13,8,oleic,8,0.2742684911127393,True,0.00868639349937439,400,ok
+olive_oil_3class,mutual_info,filtros supervisados,42,8,other,1,0.6633268070809273,True,0.008587575517594814,400,ok
+olive_oil_3class,mutual_info,filtros supervisados,42,8,stearic,2,0.5640604350897842,True,0.008587575517594814,400,ok
+olive_oil_3class,mutual_info,filtros supervisados,42,8,linoleic,3,0.5187257793213045,True,0.008587575517594814,400,ok
+olive_oil_3class,mutual_info,filtros supervisados,42,8,palmitoleic,4,0.4914645211367894,True,0.008587575517594814,400,ok
+olive_oil_3class,mutual_info,filtros supervisados,42,8,arachidic,5,0.4500508882055603,True,0.008587575517594814,400,ok
+olive_oil_3class,mutual_info,filtros supervisados,42,8,linolenic,6,0.4051646513704985,True,0.008587575517594814,400,ok
+olive_oil_3class,mutual_info,filtros supervisados,42,8,eicosenoic,7,0.30475393321159183,True,0.008587575517594814,400,ok
+olive_oil_3class,mutual_info,filtros supervisados,42,8,oleic,8,0.28463251808089307,True,0.008587575517594814,400,ok
+olive_oil_3class,mutual_info,filtros supervisados,97,8,other,1,0.6805540104331307,True,0.00857519544661045,400,ok
+olive_oil_3class,mutual_info,filtros supervisados,97,8,stearic,2,0.5723444456039679,True,0.00857519544661045,400,ok
+olive_oil_3class,mutual_info,filtros supervisados,97,8,linoleic,3,0.5176202023525414,True,0.00857519544661045,400,ok
+olive_oil_3class,mutual_info,filtros supervisados,97,8,palmitoleic,4,0.47446211449509423,True,0.00857519544661045,400,ok
+olive_oil_3class,mutual_info,filtros supervisados,97,8,arachidic,5,0.4348986055063053,True,0.00857519544661045,400,ok
+olive_oil_3class,mutual_info,filtros supervisados,97,8,linolenic,6,0.4089802577511248,True,0.00857519544661045,400,ok
+olive_oil_3class,mutual_info,filtros supervisados,97,8,eicosenoic,7,0.31434086982375087,True,0.00857519544661045,400,ok
+olive_oil_3class,mutual_info,filtros supervisados,97,8,oleic,8,0.27563775230581977,True,0.00857519544661045,400,ok

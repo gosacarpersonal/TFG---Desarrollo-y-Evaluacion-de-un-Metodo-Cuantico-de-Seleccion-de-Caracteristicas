@@ -1,0 +1,10 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+olive_oil_3class,f_classif,filtros supervisados,13,3,other,1,757.4912293532601,True,0.00045114848762750626,400,ok
+olive_oil_3class,f_classif,filtros supervisados,13,3,linoleic,2,240.87348702912428,True,0.00045114848762750626,400,ok
+olive_oil_3class,f_classif,filtros supervisados,13,3,linolenic,3,177.29849317760792,True,0.00045114848762750626,400,ok
+olive_oil_3class,f_classif,filtros supervisados,42,3,other,1,757.4912293532601,True,0.00040085334330797195,400,ok
+olive_oil_3class,f_classif,filtros supervisados,42,3,linoleic,2,240.87348702912428,True,0.00040085334330797195,400,ok
+olive_oil_3class,f_classif,filtros supervisados,42,3,linolenic,3,177.29849317760792,True,0.00040085334330797195,400,ok
+olive_oil_3class,f_classif,filtros supervisados,97,3,other,1,757.4912293532601,True,0.0003982400521636009,400,ok
+olive_oil_3class,f_classif,filtros supervisados,97,3,linoleic,2,240.87348702912428,True,0.0003982400521636009,400,ok
+olive_oil_3class,f_classif,filtros supervisados,97,3,linolenic,3,177.29849317760792,True,0.0003982400521636009,400,ok

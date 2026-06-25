@@ -1,0 +1,4 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+customer_churn,rrfs,relevancia-redundancia,13,1,support_calls,1,15.18662085297536,True,0.015044423751533031,5000,ok
+customer_churn,rrfs,relevancia-redundancia,42,1,support_calls,1,15.185161676768637,True,0.015139225870370865,5000,ok
+customer_churn,rrfs,relevancia-redundancia,97,1,support_calls,1,15.179177859111102,True,0.015161235816776752,5000,ok

@@ -1,0 +1,19 @@
+id,archivo,ubicacion_recomendada,pregunta,decision
+F01,F01_banco_regimenes.png,cuerpo,¿Por qué los datasets deben leerse por régimen y no como un promedio único?,mantener
+F02,F02_senal_fdr_efecto.png,cuerpo,¿Dónde hay señal estadística suficiente antes de modelar?,mantener
+F03,F03_base_confiable.png,cuerpo,¿El banco experimental es confiable antes de comparar métodos?,mantener
+F04,F04_perfil_selectores.png,cuerpo,¿Qué perfil muestran los selectores clásicos?,mantener
+F05,F05_frontera_coste_rendimiento.png,cuerpo,¿Qué métodos quedan cerca de la frontera rendimiento-coste?,mantener
+F06,F06_shap_beeswarm_instancias.png,cuerpo,¿Qué variables explican localmente las predicciones?,mantener
+F07,F07_significancia_magnitud.png,cuerpo,¿Las diferencias observadas son estadísticamente sostenibles?,mantener
+F08,F08_mandos_qfs_alpha_beta.png,cuerpo,¿Cómo modifican alpha y beta el criterio QFS?,mantener
+F09,F09_atribucion_criterio_optimizador.png,cuerpo,¿El fallo de QFS viene del criterio o del optimizador?,mantener como figura central
+F10,F10_comparacion_final_clasico_qfs.png,cuerpo,¿Dónde queda QFS al cerrar la comparación por dataset?,mantener
+A01,explor_mapa_metodos.png,apendice/respaldo,¿Qué familias de métodos se probaron en la exploración?,"bajar: útil como inventario, no como resultado principal"
+A02,f10_b2_jaccard_12_metodos.png,apendice/respaldo,¿Cómo se solapan los 12 métodos clásicos?,bajar: diagnóstico denso; compite con el relato principal
+A03,f10_b4_escalera_alpha.png,apendice/respaldo,¿Qué barrido fino se hizo sobre alpha?,bajar: detalle paramétrico ya resumido por F08
+A04,f10_b5_beta_geometria.png,apendice/respaldo,¿Qué geometrías induce beta?,bajar: detalle técnico ya resumido por F08
+A05,f10_b8_cadena_tests.png,apendice/respaldo,¿Qué cadena completa de tests se ejecutó?,"bajar: trazabilidad, no conclusión visual"
+A06,f10_b10_consistencia.png,apendice/respaldo,¿Qué consistencia interna se observó en QFS?,bajar: diagnóstico secundario
+A07,ev6_rendimiento_vs_k.png,apendice/respaldo opcional,¿Cómo cambia el rendimiento con k?,bajar salvo que el texto necesite discutir k explícitamente
+A08,f10_b9_atomos_mds_error.png,apendice/respaldo opcional,¿Cómo se proyecta el error por configuración de átomos?,bajar salvo que se use para explicar el optimizador

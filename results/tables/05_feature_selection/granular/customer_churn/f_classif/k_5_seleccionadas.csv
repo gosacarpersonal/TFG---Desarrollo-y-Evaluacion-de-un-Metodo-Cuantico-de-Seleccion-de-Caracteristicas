@@ -1,0 +1,16 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+customer_churn,f_classif,relevancia pura,13,5,support_calls,1,151840.66427183928,True,0.028343942016363144,308582,ok
+customer_churn,f_classif,relevancia pura,13,5,contract_length_Monthly,2,71347.55848281378,True,0.028343942016363144,308582,ok
+customer_churn,f_classif,relevancia pura,13,5,total_spend,3,69932.80693593084,True,0.028343942016363144,308582,ok
+customer_churn,f_classif,relevancia pura,13,5,payment_delay,4,33227.99896740087,True,0.028343942016363144,308582,ok
+customer_churn,f_classif,relevancia pura,13,5,age,5,15542.18312139327,True,0.028343942016363144,308582,ok
+customer_churn,f_classif,relevancia pura,42,5,support_calls,1,151840.66427183928,True,0.0291632367298007,308582,ok
+customer_churn,f_classif,relevancia pura,42,5,contract_length_Monthly,2,71347.55848281378,True,0.0291632367298007,308582,ok
+customer_churn,f_classif,relevancia pura,42,5,total_spend,3,69932.80693593084,True,0.0291632367298007,308582,ok
+customer_churn,f_classif,relevancia pura,42,5,payment_delay,4,33227.99896740087,True,0.0291632367298007,308582,ok
+customer_churn,f_classif,relevancia pura,42,5,age,5,15542.18312139327,True,0.0291632367298007,308582,ok
+customer_churn,f_classif,relevancia pura,97,5,support_calls,1,151840.66427183928,True,0.0274208327755332,308582,ok
+customer_churn,f_classif,relevancia pura,97,5,contract_length_Monthly,2,71347.55848281378,True,0.0274208327755332,308582,ok
+customer_churn,f_classif,relevancia pura,97,5,total_spend,3,69932.80693593084,True,0.0274208327755332,308582,ok
+customer_churn,f_classif,relevancia pura,97,5,payment_delay,4,33227.99896740087,True,0.0274208327755332,308582,ok
+customer_churn,f_classif,relevancia pura,97,5,age,5,15542.18312139327,True,0.0274208327755332,308582,ok

@@ -1,0 +1,9 @@
+dataset,metodo,variables_comunes,pares_comunes,correlacion_entre_matrices,frobenius_norm_difference
+breast_cancer_wisconsin,pearson,30,435,1.0,0.0
+breast_cancer_wisconsin,spearman,30,435,1.0,0.0
+customer_churn,pearson,7,21,0.9999999999999999,0.0
+customer_churn,spearman,7,21,1.0,0.0
+madelon,pearson,500,124750,1.0,0.0
+madelon,spearman,500,124750,0.9999999999999999,0.0
+olive_oil,pearson,10,45,1.0,0.0
+olive_oil,spearman,10,45,0.9999999999999999,0.0

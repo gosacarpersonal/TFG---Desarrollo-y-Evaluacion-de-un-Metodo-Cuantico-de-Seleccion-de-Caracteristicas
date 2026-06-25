@@ -1,0 +1,20 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+madelon,boruta,wrapper all-relevant,42,19,feat_105,1,500.0,True,11.793131093494594,1400,ok
+madelon,boruta,wrapper all-relevant,42,19,feat_128,1,500.0,True,11.793131093494594,1400,ok
+madelon,boruta,wrapper all-relevant,42,19,feat_153,1,500.0,True,11.793131093494594,1400,ok
+madelon,boruta,wrapper all-relevant,42,19,feat_241,1,500.0,True,11.793131093494594,1400,ok
+madelon,boruta,wrapper all-relevant,42,19,feat_28,1,500.0,True,11.793131093494594,1400,ok
+madelon,boruta,wrapper all-relevant,42,19,feat_281,1,500.0,True,11.793131093494594,1400,ok
+madelon,boruta,wrapper all-relevant,42,19,feat_318,1,500.0,True,11.793131093494594,1400,ok
+madelon,boruta,wrapper all-relevant,42,19,feat_336,1,500.0,True,11.793131093494594,1400,ok
+madelon,boruta,wrapper all-relevant,42,19,feat_338,1,500.0,True,11.793131093494594,1400,ok
+madelon,boruta,wrapper all-relevant,42,19,feat_378,1,500.0,True,11.793131093494594,1400,ok
+madelon,boruta,wrapper all-relevant,42,19,feat_433,1,500.0,True,11.793131093494594,1400,ok
+madelon,boruta,wrapper all-relevant,42,19,feat_442,1,500.0,True,11.793131093494594,1400,ok
+madelon,boruta,wrapper all-relevant,42,19,feat_451,1,500.0,True,11.793131093494594,1400,ok
+madelon,boruta,wrapper all-relevant,42,19,feat_453,1,500.0,True,11.793131093494594,1400,ok
+madelon,boruta,wrapper all-relevant,42,19,feat_472,1,500.0,True,11.793131093494594,1400,ok
+madelon,boruta,wrapper all-relevant,42,19,feat_475,1,500.0,True,11.793131093494594,1400,ok
+madelon,boruta,wrapper all-relevant,42,19,feat_48,1,500.0,True,11.793131093494594,1400,ok
+madelon,boruta,wrapper all-relevant,42,19,feat_493,1,500.0,True,11.793131093494594,1400,ok
+madelon,boruta,wrapper all-relevant,42,19,feat_64,1,500.0,True,11.793131093494594,1400,ok

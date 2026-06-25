@@ -1,0 +1,10 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+olive_oil_9class,l1_logistic,embedded,13,3,linolenic,1,1.1648699669568907,True,0.04172561317682266,400,ok
+olive_oil_9class,l1_logistic,embedded,13,3,other,2,0.8274304228252152,True,0.04172561317682266,400,ok
+olive_oil_9class,l1_logistic,embedded,13,3,oleic,3,0.46256362117999683,True,0.04172561317682266,400,ok
+olive_oil_9class,l1_logistic,embedded,42,3,linolenic,1,1.1650679529739467,True,0.04608374461531639,400,ok
+olive_oil_9class,l1_logistic,embedded,42,3,other,2,0.8269209633698078,True,0.04608374461531639,400,ok
+olive_oil_9class,l1_logistic,embedded,42,3,oleic,3,0.4626676728538761,True,0.04608374461531639,400,ok
+olive_oil_9class,l1_logistic,embedded,97,3,linolenic,1,1.1649790105280877,True,0.03499983251094818,400,ok
+olive_oil_9class,l1_logistic,embedded,97,3,other,2,0.8272818394528487,True,0.03499983251094818,400,ok
+olive_oil_9class,l1_logistic,embedded,97,3,oleic,3,0.46259528015427115,True,0.03499983251094818,400,ok

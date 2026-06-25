@@ -1,0 +1,16 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+olive_oil_9class,mutual_info,filtros supervisados,13,5,linoleic,1,1.0903340773648045,True,0.017160451039671898,400,ok
+olive_oil_9class,mutual_info,filtros supervisados,13,5,linolenic,2,1.0186733410124837,True,0.017160451039671898,400,ok
+olive_oil_9class,mutual_info,filtros supervisados,13,5,stearic,3,0.9777925837775459,True,0.017160451039671898,400,ok
+olive_oil_9class,mutual_info,filtros supervisados,13,5,palmitoleic,4,0.8587985967554435,True,0.017160451039671898,400,ok
+olive_oil_9class,mutual_info,filtros supervisados,13,5,other,5,0.7509108874146393,True,0.017160451039671898,400,ok
+olive_oil_9class,mutual_info,filtros supervisados,42,5,linoleic,1,1.0840837061541941,True,0.017146963626146317,400,ok
+olive_oil_9class,mutual_info,filtros supervisados,42,5,linolenic,2,1.0163796526322442,True,0.017146963626146317,400,ok
+olive_oil_9class,mutual_info,filtros supervisados,42,5,stearic,3,1.0076603634726973,True,0.017146963626146317,400,ok
+olive_oil_9class,mutual_info,filtros supervisados,42,5,palmitoleic,4,0.8480502470069053,True,0.017146963626146317,400,ok
+olive_oil_9class,mutual_info,filtros supervisados,42,5,other,5,0.7630943314738516,True,0.017146963626146317,400,ok
+olive_oil_9class,mutual_info,filtros supervisados,97,5,linoleic,1,1.0951610970458912,True,0.018147489987313747,400,ok
+olive_oil_9class,mutual_info,filtros supervisados,97,5,linolenic,2,1.0251044799861142,True,0.018147489987313747,400,ok
+olive_oil_9class,mutual_info,filtros supervisados,97,5,stearic,3,1.0068349035343367,True,0.018147489987313747,400,ok
+olive_oil_9class,mutual_info,filtros supervisados,97,5,palmitoleic,4,0.8425742885485081,True,0.018147489987313747,400,ok
+olive_oil_9class,mutual_info,filtros supervisados,97,5,other,5,0.7742423003158518,True,0.018147489987313747,400,ok

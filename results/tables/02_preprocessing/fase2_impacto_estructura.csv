@@ -1,0 +1,5 @@
+dataset,filas_raw,filas_processed,delta_filas,columnas_raw,columnas_processed,delta_columnas,target_total_variation,nulos_processed
+breast_cancer_wisconsin,569,569,0,32,31,-1,0.0,0
+customer_churn,440832,440832,0,12,11,-1,0.0,0
+madelon,2000,2000,0,501,501,0,0.0,0
+olive_oil,572,572,0,12,11,-1,0.0,0

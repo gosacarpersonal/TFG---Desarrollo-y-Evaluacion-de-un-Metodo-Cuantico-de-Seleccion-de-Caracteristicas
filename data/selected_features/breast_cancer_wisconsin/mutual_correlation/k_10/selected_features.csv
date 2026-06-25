@@ -1,0 +1,11 @@
+feature,rank
+concavity_mean,1
+concave_points_mean,2
+concave_points_worst,3
+compactness_mean,4
+perimeter_worst,5
+concavity_worst,6
+radius_worst,7
+compactness_worst,8
+perimeter_se,9
+compactness_se,10

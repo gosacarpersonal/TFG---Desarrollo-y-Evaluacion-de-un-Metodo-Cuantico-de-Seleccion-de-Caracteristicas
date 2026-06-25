@@ -1,0 +1,5 @@
+dataset,variables,ks_maximo,wasserstein_maximo,psi_maximo,js_maximo,max_delta_percentil,spearman_minimo,score_shift_maximo
+breast_cancer_wisconsin,30,0.0,0.0,0.0,0.0,0.0,0.9999999999999998,0.0
+customer_churn,7,0.0,0.0,0.0,0.0,0.0,0.9999999999999999,0.0
+madelon,500,0.0,0.0,0.0,0.0,0.0,0.9999999999999998,0.0
+olive_oil,10,0.0,0.0,0.0,0.0,0.0,0.9999999999999998,0.0

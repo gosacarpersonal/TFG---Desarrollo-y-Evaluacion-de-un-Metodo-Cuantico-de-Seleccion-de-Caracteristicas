@@ -1,0 +1,5 @@
+dataset,filas_originales,filas_muestra_visual,tipo_muestra
+breast_cancer_wisconsin,569,569,completo
+customer_churn,440832,5000,muestra_estratificada_visual
+madelon,2000,2000,completo
+olive_oil,572,572,completo

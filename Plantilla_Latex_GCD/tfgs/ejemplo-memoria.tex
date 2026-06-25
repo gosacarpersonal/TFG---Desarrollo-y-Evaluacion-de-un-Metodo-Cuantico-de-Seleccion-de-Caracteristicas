@@ -1,0 +1,262 @@
+\documentclass[twoside,spanish,a4paper,12pt]{tfg}
+% Fuente: la clase solo cargaba inputenc (codificacion OT1 antigua), lo que hacia
+% que acentos y enes se vieran "raros". Latin Modern + T1 da una tipografia limpia
+% y escalable. No altera portada ni estructura.
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\setlength{\emergencystretch}{2em}
+\hbadness=10000
+\vbadness=10000
+
+% Colocación de flotantes. Los parámetros por defecto de LaTeX son muy
+% restrictivos (bottomfraction 0.3, textfraction 0.2): una figura a ancho
+% completo no cabe al pie y se ve empujada siempre a la cabecera, lo que parte
+% los párrafos que cruzan el salto de página. Se relajan para que las figuras
+% puedan ir también al pie o a una página propia, distribuyéndose mejor.
+% Las figuras y tablas usan [tbp] (cabecera, pie o página propia) para no
+% aterrizar a media página partiendo una frase; las excepciones puntuales
+% llevan [ht] o [b] cuando su anclaje natural (frontera de sección, cita a
+% una ecuación inmediatamente anterior) lo exige.
+\renewcommand{\topfraction}{0.90}
+\renewcommand{\bottomfraction}{0.80}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.70}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{5}
+\newcommand{\varname}[1]{\path{#1}}
+% Permite usar flechas TikZ (<->, ->) con los caracteres activos de babel-spanish
+\usetikzlibrary{babel}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+% El tutor pide "Tabla" en lugar del "Cuadro" por defecto de babel-spanish.
+% Se aplica al inicio del documento para que no lo sobrescriba \captionsspanish.
+% Se renombra también el título del índice de tablas (por defecto "Índice de
+% cuadros") para que coincida con los pies ("Tabla") y con la entrada del TOC.
+\AtBeginDocument{%
+  \renewcommand{\tablename}{Tabla}%
+  \renewcommand{\listtablename}{Índice de tablas}%
+}
+
+% Las páginas de relleno que inserta \cleardoublepage (versos en blanco al
+% cerrar un capítulo en página impar) heredaban la cabecera "Capítulo N" o
+% "Apéndices". Se redefine para que esos blancos no lleven cabecera ni pie.
+\makeatletter
+\renewcommand*{\cleardoublepage}{\clearpage\if@twoside
+  \ifodd\c@page\else\hbox{}\thispagestyle{empty}\newpage
+  \if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+
+% Cabecera propia para la bibliografía: las páginas de referencias no son
+% apéndices, así que no deben llevar la cabecera "Apéndices".
+\fancypagestyle{bibliografia}{%
+  \fancyhf{}%
+  \fancyhead[EL,OR]{Bibliografía}%
+  \fancyhead[OL,ER]{Página \thepage}%
+  \renewcommand{\headrulewidth}{1pt}%
+  \fancyfoot{}%
+}
+
+% Editar la titulación
+\titulacion{Grado en Ciencia de Datos}
+
+% Editar el título
+\title{Desarrollo y evaluación de un método cuántico de selección de características}
+
+% Si es una alumna se debe usar
+% \authorlabel{Autora}
+\authorlabel{Autor}
+% Editar el nombre
+\author{Carlos Gómez Sáez}
+
+
+% Si hay varios tutores:
+% \tutorlabel{Tutores}
+% \tutor{Nombre del tutor 1 \\[2mm] Nombre del turor2}
+% Si el tutor es masculino:
+% \tutorlabel{Tutor}
+\tutorlabel{Tutores}
+\tutor{Yolanda Vives Gilabert \\[2mm] José D. Martín Guerrero}
+
+% Editar: Poner mes y año de la convocatoria de lectura del TFM
+\convocatoria{Julio 2026}
+
+\begin{document}
+
+% NO QUITAR ESTOS ELEMENTOS
+\portada{}
+\cleardoublepage{}
+
+% Declaración sobre el uso de IA (recomendada por la UV en la convocatoria actual).
+% Carlos: revisa este texto y ajústalo al modelo oficial de la UV y a tu uso real.
+\thispagestyle{empty}
+\vspace*{1\baselineskip}
+\noindent{\large\bfseries Declaración sobre el uso de inteligencia artificial}
+\vspace{0.5\baselineskip}
+
+\noindent Durante el desarrollo de este Trabajo de Fin de Grado se han
+utilizado herramientas de inteligencia artificial generativa como apoyo
+en tareas de programación, depuración, organización documental, revisión
+de estilo, traducción y mejora de la redacción. Estas herramientas se
+han empleado como instrumento auxiliar bajo instrucciones, revisión y
+criterio del autor.
+
+\noindent El uso de estas herramientas no sustituye la autoría del
+trabajo. El autor ha definido las decisiones metodológicas, ha
+seleccionado los resultados, ha interpretado las evidencias y ha
+elaborado, corregido y validado la redacción final de la memoria. Las
+tablas, figuras, métricas y conclusiones presentadas proceden de los
+datos, los \textit{scripts} y los archivos de evidencia generados por el
+\textit{pipeline} reproducible descrito en la memoria, y no de salidas no
+verificadas de sistemas de inteligencia artificial. En ningún caso se han
+empleado estas herramientas para fabricar datos, resultados o
+referencias, y el autor asume la plena responsabilidad sobre el contenido
+del trabajo.
+\cleardoublepage{}
+
+\contraportada{}
+\cleardoublepage{}
+\declaracion{}
+\cleardoublepage{}
+
+
+% Editar: Resumen en Español (obligatorio)
+\begin{resumen}
+  La selección de características es una etapa central de la Ciencia de
+  Datos: condiciona el rendimiento, la estabilidad y la interpretabilidad
+  de los modelos supervisados. Este trabajo estudia la viabilidad de un
+  método cuántico de selección de características (QFS, \textit{Quantum
+  Feature Selection}) que formula el problema como una función binaria de
+  relevancia y redundancia y lo resuelve mediante una simulación de
+  átomos neutros con bloqueo de Rydberg. Para que la evaluación de ese
+  método sea defendible, se construye primero una referencia clásica
+  amplia y contrastada que no actúa solo como un baseline de rendimiento,
+  sino como un sistema de coordenadas de relevancia, redundancia,
+  estabilidad y coste sobre el que situar el método cuántico. La
+  aportación principal no es un ranking de métodos, sino un diagnóstico:
+  la referencia clásica, junto con el óptimo exacto del problema de
+  optimización binaria subyacente, permite distinguir cuándo un eventual
+  deterioro del método cuántico procede del criterio de selección y
+  cuándo del proceso de optimización. En los conjuntos evaluados, QFS no
+  aventaja de forma general a la selección de características clásica, pero
+  el control exacto de la formulación QUBO permite atribuir sus
+  deterioros a mecanismos distintos según el régimen del dato. Los
+  resultados se interpretan con cautela y se circunscriben a los conjuntos
+  de datos y al protocolo evaluados. El repositorio de entrega del trabajo
+  está disponible en
+  \url{https://github.com/gosacarpersonal/TFG---Desarrollo-y-Evaluacion-de-un-Metodo-Cuantico-de-Seleccion-de-Caracteristicas}.
+\end{resumen}
+\cleardoublepage{}
+
+% Editar: Resumen en Inglés
+\begin{abstract}
+  Feature selection is a central Data Science task: it determines the
+  performance, stability and interpretability of supervised models. This
+  work studies the feasibility of a quantum feature selection method
+  (QFS, \textit{Quantum Feature Selection}) that casts the problem as a
+  binary relevance and redundancy objective and solves it through a
+  neutral-atom simulation based on the Rydberg blockade. To make the
+  evaluation of that method defensible, a broad and audited classical
+  reference is built first; it acts not only as a performance baseline
+  but as a coordinate system of relevance, redundancy, stability and cost
+  on which to place the quantum method. The main contribution is not a
+  ranking of methods, but a diagnosis: the classical reference, together
+  with the exact optimum of the underlying binary optimization problem,
+  makes it possible to tell whether any deterioration of the quantum
+  method stems from the selection criterion or from the optimization
+  process. Results are interpreted with caution and are restricted to the
+  datasets and the protocol that were evaluated. The final submission
+  repository is available at
+  \url{https://github.com/gosacarpersonal/TFG---Desarrollo-y-Evaluacion-de-un-Metodo-Cuantico-de-Seleccion-de-Caracteristicas}.
+\end{abstract}
+\cleardoublepage{}
+
+% Editar: Resumen en Valenciano
+\begin{resum}
+  \shorthandoff{'}%
+  La selecció de característiques és una etapa central de la Ciència de
+  Dades: condiciona el rendiment, l'estabilitat i la interpretabilitat
+  dels models supervisats. Aquest treball estudia la viabilitat d'un
+  mètode quàntic de selecció de característiques (QFS, \textit{Quantum
+  Feature Selection}) que formula el problema com una funció binària de
+  rellevància i redundància i el resol mitjançant una simulació d'àtoms
+  neutres amb bloqueig de Rydberg. Perquè l'avaluació d'aquest mètode
+  siga defensable, es construeix primer una referència clàssica àmplia i
+  contrastada que no actua només com un baseline de rendiment, sinó com un
+  sistema de coordenades de rellevància, redundància, estabilitat i cost
+  sobre el qual situar el mètode quàntic. L'aportació principal no és un
+  rànquing de mètodes, sinó un diagnòstic: la referència clàssica,
+  juntament amb l'òptim exacte del problema d'optimització binària
+  subjacent, permet distingir quan un eventual deteriorament del mètode
+  quàntic prové del criteri de selecció i quan del procés d'optimització.
+  Els resultats s'interpreten amb cautela i es limiten als conjunts de
+  dades i al protocol avaluats. El repositori de lliurament del treball
+  està disponible en
+  \url{https://github.com/gosacarpersonal/TFG---Desarrollo-y-Evaluacion-de-un-Metodo-Cuantico-de-Seleccion-de-Caracteristicas}.
+\end{resum}
+\cleardoublepage{}
+
+
+% Editar: Agradecimientos (opcional)
+\begin{agradecimientos}
+\end{agradecimientos}
+\cleardoublepage{}
+
+\tableofcontents
+
+\cleardoublepage{}
+\addcontentsline{toc}{chapter}{Índice de figuras}
+\listoffigures
+
+\cleardoublepage{}
+\addcontentsline{toc}{chapter}{Índice de tablas}
+\listoftables
+
+\pagestyle{tfg}
+\justify{}
+
+\chapter{Introducción}
+\input{tex/introduccion.tex}
+
+\chapter{Marco teórico}
+\input{tex/marco_teorico.tex}
+
+\chapter{Materiales y métodos}
+\input{tex/metodologia.tex}
+
+\chapter{Resultados y discusión}
+\input{tex/resultados.tex}
+
+\chapter{Conclusiones y proyección futura}
+\input{tex/conclusiones.tex}
+
+% Cierra el último capítulo antes de cambiar de estilo de cabecera: si no, la
+% última página de conclusiones quedaba con cabecera "Apéndices".
+\cleardoublepage
+\pagestyle{appendix}
+
+\appendix
+\chapter{Anexos}
+\input{tex/apendice.tex}
+
+% Suelta todos los flotantes pendientes del apéndice (figuras A.x) y salta a la
+% página impar donde el entorno de bibliografía pondrá su título, de modo que
+% el número de página del índice coincida exactamente con el real.
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Bibliografía}
+\pagestyle{bibliografia}
+\bibliographystyle{unsrt}
+\bibliography{bib/bibliografia}
+
+
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

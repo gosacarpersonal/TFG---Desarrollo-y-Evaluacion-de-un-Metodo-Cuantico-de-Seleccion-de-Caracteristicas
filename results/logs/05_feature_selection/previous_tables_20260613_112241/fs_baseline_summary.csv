@@ -1,0 +1,16 @@
+dataset,method,mean_elapsed_seconds,n_selected_rows
+breast_cancer_wisconsin,f_classif,0.0005014045163989067,249
+breast_cancer_wisconsin,mutual_info,0.024837950865427654,249
+breast_cancer_wisconsin,variance,0.00017312479515870413,249
+customer_churn,f_classif,0.028671542803446453,105
+customer_churn,mutual_info,0.0998883182182908,105
+customer_churn,variance,0.03149960655719042,105
+madelon,f_classif,0.0023890268057584763,456
+madelon,mutual_info,0.9825753755867481,456
+madelon,variance,0.0017492547631263733,456
+olive_oil_3class,f_classif,0.0004167472943663597,48
+olive_oil_3class,mutual_info,0.008616388154526552,48
+olive_oil_3class,variance,0.00010666313270727794,48
+olive_oil_9class,f_classif,0.0005885530263185501,48
+olive_oil_9class,mutual_info,0.017484968217710655,48
+olive_oil_9class,variance,0.00015578139573335648,48

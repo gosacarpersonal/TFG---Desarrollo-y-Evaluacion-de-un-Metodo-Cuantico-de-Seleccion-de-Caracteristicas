@@ -1,0 +1,9 @@
+dataset,variable,categoria,n,proporcion
+customer_churn,gender,Male,250252,0.567681112078978
+customer_churn,gender,Female,190580,0.4323188879210221
+customer_churn,subscription_type,Standard,149128,0.3382876016260163
+customer_churn,subscription_type,Premium,148678,0.3372668045876887
+customer_churn,subscription_type,Basic,143026,0.324445593786295
+customer_churn,contract_length,Annual,177198,0.4019626524390244
+customer_churn,contract_length,Quarterly,176530,0.4004473359465738
+customer_churn,contract_length,Monthly,87104,0.19759001161440184

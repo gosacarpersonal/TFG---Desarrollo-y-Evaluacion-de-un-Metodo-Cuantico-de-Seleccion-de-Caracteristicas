@@ -1,0 +1,16 @@
+dataset,split,duplicados_X
+breast_cancer_wisconsin,train,0
+breast_cancer_wisconsin,validation,0
+breast_cancer_wisconsin,test,0
+customer_churn,train,0
+customer_churn,validation,0
+customer_churn,test,0
+madelon,train,0
+madelon,validation,0
+madelon,test,0
+olive_oil_3class,train,0
+olive_oil_3class,validation,0
+olive_oil_3class,test,0
+olive_oil_9class,train,0
+olive_oil_9class,validation,0
+olive_oil_9class,test,0

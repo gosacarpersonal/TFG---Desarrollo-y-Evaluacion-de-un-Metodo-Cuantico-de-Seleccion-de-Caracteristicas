@@ -1,0 +1,6 @@
+dataset,train_rows,validation_rows,test_rows,raw_features,train_classes,validation_classes,test_classes
+breast_cancer_wisconsin,398,85,86,30,2,2,2
+customer_churn,308582,66125,66125,10,2,2,2
+madelon,1400,300,300,500,2,2,2
+olive_oil_3class,400,86,86,8,3,3,3
+olive_oil_9class,400,86,86,8,9,9,9

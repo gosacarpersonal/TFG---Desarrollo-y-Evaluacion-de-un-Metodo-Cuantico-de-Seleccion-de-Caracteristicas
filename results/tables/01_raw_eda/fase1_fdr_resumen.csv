@@ -1,0 +1,5 @@
+dataset,variables_contrastadas,significativas_sin_corregir,significativas_fdr,reduccion_por_correccion
+breast_cancer_wisconsin,30,27,27,0
+customer_churn,10,10,10,0
+madelon,500,38,13,25
+olive_oil,10,10,10,0

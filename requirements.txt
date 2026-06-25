@@ -1,0 +1,28 @@
+# Core scientific stack
+numpy
+pandas
+scipy
+scikit-learn
+matplotlib
+seaborn
+plotnine>=0.15.7
+Pillow
+
+# Notebooks and reports
+ipython
+nbformat
+tqdm
+openpyxl
+pyarrow
+
+# Feature selection, explainability and modelling
+Boruta
+networkx
+shap
+xgboost
+
+# Quantum/QUBO execution dependencies.
+# gurobipy requires a valid Gurobi installation/licence.
+# amazon-braket-sdk requires the corresponding AWS/Braket setup for remote use.
+gurobipy
+amazon-braket-sdk

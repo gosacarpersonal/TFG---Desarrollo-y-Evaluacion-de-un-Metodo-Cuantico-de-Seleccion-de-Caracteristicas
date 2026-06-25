@@ -1,0 +1,4 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+customer_churn,mutual_info,filtros supervisados,13,1,support_calls,1,0.2441475903101311,True,0.09988105576485395,5000,ok
+customer_churn,mutual_info,filtros supervisados,42,1,total_spend,1,0.23819599474427977,True,0.09986068028956652,5000,ok
+customer_churn,mutual_info,filtros supervisados,97,1,total_spend,1,0.23869396451157177,True,0.09992321860045195,5000,ok

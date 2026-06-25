@@ -1,0 +1,221 @@
+\section{Reproducibilidad del estudio}
+\label{cap:apendice}
+
+Este apéndice resume las condiciones necesarias para reproducir el
+estudio y relaciona las figuras complementarias que respaldan los
+resultados principales. La reproducibilidad se plantea a nivel
+metodológico: mismo entorno de ejecución, mismas semillas, mismas
+particiones y mismo orden de fases.
+
+\subsection{Condiciones de reproducción}
+
+Los experimentos se ejecutan con Python 3.12 y las bibliotecas
+científicas habituales para aprendizaje automático y simulación
+numérica: scikit-learn, pandas, numpy, scipy, matplotlib, seaborn,
+XGBoost y el SDK de Amazon Braket para la simulación analógica. Todos
+los procesos aleatorios se fijan mediante semillas explícitas.
+
+La reproducción completa requiere ejecutar las diez fases en orden. Las
+fases 1--7 construyen la referencia clásica: análisis exploratorio,
+preprocesado, comprobación posterior al preprocesado, particionado, selección
+clásica, modelado y comparación final. Las fases 8--9 ejecutan QFS,
+evalúan sus subconjuntos con el mismo protocolo y los integran en la
+comparación final. La fase 10 no reentrena modelos ni reejecuta QFS:
+lee los artefactos canónicos ya generados y construye el espejo
+analítico final de la memoria (régimen, métodos, $k$, $\alpha$, $\beta$,
+embebido, métricas, tests, consistencia y síntesis). Cada fase consume
+únicamente las salidas validadas de las fases anteriores, por lo que el
+conjunto de prueba permanece reservado hasta la evaluación final.
+
+\subsection{Coste computacional}
+
+El bloque clásico se ejecuta en torno a diez minutos en un equipo de
+sobremesa convencional. Las fases más costosas son la selección clásica,
+por la repetición de doce métodos con tres semillas y permutaciones, y
+el modelado, que evalúa 260 configuraciones con cuatro modelos. La fase
+cuántica añade el coste de la simulación analógica del barrido de
+$\beta$ por dataset y la resolución exacta del QUBO dentro de la
+envolvente operativa.
+
+\subsection{Trazabilidad de las cifras}
+
+Cada cifra citada en los capítulos de resultados procede de una salida
+tabular generada por la fase correspondiente. La comparación clásica
+final, la versión extendida con QFS, la tabla maestra de candidatos, los
+contrastes de modelado, la estabilidad de la selección y el control de
+calidad del método cuántico se conservan por separado para que cada
+afirmación pueda verificarse. El grafo de características que alimenta al
+método cuántico, formado por el vector $I_i$ y la matriz $R_{ij}$ de cada
+formulación, se genera exclusivamente con datos de entrenamiento y se
+mantiene fijo durante la evaluación QFS\@. Las tablas densas de
+verificación y caracterización (señal, invarianza del preprocesado,
+particiones, perfil de los selectores y cadena de contrastes) se
+presentan en el capítulo de resultados, en su punto de uso.
+
+
+\subsection{Figuras complementarias de verificación}
+\label{sec:ap-figuras-auditoria}
+
+Las figuras complementarias se agrupan por función de defensa. Las
+primeras documentan calidad de datos y selección clásica; las
+siguientes conservan detalle de interpretabilidad y QFS que no debe
+sobrecargar el cuerpo de resultados.
+
+\subsubsection{Datos, particiones y selección clásica}
+\label{sec:ap-datos-seleccion}
+
+Estas figuras documentan el régimen de cada conjunto antes de QFS\@
+(Figura~\ref{fig:ap-regimenes}), la separación frente al azar de la
+selección (Figura~\ref{fig:ap-permutacion}) y la pantalla de
+\textit{leakage} (Figura~\ref{fig:ap-leakage}).
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{f10_a_regimenes_dataset.png}
+  \caption[Regímenes del dato antes de ejecutar QFS]{Regímenes del dato
+    antes de ejecutar QFS\@. La figura reúne efecto supervisado, VIF,
+    componentes PCA necesarios para explicar el 80\,\% de la varianza y
+    AUC adversarial del particionado para mostrar que QFS no se evalúa
+    sobre cinco problemas equivalentes: \textit{Madelon} combina señal
+    marginal débil y alta dimensionalidad, \textit{Breast Cancer} y
+    \textit{Olive Oil} concentran señal con redundancia estructural, y
+    \textit{Customer Churn} opera cerca del techo predictivo.}
+  \label{fig:ap-regimenes}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{a1_permutacion_senal_nulo.png}
+  \caption[Margen de señal sobre el nulo por variable]{Cuánto supera la
+    señal real al azar, variable a variable: cociente entre la puntuación
+    real y el percentil 95 de la distribución nula (20 permutaciones),
+    para los dos filtros de relevancia sometidos a permutación (F de
+    ANOVA e información mutua). La línea vertical en $1$ es el nulo; a su
+    derecha la variable supera al azar y la distancia mide la fuerza de
+    la señal. Los paneles se ordenan por mediana de señal y eliminan la
+    cuadrícula para que se lea la distancia al nulo: \textit{Madelon}
+    queda pegado al umbral, mientras que los demás conjuntos muestran un
+    margen mucho más holgado.}
+  \label{fig:ap-permutacion}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.86\textwidth]{a2_leakage.png}
+  \caption[Pantalla de \textit{leakage}]{Pantalla de \textit{leakage}: AUC univariante y NMI (información mutua normalizada) frente al
+    umbral duro de 0{,}99.}
+  \label{fig:ap-leakage}
+\end{figure}
+\FloatBarrier
+
+
+\subsubsection{Interpretabilidad y deltas de modelado}
+\label{sec:ap-interpretabilidad}
+
+La concordancia SHAP media por clase en \textit{Olive Oil}
+(Figura~\ref{fig:ap-shap}) y el panorama de deltas de macro-F1 por
+selector y dataset (Figura~\ref{fig:ap-deltas}) complementan la lectura
+de interpretabilidad del cuerpo.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.86\textwidth]{a4_shap_concordancia.png}
+  \caption[Concordancia SHAP por clase en \textit{Olive Oil}]{Importancia SHAP media absoluta por clase en las dos
+    formulaciones de \textit{Olive Oil}.}
+  \label{fig:ap-shap}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{a5_panorama_deltas.png}
+  \caption[Panorama de deltas frente al baseline por selector]{Panorama de
+    deltas de macro-F1 frente al baseline (mejor modelo de cada selector,
+    en validación), por dataset. La línea vertical en $0$ es el baseline:
+    los puntos verdes a su derecha mejoran el baseline y los rojos a su
+    izquierda lo empeoran. Cada panel conserva su propia escala porque la
+    magnitud de los deltas difiere mucho entre conjuntos (de $\pm0{,}008$
+    en \textit{Customer Churn} a $+0{,}31$ en \textit{Madelon}).}
+  \label{fig:ap-deltas}
+\end{figure}
+\FloatBarrier
+
+
+
+\subsubsection{Solapes, métricas secundarias y consistencia}
+\label{sec:ap-qfs-consistencia}
+
+El solape de QFS-NA con las referencias mRMR y Boruta
+(Figura~\ref{fig:ap-solape-qfs}) y la relación entre macro-F1 y AUC-ROC
+en las formulaciones binarias (Figura~\ref{fig:ap-auc}) completan las
+métricas secundarias.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.86\textwidth]{a8_solape_qfs_clasicos.png}
+  \caption[Solape de QFS-NA con mRMR y Boruta frente al azar]{Solape de
+    Jaccard entre el subconjunto QFS-NA y las referencias clásicas mRMR
+    y Boruta, al presupuesto $k$ más cercano. La banda gris marca el
+    solape esperable entre subconjuntos aleatorios del mismo tamaño
+    sobre el mismo número de variables: un punto a su derecha indica
+    parecido real; un punto dentro de la banda, un solape compatible con
+    el azar. Así, el $0{,}62$ de Boruta en \textit{Olive Oil} es trivial
+    (Boruta confirma casi todas las variables, de modo que coincidir
+    es inevitable), mientras que la coincidencia plena con mRMR en
+    \textit{Olive Oil} (3 clases) sí es informativa.}
+  \label{fig:ap-solape-qfs}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.86\textwidth]{a9_macro_f1_auc_binarios.png}
+  \caption[Macro-F1 frente a AUC-ROC en binarios]{Macro-F1 frente a AUC-ROC en las formulaciones binarias para
+    baseline, QFS-NA y QFS-oráculo. La lectura de apoyo es que el pequeño
+    deterioro de \textit{Customer Churn} no es un artefacto exclusivo de
+    macro-F1: también se observa en AUC, aunque en un régimen casi
+    saturado.}
+  \label{fig:ap-auc}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.86\textwidth]{a7_coste_cuantico.png}
+  \caption[Coste de la vía cuántica simulada]{Coste de la vía cuántica simulada: tiempo medio por barrido de
+    $\beta$. La figura no busca competir en eficiencia con los filtros
+    clásicos, sino cuantificar el precio experimental de explorar QFS-NA
+    con simulación analógica en el protocolo de este trabajo.}
+  \label{fig:ap-coste-cuantico}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{f10_b9_atomos_mds_error.png}
+  \caption[Embebido atómico (MDS) por dataset]{Embebido atómico (MDS)
+    verificado por dataset, con el error medio de embebido en cada
+    panel. El error de \textit{Customer Churn} es similar al de
+    \textit{Breast Cancer} y no es el peor, por lo que la geometría no
+    explica por sí sola su deterioro.}
+  \label{fig:ap-atomos-mds}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{f10_b2_jaccard_12_metodos.png}
+  \caption[Parecido de QFS-NA con los doce selectores frente al azar]{Solape
+    de Jaccard entre el subconjunto QFS-NA y cada uno de los doce
+    selectores clásicos al presupuesto de referencia (número en cada
+    celda). El color no es el Jaccard crudo sino el Jaccard menos el
+    solape esperable por azar: verde si QFS se parece a ese selector más
+    de lo que lo harían dos subconjuntos aleatorios del mismo tamaño,
+    rojo si se parece igual o menos. Así se distingue la afinidad real
+    (mRMR en \textit{Olive Oil} de 3 clases, correlación mutua en
+    \textit{Customer Churn}) del parecido trivial.}
+  \label{fig:ap-jaccard-12}
+\end{figure}
+\FloatBarrier

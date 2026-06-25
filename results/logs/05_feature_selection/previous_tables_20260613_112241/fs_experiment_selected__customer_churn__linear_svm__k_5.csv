@@ -1,0 +1,16 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+customer_churn,linear_svm,embedded,13,5,contract_length_Monthly,1,1.4233297907005067,True,0.0029223235324025154,5000,ok
+customer_churn,linear_svm,embedded,13,5,support_calls,2,0.7222973136691964,True,0.0029223235324025154,5000,ok
+customer_churn,linear_svm,embedded,13,5,contract_length_Annual,3,0.5370478658055291,True,0.0029223235324025154,5000,ok
+customer_churn,linear_svm,embedded,13,5,contract_length_Quarterly,4,0.5336853264792983,True,0.0029223235324025154,5000,ok
+customer_churn,linear_svm,embedded,13,5,total_spend,5,0.44192975578971583,True,0.0029223235324025154,5000,ok
+customer_churn,linear_svm,embedded,42,5,contract_length_Monthly,1,1.425030380517491,True,0.003085268661379814,5000,ok
+customer_churn,linear_svm,embedded,42,5,support_calls,2,0.7626964228392366,True,0.003085268661379814,5000,ok
+customer_churn,linear_svm,embedded,42,5,contract_length_Quarterly,3,0.5342683998896869,True,0.003085268661379814,5000,ok
+customer_churn,linear_svm,embedded,42,5,contract_length_Annual,4,0.5321633082622411,True,0.003085268661379814,5000,ok
+customer_churn,linear_svm,embedded,42,5,total_spend,5,0.4932437452121317,True,0.003085268661379814,5000,ok
+customer_churn,linear_svm,embedded,97,5,contract_length_Monthly,1,1.4636603568146955,True,0.0031611304730176926,5000,ok
+customer_churn,linear_svm,embedded,97,5,support_calls,2,0.7278554936018776,True,0.0031611304730176926,5000,ok
+customer_churn,linear_svm,embedded,97,5,contract_length_Quarterly,3,0.559275922366787,True,0.0031611304730176926,5000,ok
+customer_churn,linear_svm,embedded,97,5,contract_length_Annual,4,0.5399046808665501,True,0.0031611304730176926,5000,ok
+customer_churn,linear_svm,embedded,97,5,total_spend,5,0.47358514097465443,True,0.0031611304730176926,5000,ok

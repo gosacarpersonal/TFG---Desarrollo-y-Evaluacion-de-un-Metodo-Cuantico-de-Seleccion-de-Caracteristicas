@@ -1,0 +1,11 @@
+\section{Fase 6. Modelado y evaluación}\nLa Fase 6 compara el baseline con todas las variables frente a los subconjuntos principales fijados en Fase 5. La elección de candidatos se realiza exclusivamente con validation; test queda reservado para evaluación final.\n\n\begin{tabular}{lllrrr}
+\toprule
+dataset & feature_set & model_name & test_macro_f1 & test_balanced_accuracy & n_features_used \\
+\midrule
+breast_cancer_wisconsin & random_forest_k10 & linear_svm & 0.962 & 0.959 & 10 \\
+customer_churn & all_features & random_forest & 0.999 & 0.999 & 11 \\
+madelon & f_classif_k10 & random_forest & 0.796 & 0.797 & 10 \\
+olive_oil_3class & all_features & linear_svm & 1.000 & 1.000 & 9 \\
+olive_oil_9class & all_features & random_forest & 1.000 & 1.000 & 9 \\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,2 @@
+experiment_id,dataset,feature_set,selector,k,model_name,candidate_label,validation_macro_f1,validation_balanced_accuracy,test_macro_f1,test_balanced_accuracy,test_accuracy,test_auc_roc,n_test,n_features_used
+customer_churn__all_features__xgboost,customer_churn,all_features,all_features,10,xgboost,baseline_mejor_en_validation,0.9999076005443297,0.9999199999999999,0.9998152056674428,0.9998400000000001,0.9998185255198487,0.9999992565938864,66125,10

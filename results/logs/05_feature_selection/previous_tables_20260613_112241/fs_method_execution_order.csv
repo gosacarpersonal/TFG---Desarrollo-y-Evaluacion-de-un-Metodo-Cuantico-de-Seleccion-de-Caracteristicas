@@ -1,0 +1,8 @@
+method,order
+variance,1
+f_classif,2
+mutual_info,3
+mrmr_approx,4
+l1_logistic,5
+random_forest,6
+linear_svm,7

@@ -1,0 +1,5 @@
+dataset,ruta,filas,columnas,target_presente,nulos,columnas_duplicadas,recarga_correcta
+breast_cancer_wisconsin,data/processed/breast_cancer_wisconsin_processed.csv,569,31,True,0,0,True
+customer_churn,data/processed/customer_churn_processed.csv,440832,11,True,0,0,True
+madelon,data/processed/madelon_processed.csv,2000,501,True,0,0,True
+olive_oil,data/processed/olive_oil_processed.csv,572,11,True,0,0,True

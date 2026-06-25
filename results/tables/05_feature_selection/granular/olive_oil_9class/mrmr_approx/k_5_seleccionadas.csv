@@ -1,0 +1,16 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+olive_oil_9class,mrmr_approx,relevancia-redundancia,13,5,linolenic,1,8.464440269267852,True,0.008407492190599442,400,ok
+olive_oil_9class,mrmr_approx,relevancia-redundancia,13,5,other,2,7.401190718614072,True,0.008407492190599442,400,ok
+olive_oil_9class,mrmr_approx,relevancia-redundancia,13,5,eicosenoic,3,6.2269020479201,True,0.008407492190599442,400,ok
+olive_oil_9class,mrmr_approx,relevancia-redundancia,13,5,stearic,4,5.239298309232443,True,0.008407492190599442,400,ok
+olive_oil_9class,mrmr_approx,relevancia-redundancia,13,5,arachidic,5,4.19453919552707,True,0.008407492190599442,400,ok
+olive_oil_9class,mrmr_approx,relevancia-redundancia,42,5,linolenic,1,8.464440269267852,True,0.008543599396944046,400,ok
+olive_oil_9class,mrmr_approx,relevancia-redundancia,42,5,other,2,7.401190718614072,True,0.008543599396944046,400,ok
+olive_oil_9class,mrmr_approx,relevancia-redundancia,42,5,eicosenoic,3,6.2269020479201,True,0.008543599396944046,400,ok
+olive_oil_9class,mrmr_approx,relevancia-redundancia,42,5,stearic,4,5.239298309232443,True,0.008543599396944046,400,ok
+olive_oil_9class,mrmr_approx,relevancia-redundancia,42,5,arachidic,5,4.19453919552707,True,0.008543599396944046,400,ok
+olive_oil_9class,mrmr_approx,relevancia-redundancia,97,5,linolenic,1,8.464440269267852,True,0.008343279361724854,400,ok
+olive_oil_9class,mrmr_approx,relevancia-redundancia,97,5,other,2,7.401190718614072,True,0.008343279361724854,400,ok
+olive_oil_9class,mrmr_approx,relevancia-redundancia,97,5,eicosenoic,3,6.2269020479201,True,0.008343279361724854,400,ok
+olive_oil_9class,mrmr_approx,relevancia-redundancia,97,5,stearic,4,5.239298309232443,True,0.008343279361724854,400,ok
+olive_oil_9class,mrmr_approx,relevancia-redundancia,97,5,arachidic,5,4.19453919552707,True,0.008343279361724854,400,ok

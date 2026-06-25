@@ -1,0 +1,3 @@
+dataset,target,clases_target,nmi_area_target,nmi_palmitic_target,max_valores_palmitic_por_clase
+olive_oil_3class,area,3,0.6652209450357045,0.6652209450357045,4
+olive_oil_9class,target,9,0.6652209450357045,1.0,1

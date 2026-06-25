@@ -1,0 +1,8 @@
+method,family,uses_target,returns_ranking,returns_subset,requires_scaling,has_randomness,requires_sample_when_large,expected_cost,fit_scope
+variance,filtros,False,True,True,False,False,False,bajo,X_train_y_train_only
+f_classif,filtros supervisados,True,True,True,False,False,False,bajo,X_train_y_train_only
+mutual_info,filtros supervisados,True,True,True,False,True,False,medio,X_train_y_train_only
+mrmr_approx,relevancia-redundancia,True,True,True,False,True,True,medio,X_train_y_train_only
+l1_logistic,regularizacion,True,True,True,True,True,True,medio,X_train_y_train_only
+random_forest,embedded,True,True,True,False,True,True,medio,X_train_y_train_only
+linear_svm,embedded,True,True,True,True,True,True,medio,X_train_y_train_only

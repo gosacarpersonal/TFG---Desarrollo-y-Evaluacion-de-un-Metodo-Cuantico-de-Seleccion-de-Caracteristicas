@@ -1,0 +1,5 @@
+dataset,nulos_totales,filas_duplicadas,variables_constantes,variables_baja_cardinalidad_relativa,variables_moda_dominante_98
+breast_cancer_wisconsin,0,0,0,0,0
+customer_churn,0,0,0,9,0
+madelon,0,0,0,24,0
+olive_oil,0,0,0,1,0

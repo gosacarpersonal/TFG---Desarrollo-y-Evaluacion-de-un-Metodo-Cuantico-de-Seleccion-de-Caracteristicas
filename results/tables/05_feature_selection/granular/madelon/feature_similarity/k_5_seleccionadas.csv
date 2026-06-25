@@ -1,0 +1,16 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+madelon,feature_similarity,redundancia pura,13,5,feat_289,1,100.0,True,0.3501024190336466,1400,ok
+madelon,feature_similarity,redundancia pura,13,5,feat_492,2,99.8,True,0.3501024190336466,1400,ok
+madelon,feature_similarity,redundancia pura,13,5,feat_22,3,99.6,True,0.3501024190336466,1400,ok
+madelon,feature_similarity,redundancia pura,13,5,feat_393,4,99.4,True,0.3501024190336466,1400,ok
+madelon,feature_similarity,redundancia pura,13,5,feat_100,5,83.33333333333333,True,0.3501024190336466,1400,ok
+madelon,feature_similarity,redundancia pura,42,5,feat_289,1,100.0,True,0.3498821519315243,1400,ok
+madelon,feature_similarity,redundancia pura,42,5,feat_492,2,99.8,True,0.3498821519315243,1400,ok
+madelon,feature_similarity,redundancia pura,42,5,feat_22,3,99.6,True,0.3498821519315243,1400,ok
+madelon,feature_similarity,redundancia pura,42,5,feat_393,4,99.4,True,0.3498821519315243,1400,ok
+madelon,feature_similarity,redundancia pura,42,5,feat_100,5,83.33333333333333,True,0.3498821519315243,1400,ok
+madelon,feature_similarity,redundancia pura,97,5,feat_289,1,100.0,True,0.35077718645334244,1400,ok
+madelon,feature_similarity,redundancia pura,97,5,feat_492,2,99.8,True,0.35077718645334244,1400,ok
+madelon,feature_similarity,redundancia pura,97,5,feat_22,3,99.6,True,0.35077718645334244,1400,ok
+madelon,feature_similarity,redundancia pura,97,5,feat_393,4,99.4,True,0.35077718645334244,1400,ok
+madelon,feature_similarity,redundancia pura,97,5,feat_100,5,83.33333333333333,True,0.35077718645334244,1400,ok

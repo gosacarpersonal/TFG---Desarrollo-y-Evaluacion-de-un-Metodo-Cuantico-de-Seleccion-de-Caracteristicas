@@ -1,0 +1,5 @@
+dataset,archivo,filas,columnas,target,target_presente
+breast_cancer_wisconsin,breast_cancer_wisconsin.csv,569,32,target,True
+customer_churn,customer_churn.csv,440832,12,Churn,True
+madelon,madelon.csv,2000,501,target,True
+olive_oil,olive_oil.csv,572,12,target,True

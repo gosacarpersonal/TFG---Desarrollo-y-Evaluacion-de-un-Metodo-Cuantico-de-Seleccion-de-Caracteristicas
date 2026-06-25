@@ -1,0 +1,27 @@
+dataset,tipo,gravedad,riesgo,evidencia,accion,accion_fase4
+madelon,heredado_fase3,medio,ratio features/muestras elevado,postprocessed_dimensionality_summary.csv,split estratificado y control de dimensionalidad,
+breast_cancer_wisconsin,heredado_fase3,bajo,redundancia alta,postprocessed_high_correlation_pairs.csv,vigilar selección redundante,
+madelon,heredado_fase3,bajo,redundancia alta,postprocessed_high_correlation_pairs.csv,vigilar selección redundante,
+customer_churn,heredado_fase3,medio,3 features categóricas pendientes de codificación,postprocessed_categorical_features_pending.csv,codificar dentro del pipeline ajustado solo con train; no hacer encoding global antes del split,
+olive_oil_3class,heredado_fase3,medio,target multiclase,postprocessed_dimensionality_summary.csv,estratificar por clase y revisar clases minoritarias,
+olive_oil_3class,heredado_fase3,medio,desbalance de target,postprocessed_target_integrity.csv,usar split estratificado,
+olive_oil_9class,heredado_fase3,medio,target multiclase,postprocessed_dimensionality_summary.csv,estratificar por clase y revisar clases minoritarias,
+olive_oil_9class,heredado_fase3,medio,desbalance de target,postprocessed_target_integrity.csv,usar split estratificado,
+breast_cancer_wisconsin,drift,medio,8 variables con drift marginal,split_variable_distribution_tests.csv,vigilar en selección y modelado; no usar el ranking auxiliar como evidencia principal,
+olive_oil_3class,drift,medio,1 variables con drift marginal,split_variable_distribution_tests.csv,vigilar en selección y modelado; no usar el ranking auxiliar como evidencia principal,
+olive_oil_9class,drift,medio,1 variables con drift marginal,split_variable_distribution_tests.csv,vigilar en selección y modelado; no usar el ranking auxiliar como evidencia principal,
+madelon,heredado_fase3,medio,ratio features/muestras elevado,postprocessed_dimensionality_summary.csv,split estratificado y control de dimensionalidad,
+breast_cancer_wisconsin,heredado_fase3,bajo,redundancia alta,postprocessed_high_correlation_pairs.csv,vigilar selección redundante,
+madelon,heredado_fase3,bajo,redundancia alta,postprocessed_high_correlation_pairs.csv,vigilar selección redundante,
+customer_churn,heredado_fase3,medio,3 features categóricas pendientes de codificación,postprocessed_categorical_features_pending.csv,codificar dentro del pipeline ajustado solo con train; no hacer encoding global antes del split,
+olive_oil_3class,heredado_fase3,medio,target multiclase,postprocessed_dimensionality_summary.csv,estratificar por clase y revisar clases minoritarias,
+olive_oil_3class,heredado_fase3,medio,desbalance de target,postprocessed_target_integrity.csv,usar split estratificado,
+olive_oil_9class,heredado_fase3,medio,target multiclase,postprocessed_dimensionality_summary.csv,estratificar por clase y revisar clases minoritarias,
+olive_oil_9class,heredado_fase3,medio,desbalance de target,postprocessed_target_integrity.csv,usar split estratificado,
+breast_cancer_wisconsin,drift,medio,8 variables con drift marginal,split_variable_distribution_tests.csv,vigilar en selección y modelado; no usar el ranking auxiliar como evidencia principal,
+olive_oil_3class,drift,medio,1 variables con drift marginal,split_variable_distribution_tests.csv,vigilar en selección y modelado; no usar el ranking auxiliar como evidencia principal,
+olive_oil_9class,drift,medio,1 variables con drift marginal,split_variable_distribution_tests.csv,vigilar en selección y modelado; no usar el ranking auxiliar como evidencia principal,
+customer_churn,pipeline_train_only,medio,categóricas pendientes de codificación,split_leakage_audit.csv; postprocessed_categorical_features_pending.csv,codificar dentro del pipeline ajustado solo con train,
+madelon,,medio,ratio features/muestras elevado,postprocessed_dimensionality_summary.csv,,split estratificado y control de dimensionalidad
+breast_cancer_wisconsin,,bajo,redundancia alta,postprocessed_high_correlation_pairs.csv,,vigilar selección redundante
+madelon,,bajo,redundancia alta,postprocessed_high_correlation_pairs.csv,,vigilar selección redundante

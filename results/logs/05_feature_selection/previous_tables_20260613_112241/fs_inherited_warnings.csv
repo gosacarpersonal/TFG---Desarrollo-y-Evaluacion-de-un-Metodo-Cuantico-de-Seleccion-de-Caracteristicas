@@ -1,0 +1,8 @@
+dataset,filas,features,target,target_clases,target_en_X,categoricas_en_X,filas_test,filas_train,filas_validation,max_delta_target,variables_con_flag,max_psi,max_distancia,n_muestras_usadas,nombres_sospechosos,auc_abs_ge_099,nmi_ge_099,auc_cv,auc_fold_std,index_overlap_total,row_hash_overlap_total,clases_target,nmi_area_target,nmi_palmitic_target,max_valores_palmitic_por_clase
+breast_cancer_wisconsin,569.0,30.0,target,2.0,False,0.0,86.0,398.0,85.0,0.0046112917528821,23.0,0.251619334170649,0.2368841899529175,569.0,0.0,0.0,0.0,0.5223221229420039,0.0777895066165181,0.0,0.0,,,,
+customer_churn,440832.0,10.0,target,2.0,False,3.0,66125.0,308582.0,66125.0,7.902480789745425e-07,0.0,0.0002833192726465,0.0130869401656549,12000.0,0.0,0.0,0.0,0.51637875,0.012584760280188,0.0,0.0,,,,
+madelon,2000.0,500.0,target,2.0,False,0.0,300.0,1400.0,300.0,0.0,11.0,0.1173423265438301,0.2353597925573417,2000.0,0.0,0.0,0.0,0.4759761904761904,0.0535924495794643,0.0,0.0,,,,
+olive_oil_3class,572.0,8.0,area,3.0,False,0.0,86.0,400.0,86.0,0.0116279069767442,7.0,0.2284934894335237,0.2101669517936338,572.0,0.0,0.0,0.0,0.5133496732026144,0.0587673797009216,0.0,0.0,,,,
+olive_oil_9class,572.0,8.0,target,9.0,False,0.0,86.0,400.0,86.0,0.0116279069767441,3.0,0.1487611135975674,0.1630080957288773,572.0,0.0,0.0,0.0,0.5350245098039216,0.0592436995483772,0.0,0.0,,,,
+olive_oil_3class,,,area,,,,,,,,,,,,,,,,,,,3.0,0.6652209450357045,0.6652209450357045,4.0
+olive_oil_9class,,,target,,,,,,,,,,,,,,,,,,,9.0,0.6652209450357045,1.0,1.0

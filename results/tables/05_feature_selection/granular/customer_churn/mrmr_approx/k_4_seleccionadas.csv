@@ -1,0 +1,13 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+customer_churn,mrmr_approx,relevancia-redundancia,13,4,support_calls,1,15.18662085297536,True,0.01624421961605549,5000,ok
+customer_churn,mrmr_approx,relevancia-redundancia,13,4,subscription_type_Basic,2,13.994035185138822,True,0.01624421961605549,5000,ok
+customer_churn,mrmr_approx,relevancia-redundancia,13,4,total_spend,3,13.044211800432963,True,0.01624421961605549,5000,ok
+customer_churn,mrmr_approx,relevancia-redundancia,13,4,contract_length_Monthly,4,12.00280959900293,True,0.01624421961605549,5000,ok
+customer_churn,mrmr_approx,relevancia-redundancia,42,4,support_calls,1,15.185161676768637,True,0.015952852554619312,5000,ok
+customer_churn,mrmr_approx,relevancia-redundancia,42,4,subscription_type_Standard,2,13.990176321651322,True,0.015952852554619312,5000,ok
+customer_churn,mrmr_approx,relevancia-redundancia,42,4,total_spend,3,13.055337027681624,True,0.015952852554619312,5000,ok
+customer_churn,mrmr_approx,relevancia-redundancia,42,4,payment_delay,4,12.006318744591047,True,0.015952852554619312,5000,ok
+customer_churn,mrmr_approx,relevancia-redundancia,97,4,support_calls,1,15.179177859111102,True,0.015913190320134163,5000,ok
+customer_churn,mrmr_approx,relevancia-redundancia,97,4,total_spend,2,13.99293720481317,True,0.015913190320134163,5000,ok
+customer_churn,mrmr_approx,relevancia-redundancia,97,4,subscription_type_Standard,3,12.989531992324153,True,0.015913190320134163,5000,ok
+customer_churn,mrmr_approx,relevancia-redundancia,97,4,age,4,12.013562510037122,True,0.015913190320134163,5000,ok

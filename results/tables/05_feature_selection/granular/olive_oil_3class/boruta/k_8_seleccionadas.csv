@@ -1,0 +1,9 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+olive_oil_3class,boruta,wrapper all-relevant,42,8,arachidic,1,8.0,True,1.987333532422781,400,ok
+olive_oil_3class,boruta,wrapper all-relevant,42,8,eicosenoic,1,8.0,True,1.987333532422781,400,ok
+olive_oil_3class,boruta,wrapper all-relevant,42,8,linoleic,1,8.0,True,1.987333532422781,400,ok
+olive_oil_3class,boruta,wrapper all-relevant,42,8,linolenic,1,8.0,True,1.987333532422781,400,ok
+olive_oil_3class,boruta,wrapper all-relevant,42,8,oleic,1,8.0,True,1.987333532422781,400,ok
+olive_oil_3class,boruta,wrapper all-relevant,42,8,other,1,8.0,True,1.987333532422781,400,ok
+olive_oil_3class,boruta,wrapper all-relevant,42,8,palmitoleic,1,8.0,True,1.987333532422781,400,ok
+olive_oil_3class,boruta,wrapper all-relevant,42,8,stearic,1,8.0,True,1.987333532422781,400,ok

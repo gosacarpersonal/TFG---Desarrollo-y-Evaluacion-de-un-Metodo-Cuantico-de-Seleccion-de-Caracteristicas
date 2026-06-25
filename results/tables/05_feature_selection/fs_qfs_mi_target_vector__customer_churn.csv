@@ -1,0 +1,16 @@
+dataset,feature,I_i
+customer_churn,age,0.08590429031646502
+customer_churn,tenure,0.0026348024862034858
+customer_churn,usage_frequency,0.0013826586036515265
+customer_churn,support_calls,0.22853406732461187
+customer_churn,payment_delay,0.09188280384580372
+customer_churn,total_spend,0.1637376390720386
+customer_churn,last_interaction,0.012034481386221013
+customer_churn,gender_Female,0.015671778312548096
+customer_churn,gender_Male,0.015671778312548096
+customer_churn,subscription_type_Basic,0.00019848817635165217
+customer_churn,subscription_type_Premium,7.075184752131092e-05
+customer_churn,subscription_type_Standard,3.0395928772741776e-05
+customer_churn,contract_length_Annual,0.015587883063767849
+customer_churn,contract_length_Monthly,0.1303155596611803
+customer_churn,contract_length_Quarterly,0.01537347898692476

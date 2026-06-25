@@ -1,0 +1,16 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+madelon,f_classif,filtros supervisados,13,5,feat_475,1,66.24959543630754,True,0.0026780683547258377,1400,ok
+madelon,f_classif,filtros supervisados,13,5,feat_241,2,64.9647328834236,True,0.0026780683547258377,1400,ok
+madelon,f_classif,filtros supervisados,13,5,feat_336,3,34.003655434292206,True,0.0026780683547258377,1400,ok
+madelon,f_classif,filtros supervisados,13,5,feat_64,4,33.8820918886158,True,0.0026780683547258377,1400,ok
+madelon,f_classif,filtros supervisados,13,5,feat_128,5,24.60339263406139,True,0.0026780683547258377,1400,ok
+madelon,f_classif,filtros supervisados,42,5,feat_475,1,66.24959543630754,True,0.0022332286462187767,1400,ok
+madelon,f_classif,filtros supervisados,42,5,feat_241,2,64.9647328834236,True,0.0022332286462187767,1400,ok
+madelon,f_classif,filtros supervisados,42,5,feat_336,3,34.003655434292206,True,0.0022332286462187767,1400,ok
+madelon,f_classif,filtros supervisados,42,5,feat_64,4,33.8820918886158,True,0.0022332286462187767,1400,ok
+madelon,f_classif,filtros supervisados,42,5,feat_128,5,24.60339263406139,True,0.0022332286462187767,1400,ok
+madelon,f_classif,filtros supervisados,97,5,feat_475,1,66.24959543630754,True,0.0022557834163308144,1400,ok
+madelon,f_classif,filtros supervisados,97,5,feat_241,2,64.9647328834236,True,0.0022557834163308144,1400,ok
+madelon,f_classif,filtros supervisados,97,5,feat_336,3,34.003655434292206,True,0.0022557834163308144,1400,ok
+madelon,f_classif,filtros supervisados,97,5,feat_64,4,33.8820918886158,True,0.0022557834163308144,1400,ok
+madelon,f_classif,filtros supervisados,97,5,feat_128,5,24.60339263406139,True,0.0022557834163308144,1400,ok

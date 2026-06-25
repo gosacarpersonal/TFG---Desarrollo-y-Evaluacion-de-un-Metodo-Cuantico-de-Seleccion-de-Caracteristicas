@@ -1,0 +1,60 @@
+# Fase 6. Auditoría visual
+
+Regenerado: 2026-06-16 10:31:31.
+
+Figuras detectadas en `results/figures/06_modeling/`: 54.
+
+- results/figures/06_modeling/shap_summary_breast_cancer_wisconsin.pdf
+- results/figures/06_modeling/shap_summary_breast_cancer_wisconsin.png
+- results/figures/06_modeling/shap_summary_customer_churn.pdf
+- results/figures/06_modeling/shap_summary_customer_churn.png
+- results/figures/06_modeling/shap_summary_madelon.pdf
+- results/figures/06_modeling/shap_summary_madelon.png
+- results/figures/06_modeling/shap_summary_olive_oil_3class.pdf
+- results/figures/06_modeling/shap_summary_olive_oil_3class.png
+- results/figures/06_modeling/shap_summary_olive_oil_3class_class_1.pdf
+- results/figures/06_modeling/shap_summary_olive_oil_3class_class_1.png
+- results/figures/06_modeling/shap_summary_olive_oil_3class_class_2.pdf
+- results/figures/06_modeling/shap_summary_olive_oil_3class_class_2.png
+- results/figures/06_modeling/shap_summary_olive_oil_3class_class_3.pdf
+- results/figures/06_modeling/shap_summary_olive_oil_3class_class_3.png
+- results/figures/06_modeling/shap_summary_olive_oil_9class.pdf
+- results/figures/06_modeling/shap_summary_olive_oil_9class.png
+- results/figures/06_modeling/shap_summary_olive_oil_9class_class_0.pdf
+- results/figures/06_modeling/shap_summary_olive_oil_9class_class_0.png
+- results/figures/06_modeling/shap_summary_olive_oil_9class_class_1.pdf
+- results/figures/06_modeling/shap_summary_olive_oil_9class_class_1.png
+- results/figures/06_modeling/shap_summary_olive_oil_9class_class_2.pdf
+- results/figures/06_modeling/shap_summary_olive_oil_9class_class_2.png
+- results/figures/06_modeling/shap_summary_olive_oil_9class_class_3.pdf
+- results/figures/06_modeling/shap_summary_olive_oil_9class_class_3.png
+- results/figures/06_modeling/shap_summary_olive_oil_9class_class_4.pdf
+- results/figures/06_modeling/shap_summary_olive_oil_9class_class_4.png
+- results/figures/06_modeling/shap_summary_olive_oil_9class_class_5.pdf
+- results/figures/06_modeling/shap_summary_olive_oil_9class_class_5.png
+- results/figures/06_modeling/shap_summary_olive_oil_9class_class_6.pdf
+- results/figures/06_modeling/shap_summary_olive_oil_9class_class_6.png
+- results/figures/06_modeling/shap_summary_olive_oil_9class_class_7.pdf
+- results/figures/06_modeling/shap_summary_olive_oil_9class_class_7.png
+- results/figures/06_modeling/shap_summary_olive_oil_9class_class_8.pdf
+- results/figures/06_modeling/shap_summary_olive_oil_9class_class_8.png
+- results/figures/06_modeling/test_macro_f1_confidence_intervals_breast_cancer_wisconsin.pdf
+- results/figures/06_modeling/test_macro_f1_confidence_intervals_breast_cancer_wisconsin.png
+- results/figures/06_modeling/test_macro_f1_confidence_intervals_customer_churn.pdf
+- results/figures/06_modeling/test_macro_f1_confidence_intervals_customer_churn.png
+- results/figures/06_modeling/test_macro_f1_confidence_intervals_madelon.pdf
+- results/figures/06_modeling/test_macro_f1_confidence_intervals_madelon.png
+- results/figures/06_modeling/test_macro_f1_confidence_intervals_olive_oil_3class.pdf
+- results/figures/06_modeling/test_macro_f1_confidence_intervals_olive_oil_3class.png
+- results/figures/06_modeling/test_macro_f1_confidence_intervals_olive_oil_9class.pdf
+- results/figures/06_modeling/test_macro_f1_confidence_intervals_olive_oil_9class.png
+- results/figures/06_modeling/validation_cost_performance_breast_cancer_wisconsin.pdf
+- results/figures/06_modeling/validation_cost_performance_breast_cancer_wisconsin.png
+- results/figures/06_modeling/validation_cost_performance_customer_churn.pdf
+- results/figures/06_modeling/validation_cost_performance_customer_churn.png
+- results/figures/06_modeling/validation_cost_performance_madelon.pdf
+- results/figures/06_modeling/validation_cost_performance_madelon.png
+- results/figures/06_modeling/validation_cost_performance_olive_oil_3class.pdf
+- results/figures/06_modeling/validation_cost_performance_olive_oil_3class.png
+- results/figures/06_modeling/validation_cost_performance_olive_oil_9class.pdf
+- results/figures/06_modeling/validation_cost_performance_olive_oil_9class.png

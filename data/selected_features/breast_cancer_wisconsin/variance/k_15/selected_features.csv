@@ -1,0 +1,16 @@
+feature,rank
+area_mean,1
+area_se,2
+concave_points_worst,3
+texture_mean,4
+concave_points_mean,5
+concavity_mean,6
+symmetry_mean,7
+radius_mean,8
+smoothness_se,9
+perimeter_se,10
+texture_se,11
+radius_se,12
+compactness_se,13
+fractal_dimension_se,14
+concave_points_se,15

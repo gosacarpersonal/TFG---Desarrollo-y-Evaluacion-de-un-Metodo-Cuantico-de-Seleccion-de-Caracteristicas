@@ -1,0 +1,2 @@
+experiment_id,dataset,feature_set,selector,k,model_name,candidate_label,validation_macro_f1,validation_balanced_accuracy,test_macro_f1,test_balanced_accuracy,test_accuracy,test_auc_roc,n_test,n_features_used
+breast_cancer_wisconsin__linear_svm_k10__xgboost,breast_cancer_wisconsin,linear_svm_k10,linear_svm,10,xgboost,subconjunto_top_2_validation,0.9749410377358491,0.9749410377358491,0.9495601173020527,0.9438657407407407,0.9534883720930233,0.9704861111111112,86,10

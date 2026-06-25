@@ -1,0 +1,3 @@
+dataset,configuration,alpha,beta,k,n_features,selected_features,validation_macro_f1,validation_balanced_accuracy,validation_accuracy,fit_seconds
+madelon,qfs_na,0.5,0.1,10,10,feat_241|feat_43|feat_205|feat_147|feat_346|feat_211|feat_295|feat_431|feat_85|feat_42,0.5833287036522627,0.5833333333333333,0.5833333333333334,0.3236085567623377
+madelon,qfs_oracle_mucke,0.982421875,,10,10,feat_241|feat_43|feat_205|feat_147|feat_368|feat_346|feat_211|feat_295|feat_85|feat_42,0.5533333333333333,0.5533333333333333,0.5533333333333333,0.2758386516943574

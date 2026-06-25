@@ -1,0 +1,6 @@
+dataset,original_n,qfs_n,k_budget,preselector,features
+breast_cancer_wisconsin,30,20,10,mrmr_approx_k20,concave_points_worst|smoothness_se|texture_worst|concave_points_mean|radius_worst|symmetry_worst|radius_mean|fractal_dimension_se|perimeter_worst|texture_se|concavity_mean|perimeter_mean|symmetry_se|smoothness_worst|area_worst|texture_mean|concavity_worst|area_mean|fractal_dimension_worst|symmetry_mean
+customer_churn,15,15,10,directo,age|tenure|usage_frequency|support_calls|payment_delay|total_spend|last_interaction|gender_Female|gender_Male|subscription_type_Basic|subscription_type_Premium|subscription_type_Standard|contract_length_Annual|contract_length_Monthly|contract_length_Quarterly
+madelon,500,20,10,mrmr_approx_k20,feat_241|feat_43|feat_311|feat_154|feat_139|feat_31|feat_205|feat_147|feat_368|feat_459|feat_30|feat_346|feat_211|feat_486|feat_295|feat_66|feat_431|feat_75|feat_85|feat_42
+olive_oil_3class,8,8,5,directo,palmitoleic|stearic|oleic|linoleic|linolenic|arachidic|eicosenoic|other
+olive_oil_9class,8,8,5,directo,palmitoleic|stearic|oleic|linoleic|linolenic|arachidic|eicosenoic|other

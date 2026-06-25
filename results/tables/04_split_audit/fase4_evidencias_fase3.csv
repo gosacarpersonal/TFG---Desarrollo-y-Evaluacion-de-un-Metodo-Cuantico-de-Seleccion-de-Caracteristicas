@@ -1,0 +1,5 @@
+archivo,existe,filas,columnas
+fase3_resumen_metricas_split.csv,True,4,15
+fase3_target_resumen.csv,True,4,10
+fase3_dimensionalidad_final.csv,True,4,9
+fase3_correlaciones_resumen.csv,True,4,10

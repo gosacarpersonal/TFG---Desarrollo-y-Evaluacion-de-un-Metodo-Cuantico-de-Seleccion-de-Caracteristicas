@@ -1,0 +1,17 @@
+gate,evidencia,cumple,estado,accion_si_falla
+notebook final reconstruido,notebooks/fase5.ipynb,True,ok,revisar etapa correspondiente y regenerar artefactos
+módulo /src importable,src/fase5_feature_selection.py,True,ok,revisar etapa correspondiente y regenerar artefactos
+rankings completos,fs_all_rankings.csv,True,ok,revisar etapa correspondiente y regenerar artefactos
+subconjuntos guardados,fs_all_selected_features.csv,True,ok,revisar etapa correspondiente y regenerar artefactos
+tiempos guardados,fs_all_execution_times.csv,True,ok,revisar etapa correspondiente y regenerar artefactos
+estabilidad calculada,fs_jaccard_stability.csv,True,ok,revisar etapa correspondiente y regenerar artefactos
+permutaciones calculadas,fs_permutation_summary.csv,True,ok,revisar etapa correspondiente y regenerar artefactos
+redundancia calculada,fs_redundancy_vs_full.csv,True,ok,revisar etapa correspondiente y regenerar artefactos
+cruce EDA calculado,fs_selection_vs_eda_evidence.csv,True,ok,revisar etapa correspondiente y regenerar artefactos
+datasets reducidos creados,fs_reduced_datasets_log.csv,True,ok,revisar etapa correspondiente y regenerar artefactos
+alias X_val creado,fs_column_consistency_check.csv,True,ok,revisar etapa correspondiente y regenerar artefactos
+figuras auditadas,fs_visual_audit.csv,True,ok,revisar etapa correspondiente y regenerar artefactos
+registros de decisión visual,fs_visual_decision_records.csv,True,ok,revisar etapa correspondiente y regenerar artefactos
+informe Markdown generado,fase5_feature_selection_report.md,True,ok,revisar etapa correspondiente y regenerar artefactos
+informe LaTeX generado,fase5_feature_selection_report.tex,True,ok,revisar etapa correspondiente y regenerar artefactos
+handoff Fase 6 creado,fs_phase5_handoff_to_phase6.csv,True,ok,revisar etapa correspondiente y regenerar artefactos

@@ -1,0 +1,6 @@
+dataset,sample_applied,sample_size,train_size,seed,justification
+breast_cancer_wisconsin,False,398,398,42,dataset completo viable
+customer_churn,True,5000,308582,42,muestra estratificada para métodos costosos
+madelon,False,1400,1400,42,dataset completo viable
+olive_oil_3class,False,400,400,42,dataset completo viable
+olive_oil_9class,False,400,400,42,dataset completo viable

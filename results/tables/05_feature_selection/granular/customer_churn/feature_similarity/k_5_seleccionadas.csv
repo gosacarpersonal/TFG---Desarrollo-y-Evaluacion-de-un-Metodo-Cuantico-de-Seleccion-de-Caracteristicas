@@ -1,0 +1,16 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+customer_churn,feature_similarity,redundancia pura,13,5,age,1,7.5,True,0.17729406617581844,308582,ok
+customer_churn,feature_similarity,redundancia pura,13,5,tenure,2,7.5,True,0.17729406617581844,308582,ok
+customer_churn,feature_similarity,redundancia pura,13,5,usage_frequency,3,7.5,True,0.17729406617581844,308582,ok
+customer_churn,feature_similarity,redundancia pura,13,5,support_calls,4,7.5,True,0.17729406617581844,308582,ok
+customer_churn,feature_similarity,redundancia pura,13,5,payment_delay,5,7.5,True,0.17729406617581844,308582,ok
+customer_churn,feature_similarity,redundancia pura,42,5,age,1,7.5,True,0.1765007209032774,308582,ok
+customer_churn,feature_similarity,redundancia pura,42,5,tenure,2,7.5,True,0.1765007209032774,308582,ok
+customer_churn,feature_similarity,redundancia pura,42,5,usage_frequency,3,7.5,True,0.1765007209032774,308582,ok
+customer_churn,feature_similarity,redundancia pura,42,5,support_calls,4,7.5,True,0.1765007209032774,308582,ok
+customer_churn,feature_similarity,redundancia pura,42,5,payment_delay,5,7.5,True,0.1765007209032774,308582,ok
+customer_churn,feature_similarity,redundancia pura,97,5,age,1,7.5,True,0.176690268330276,308582,ok
+customer_churn,feature_similarity,redundancia pura,97,5,tenure,2,7.5,True,0.176690268330276,308582,ok
+customer_churn,feature_similarity,redundancia pura,97,5,usage_frequency,3,7.5,True,0.176690268330276,308582,ok
+customer_churn,feature_similarity,redundancia pura,97,5,support_calls,4,7.5,True,0.176690268330276,308582,ok
+customer_churn,feature_similarity,redundancia pura,97,5,payment_delay,5,7.5,True,0.176690268330276,308582,ok

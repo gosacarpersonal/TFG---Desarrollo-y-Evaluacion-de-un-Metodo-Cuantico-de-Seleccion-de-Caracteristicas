@@ -1,0 +1,25 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+olive_oil_3class,rfe,wrapper minimal-optimal,13,8,palmitoleic,1,8.0,True,0.025680162012577057,400,ok
+olive_oil_3class,rfe,wrapper minimal-optimal,13,8,stearic,2,8.0,True,0.025680162012577057,400,ok
+olive_oil_3class,rfe,wrapper minimal-optimal,13,8,oleic,3,8.0,True,0.025680162012577057,400,ok
+olive_oil_3class,rfe,wrapper minimal-optimal,13,8,linoleic,4,8.0,True,0.025680162012577057,400,ok
+olive_oil_3class,rfe,wrapper minimal-optimal,13,8,linolenic,5,8.0,True,0.025680162012577057,400,ok
+olive_oil_3class,rfe,wrapper minimal-optimal,13,8,arachidic,6,8.0,True,0.025680162012577057,400,ok
+olive_oil_3class,rfe,wrapper minimal-optimal,13,8,eicosenoic,7,8.0,True,0.025680162012577057,400,ok
+olive_oil_3class,rfe,wrapper minimal-optimal,13,8,other,8,8.0,True,0.025680162012577057,400,ok
+olive_oil_3class,rfe,wrapper minimal-optimal,42,8,palmitoleic,1,8.0,True,0.014141042716801167,400,ok
+olive_oil_3class,rfe,wrapper minimal-optimal,42,8,stearic,2,8.0,True,0.014141042716801167,400,ok
+olive_oil_3class,rfe,wrapper minimal-optimal,42,8,oleic,3,8.0,True,0.014141042716801167,400,ok
+olive_oil_3class,rfe,wrapper minimal-optimal,42,8,linoleic,4,8.0,True,0.014141042716801167,400,ok
+olive_oil_3class,rfe,wrapper minimal-optimal,42,8,linolenic,5,8.0,True,0.014141042716801167,400,ok
+olive_oil_3class,rfe,wrapper minimal-optimal,42,8,arachidic,6,8.0,True,0.014141042716801167,400,ok
+olive_oil_3class,rfe,wrapper minimal-optimal,42,8,eicosenoic,7,8.0,True,0.014141042716801167,400,ok
+olive_oil_3class,rfe,wrapper minimal-optimal,42,8,other,8,8.0,True,0.014141042716801167,400,ok
+olive_oil_3class,rfe,wrapper minimal-optimal,97,8,palmitoleic,1,8.0,True,0.012593704275786877,400,ok
+olive_oil_3class,rfe,wrapper minimal-optimal,97,8,stearic,2,8.0,True,0.012593704275786877,400,ok
+olive_oil_3class,rfe,wrapper minimal-optimal,97,8,oleic,3,8.0,True,0.012593704275786877,400,ok
+olive_oil_3class,rfe,wrapper minimal-optimal,97,8,linoleic,4,8.0,True,0.012593704275786877,400,ok
+olive_oil_3class,rfe,wrapper minimal-optimal,97,8,linolenic,5,8.0,True,0.012593704275786877,400,ok
+olive_oil_3class,rfe,wrapper minimal-optimal,97,8,arachidic,6,8.0,True,0.012593704275786877,400,ok
+olive_oil_3class,rfe,wrapper minimal-optimal,97,8,eicosenoic,7,8.0,True,0.012593704275786877,400,ok
+olive_oil_3class,rfe,wrapper minimal-optimal,97,8,other,8,8.0,True,0.012593704275786877,400,ok

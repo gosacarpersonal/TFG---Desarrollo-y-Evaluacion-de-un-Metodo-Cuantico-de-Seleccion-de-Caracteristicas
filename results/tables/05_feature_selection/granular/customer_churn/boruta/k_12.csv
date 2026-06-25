@@ -1,0 +1,16 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+customer_churn,boruta,wrapper all-relevant,42,12,age,1,15.0,True,6.6082476591691375,5000,ok
+customer_churn,boruta,wrapper all-relevant,42,12,contract_length_Annual,1,15.0,True,6.6082476591691375,5000,ok
+customer_churn,boruta,wrapper all-relevant,42,12,contract_length_Monthly,1,15.0,True,6.6082476591691375,5000,ok
+customer_churn,boruta,wrapper all-relevant,42,12,contract_length_Quarterly,1,15.0,True,6.6082476591691375,5000,ok
+customer_churn,boruta,wrapper all-relevant,42,12,gender_Female,1,15.0,True,6.6082476591691375,5000,ok
+customer_churn,boruta,wrapper all-relevant,42,12,gender_Male,1,15.0,True,6.6082476591691375,5000,ok
+customer_churn,boruta,wrapper all-relevant,42,12,last_interaction,1,15.0,True,6.6082476591691375,5000,ok
+customer_churn,boruta,wrapper all-relevant,42,12,payment_delay,1,15.0,True,6.6082476591691375,5000,ok
+customer_churn,boruta,wrapper all-relevant,42,12,support_calls,1,15.0,True,6.6082476591691375,5000,ok
+customer_churn,boruta,wrapper all-relevant,42,12,tenure,1,15.0,True,6.6082476591691375,5000,ok
+customer_churn,boruta,wrapper all-relevant,42,12,total_spend,1,15.0,True,6.6082476591691375,5000,ok
+customer_churn,boruta,wrapper all-relevant,42,12,usage_frequency,1,15.0,True,6.6082476591691375,5000,ok
+customer_churn,boruta,wrapper all-relevant,42,12,subscription_type_Basic,2,14.0,False,6.6082476591691375,5000,ok
+customer_churn,boruta,wrapper all-relevant,42,12,subscription_type_Standard,3,13.0,False,6.6082476591691375,5000,ok
+customer_churn,boruta,wrapper all-relevant,42,12,subscription_type_Premium,4,12.0,False,6.6082476591691375,5000,ok

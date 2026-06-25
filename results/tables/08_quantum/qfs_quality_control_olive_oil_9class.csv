@@ -1,0 +1,12 @@
+dataset,beta,k,alpha_oracle_k,hamming_distance,q_na_alpha05,q_oracle_alpha05,delta_cost_alpha05,qfs_na_features,oracle_features
+olive_oil_9class,0.0,5,0.75,0,0.046826713547730714,0.046826713547730714,0.0,stearic|oleic|linolenic|arachidic|other,stearic|oleic|linolenic|arachidic|other
+olive_oil_9class,0.1,5,0.75,2,0.9181867326814865,0.046826713547730714,0.8713600191337558,stearic|linoleic|linolenic|arachidic|other,stearic|oleic|linolenic|arachidic|other
+olive_oil_9class,0.2,5,0.75,2,0.21075384636179417,0.046826713547730714,0.16392713281406346,oleic|linoleic|linolenic|arachidic|other,stearic|oleic|linolenic|arachidic|other
+olive_oil_9class,0.3,5,0.75,4,0.9497120454769696,0.046826713547730714,0.9028853319292389,palmitoleic|linoleic|linolenic|arachidic|other,stearic|oleic|linolenic|arachidic|other
+olive_oil_9class,0.4,5,0.75,4,0.9497120454769696,0.046826713547730714,0.9028853319292389,palmitoleic|linoleic|linolenic|arachidic|other,stearic|oleic|linolenic|arachidic|other
+olive_oil_9class,0.5,5,0.75,4,1.7441736175683402,0.046826713547730714,1.6973469040206095,palmitoleic|stearic|linoleic|linolenic|other,stearic|oleic|linolenic|arachidic|other
+olive_oil_9class,0.6,5,0.75,4,1.7441736175683402,0.046826713547730714,1.6973469040206095,palmitoleic|stearic|linoleic|linolenic|other,stearic|oleic|linolenic|arachidic|other
+olive_oil_9class,0.7,5,0.75,4,1.7441736175683402,0.046826713547730714,1.6973469040206095,palmitoleic|stearic|linoleic|linolenic|other,stearic|oleic|linolenic|arachidic|other
+olive_oil_9class,0.8,5,0.75,2,0.9181867326814865,0.046826713547730714,0.8713600191337558,stearic|linoleic|linolenic|arachidic|other,stearic|oleic|linolenic|arachidic|other
+olive_oil_9class,0.9,5,0.75,2,0.9181867326814865,0.046826713547730714,0.8713600191337558,stearic|linoleic|linolenic|arachidic|other,stearic|oleic|linolenic|arachidic|other
+olive_oil_9class,1.0,5,0.75,2,0.9181867326814865,0.046826713547730714,0.8713600191337558,stearic|linoleic|linolenic|arachidic|other,stearic|oleic|linolenic|arachidic|other

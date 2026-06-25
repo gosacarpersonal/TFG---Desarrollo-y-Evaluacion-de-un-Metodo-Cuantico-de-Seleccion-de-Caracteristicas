@@ -1,0 +1,13 @@
+dataset,mode,alpha,k_target,cardinality,q_opt,bitstring,selected_features,elapsed_seconds
+olive_oil_3class,alpha_grid,0.0,,0,0.0,00000000,,0.00015495624393224716
+olive_oil_3class,alpha_grid,0.1,,1,-0.061890808165696636,00000001,other,8.88630747795105e-05
+olive_oil_3class,alpha_grid,0.2,,1,-0.12378161633139327,00000001,other,7.495936006307602e-05
+olive_oil_3class,alpha_grid,0.3,,1,-0.1856724244970899,00000001,other,7.201172411441803e-05
+olive_oil_3class,alpha_grid,0.4,,1,-0.24756323266278654,00000001,other,7.244199514389038e-05
+olive_oil_3class,alpha_grid,0.5,,2,-0.34176762018537793,00001001,linolenic|other,0.00010737590491771698
+olive_oil_3class,alpha_grid,0.6,,2,-0.46400558912874657,00001001,linolenic|other,7.243175059556961e-05
+olive_oil_3class,alpha_grid,0.7,,2,-0.5862435580721153,00001001,linolenic|other,7.15041533112526e-05
+olive_oil_3class,alpha_grid,0.8,,3,-0.8071931361521549,00010101,linoleic|arachidic|other,7.10589811205864e-05
+olive_oil_3class,alpha_grid,0.9,,6,-1.3083859514913105,01011111,stearic|linoleic|linolenic|arachidic|eicosenoic|other,7.164571434259415e-05
+olive_oil_3class,alpha_grid,1.0,,8,-2.6273490390533647,11111111,palmitoleic|stearic|oleic|linoleic|linolenic|arachidic|eicosenoic|other,7.120799273252487e-05
+olive_oil_3class,mucke_k,0.875,5.0,5,-1.0932263110189475,00011111,linoleic|linolenic|arachidic|eicosenoic|other,0.0003017820417881012

@@ -1,0 +1,16 @@
+dataset,categoria_exploratoria,n_variables
+breast_cancer_wisconsin,redundancia_alta,18
+breast_cancer_wisconsin,revisar_riesgo,1
+breast_cancer_wisconsin,senal_fuerte,6
+breast_cancer_wisconsin,senal_moderada,2
+breast_cancer_wisconsin,sin_senal_univariante,3
+customer_churn,revisar_riesgo,1
+customer_churn,senal_fuerte,4
+customer_churn,senal_moderada,5
+madelon,redundancia_alta,18
+madelon,revisar_riesgo,25
+madelon,senal_moderada,1
+madelon,sin_senal_univariante,456
+olive_oil,redundancia_alta,2
+olive_oil,revisar_riesgo,2
+olive_oil,senal_fuerte,6

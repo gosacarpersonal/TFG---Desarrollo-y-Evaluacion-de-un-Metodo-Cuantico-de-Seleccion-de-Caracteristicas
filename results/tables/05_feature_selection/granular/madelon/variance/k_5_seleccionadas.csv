@@ -1,0 +1,16 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+madelon,variance,base mínima,13,5,feat_454,1,1.0007147962830598,True,0.0019354727119207382,1400,ok
+madelon,variance,base mínima,13,5,feat_26,2,1.0007147962830596,True,0.0019354727119207382,1400,ok
+madelon,variance,base mínima,13,5,feat_464,3,1.0007147962830596,True,0.0019354727119207382,1400,ok
+madelon,variance,base mínima,13,5,feat_29,4,1.0007147962830596,True,0.0019354727119207382,1400,ok
+madelon,variance,base mínima,13,5,feat_471,5,1.0007147962830596,True,0.0019354727119207382,1400,ok
+madelon,variance,base mínima,42,5,feat_454,1,1.0007147962830598,True,0.0017583370208740234,1400,ok
+madelon,variance,base mínima,42,5,feat_26,2,1.0007147962830596,True,0.0017583370208740234,1400,ok
+madelon,variance,base mínima,42,5,feat_464,3,1.0007147962830596,True,0.0017583370208740234,1400,ok
+madelon,variance,base mínima,42,5,feat_29,4,1.0007147962830596,True,0.0017583370208740234,1400,ok
+madelon,variance,base mínima,42,5,feat_471,5,1.0007147962830596,True,0.0017583370208740234,1400,ok
+madelon,variance,base mínima,97,5,feat_454,1,1.0007147962830598,True,0.0017712777480483055,1400,ok
+madelon,variance,base mínima,97,5,feat_26,2,1.0007147962830596,True,0.0017712777480483055,1400,ok
+madelon,variance,base mínima,97,5,feat_464,3,1.0007147962830596,True,0.0017712777480483055,1400,ok
+madelon,variance,base mínima,97,5,feat_29,4,1.0007147962830596,True,0.0017712777480483055,1400,ok
+madelon,variance,base mínima,97,5,feat_471,5,1.0007147962830596,True,0.0017712777480483055,1400,ok

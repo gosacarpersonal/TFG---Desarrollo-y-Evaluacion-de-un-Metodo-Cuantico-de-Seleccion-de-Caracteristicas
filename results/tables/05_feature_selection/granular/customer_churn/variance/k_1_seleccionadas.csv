@@ -1,0 +1,4 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+customer_churn,variance,base mínima,13,1,usage_frequency,1,1.0000032406402213,True,0.032464757561683655,308582,ok
+customer_churn,variance,base mínima,42,1,usage_frequency,1,1.0000032406402213,True,0.03178846091032028,308582,ok
+customer_churn,variance,base mínima,97,1,usage_frequency,1,1.0000032406402213,True,0.03146829176694155,308582,ok

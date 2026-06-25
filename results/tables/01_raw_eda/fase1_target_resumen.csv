@@ -1,0 +1,5 @@
+dataset,target,n_clases,clase_mayoritaria,clase_minoritaria,ratio_mayoritaria_minoritaria
+breast_cancer_wisconsin,target,2,B,M,1.6839622641509433
+customer_churn,Churn,2,1.0,0.0,1.3100407162283252
+madelon,target,2,empate,empate,1.0
+olive_oil,target,9,South-Apulia,North-Apulia,8.24

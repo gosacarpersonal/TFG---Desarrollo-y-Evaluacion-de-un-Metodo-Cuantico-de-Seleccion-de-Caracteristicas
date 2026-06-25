@@ -1,0 +1,6 @@
+dataset,beta,k,iguales,jaccard,top_1sqrt2,canonico_0p45
+olive_oil_3class,0.0,5,True,1.0,arachidic|eicosenoic|linolenic|other|stearic,arachidic|eicosenoic|linolenic|other|stearic
+olive_oil_9class,0.4,5,True,1.0,arachidic|linoleic|linolenic|other|palmitoleic,arachidic|linoleic|linolenic|other|palmitoleic
+customer_churn,0.3,10,False,0.6666666666666666,age|contract_length_Annual|gender_Female|gender_Male|last_interaction|subscription_type_Basic|subscription_type_Premium|subscription_type_Standard|support_calls|usage_frequency,age|contract_length_Annual|contract_length_Monthly|gender_Male|subscription_type_Basic|subscription_type_Premium|subscription_type_Standard|support_calls|total_spend|usage_frequency
+breast_cancer_wisconsin,0.2,10,False,0.42857142857142855,area_mean|area_worst|concave_points_mean|concavity_mean|concavity_worst|radius_mean|radius_worst|smoothness_worst|symmetry_worst|texture_worst,area_worst|concave_points_mean|concave_points_worst|concavity_worst|fractal_dimension_se|perimeter_mean|radius_mean|radius_worst|texture_mean|texture_worst
+madelon,0.5,10,False,0.6666666666666666,feat_147|feat_154|feat_205|feat_211|feat_241|feat_295|feat_346|feat_42|feat_43|feat_85,feat_147|feat_211|feat_241|feat_295|feat_311|feat_346|feat_42|feat_43|feat_431|feat_85

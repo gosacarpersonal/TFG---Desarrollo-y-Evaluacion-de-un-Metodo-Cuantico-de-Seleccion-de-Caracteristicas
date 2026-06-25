@@ -1,0 +1,653 @@
+% Capítulo 4: Materiales y métodos.
+\label{cap:metodos}
+
+Este capítulo describe los materiales y el procedimiento del estudio
+con el detalle necesario para reproducirlo. Se presentan primero los
+conjuntos de datos y los métodos clásicos de selección que forman la
+referencia, junto con la construcción del grafo de características de
+relevancia y redundancia. A continuación se detalla el método cuántico
+basado en el bloqueo de Rydberg, con su codificación física y su
+contrato de evaluación. El capítulo concluye con el diseño
+experimental, que fija las fases del trabajo, el control de fuga de
+información, el protocolo de modelado y los contrastes estadísticos.
+
+\section{Conjuntos de datos}
+\label{sec:datos}
+
+Se seleccionaron cuatro conjuntos de datos de clasificación
+supervisada, elegidos para cubrir regímenes distintos de tamaño
+muestral, dimensionalidad y tipo de variables
+(Tabla~\ref{tab:datasets}). \textit{Breast Cancer Wisconsin}
+(diagnóstico)~\cite{street1993} es un problema binario clínico con
+fuerte redundancia entre medidas morfológicas de una misma familia.
+\textit{Customer Churn} es un problema binario de gran volumen
+muestral con variables numéricas y categóricas~\cite{churn_kaggle}.
+\textit{Madelon}~\cite{guyon2004} es un problema sintético de alta
+dimensionalidad diseñado para el desafío de selección de
+características de NIPS~2003: de sus 500 variables solo 20 son
+informativas o redundantes por construcción y las 480 restantes son
+distractores. Por último, \textit{Olive Oil}~\cite{forina1983}
+contiene la composición en ácidos grasos de 572 aceites de oliva
+italianos, etiquetados a dos niveles geográficos. Esta diversidad
+extiende deliberadamente el banco de pruebas de la propuesta original
+del método cuántico, evaluado sobre tres problemas binarios de
+dimensionalidad moderada~\cite{orquin2026}, hacia escenarios
+multiclase, desbalanceados y de alta dimensionalidad con verdad
+conocida.
+
+La elección de los conjuntos no responde solo a variedad descriptiva.
+Cada uno ejerce presión sobre un componente distinto del proceso de
+selección. \textit{Breast Cancer Wisconsin} concentra señal fuerte en
+familias de tamaño celular altamente redundantes; \textit{Customer
+Churn} combina un gran tamaño muestral con variables continuas
+dominantes y categóricas nominales; \textit{Madelon} fuerza un régimen
+de alta dimensionalidad con señal no univariante; y \textit{Olive Oil}
+permite observar un espacio químico pequeño, composicional y multiclase.
+Esta lectura por regímenes se conserva durante todo el diseño: las
+fases clásicas no solo preparan los datos, sino que anticipan qué parte
+del método QFS debería verse tensionada en cada caso.
+
+\begin{table}[!htbp]
+  \centering
+  \caption[Conjuntos de datos del estudio]{Conjuntos de datos del estudio. El recuento de predictoras
+    excluye identificadores estructurales y, en \textit{Olive Oil},
+    las etiquetas alternativas y su proxy (véase la
+    sección~\ref{sec:oliveoil}).}
+  \label{tab:datasets}
+  \begin{tabular}{lrrll}
+    \toprule
+    Dataset & Casos & Variables predictoras & Target & Clases \\
+    \midrule
+    Breast Cancer Wisconsin & 569 & 30 & diagnóstico & 2 \\
+    Customer Churn & 440\,832 & 10 & abandono & 2 \\
+    Madelon & 2\,000 & 500 & sintético & 2 \\
+    Olive Oil & 572 & 8 & región de origen & 3 / 9 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Decisiones específicas por conjunto de datos}
+\label{sec:oliveoil}
+
+Dos conjuntos exigen decisiones de tratamiento propias que se fijan
+desde el particionado y se declaran aquí para no contaminar las
+comparaciones posteriores: la separación de las etiquetas de
+\textit{Olive Oil} y la codificación de las variables categóricas de
+\textit{Customer Churn}.
+
+El análisis exploratorio mostró que \textit{Olive Oil} contiene dos
+etiquetas supervisadas jerárquicas, la macro-región (3 clases) y la
+región (9 clases), además de una variable (\texttt{palmitic} en la
+versión utilizada) que actúa como sustituto (\textit{proxy}) casi
+determinista de la región. Tratar el conjunto como un único problema
+habría contaminado cualquier comparación, porque la etiqueta
+alternativa y el proxy quedarían dentro del espacio de predictores.
+Por ello, desde la fase de particionado el conjunto se desdobla en dos
+formulaciones operativas no intercambiables:
+\texttt{olive\_oil\_3class} (target macro-región; se excluyen la
+etiqueta de 9 clases y el proxy) y \texttt{olive\_oil\_9class} (target
+región; se excluyen la macro-región y el proxy). Todas las fases
+posteriores trabajan con cinco formulaciones: los tres conjuntos
+originales restantes más estas dos variantes, que nunca se promedian
+entre sí. Tras estas exclusiones, cada formulación de \textit{Olive Oil}
+trabaja con ocho predictoras de composición (las nueve variables de
+ácidos grasos del conjunto crudo, una vez excluido el proxy
+\texttt{palmitic}). El recuento de diez variables que aparece en el
+análisis exploratorio incluye, además, la etiqueta jerárquica que cada
+formulación no emplea como objetivo y que solo se descarta al fijarla; de
+ahí que la tabla de señal liste diez variables y la de conjuntos de datos,
+ocho.
+
+\textit{Customer Churn} contiene tres predictoras categóricas nominales:
+género, tipo de suscripción y duración del contrato. En los pipelines
+posteriores al particionado se codifican mediante \textit{one-hot}
+ajustado solo con entrenamiento, en lugar de imponer un orden artificial
+mediante \textit{label encoding}. Esta decisión es metodológicamente
+coherente con modelos lineales y con la comparación clásica, pero se
+declara como divergencia respecto al \textit{label encoding} empleado en
+la referencia QFS original~\cite{orquin2026}. Su efecto se comprueba después: genera grupos de
+dummies mutuamente excluyentes que pueden competir por el presupuesto de
+QFS, pero no se asume como causa del resultado sin comprobar el embebido
+geométrico.
+
+\section{Métodos clásicos de referencia}
+\label{sec:clasicos}
+
+Los métodos clásicos no se eligen como un muestrario genérico de
+selectores, sino como el \emph{espejo} de la estructura del método
+cuántico que se quiere evaluar. La función de coste de ese método
+(sección~\ref{sec:grafo}) combina dos ingredientes, la relevancia de
+cada variable con el target $I(x_i;y)$ y la redundancia entre pares
+$I(x_i;x_j)$, y los resuelve de forma global. Por ello se selecciona al
+menos un método clásico que aísle o combine cada ingrediente, más los
+benchmarks de referencia del campo. El objetivo es que la comparación
+posterior sea \emph{atribuible}: poder distinguir si el método cuántico
+aporta por la relevancia, por el control de la redundancia o por
+resolver el compromiso de forma global, en lugar de un resultado
+agregado sin diagnóstico. El repertorio resultante consta de doce
+selectores agrupados en seis roles:
+
+\begin{itemize}
+\item \textbf{Baseline mínimo}: la varianza (\texttt{variance}),
+  filtro no supervisado que se conserva como suelo de comparación.
+  Siguiendo el protocolo habitual de la selección no
+  supervisada~\cite{solorio2020}, que estandariza las variables antes de
+  aplicar los filtros, su puntuación opera sobre variables de varianza
+  homogénea y apenas discrimina entre ellas; por eso se interpreta como
+  una referencia inferior degenerada, no como un criterio de selección.
+\item \textbf{Relevancia pura}: la puntuación F de ANOVA
+  (\texttt{f\_classif}) y la información mutua
+  (\texttt{mutual\_info})~\cite{cover2006}, que cuantifican la
+  dependencia de cada variable con el target. La información mutua es,
+  además, la cantidad exacta que el método cuántico codifica como
+  relevancia.
+\item \textbf{Redundancia pura}: la correlación mutua
+  (\texttt{mutual\_correlation}) y la selección por similitud entre
+  variables (\texttt{feature\_similarity})~\cite{solorio2020}, filtros
+  no supervisados que eliminan variables redundantes sin mirar el
+  target; representan el segundo ingrediente del método cuántico. La
+  evaluación sistemática de Solorio-Fernández et al.~\cite{solorio2020}
+  los sitúa entre los filtros no supervisados de menor rendimiento
+  predictivo, por lo que su inclusión responde a su papel como
+  \emph{espejo estructural} del término de redundancia y no a una
+  expectativa de competitividad en exactitud.
+\item \textbf{Relevancia y redundancia combinadas}: una aproximación
+  voraz al criterio mRMR~\cite{peng2005} (\texttt{mrmr\_approx}) y la
+  selección relevancia-redundancia (\texttt{rrfs})~\cite{solorio2020},
+  los análogos clásicos directos del compromiso que el método cuántico
+  resuelve de forma global.
+\item \textbf{Benchmarks \textit{wrapper}}: Boruta~\cite{kursa2010},
+  referencia \textit{gold-standard} de la selección, y la eliminación
+  recursiva de variables (\texttt{rfe}). Boruta confirma el conjunto de
+  todas las variables relevantes mediante un contraste frente a
+  variables sombra, por lo que devuelve un subconjunto de tamaño
+  determinado por los datos, no por un presupuesto $k$ prefijado.
+\item \textbf{Métodos \textit{embedded}}: la regresión logística con
+  penalización $\ell_1$, la importancia por impureza de \textit{random
+  forest}~\cite{breiman2001} y la magnitud de pesos de una SVM lineal,
+  que seleccionan en el contexto de un modelo.
+\end{itemize}
+
+Esta taxonomía permite leer los doce métodos como un sistema de
+coordenadas. Los filtros de relevancia indican qué ocurre si solo se
+atiende a $I_i$; los métodos de redundancia muestran el efecto de
+penalizar similitud sin mirar el target; mRMR y RRFS aproximan el mismo
+compromiso que QFS, pero de forma clásica; y los métodos embedded y
+wrappers actúan como referencia de lo que un modelo puede recuperar por
+otra vía. En el capítulo de resultados, QFS se situará en este plano
+comparando tanto coordenadas agregadas (relevancia capturada y
+redundancia interna) como subconjuntos por nombre de variable.
+
+Salvo Boruta, cada método produce un ranking del que se derivan
+subconjuntos de tamaño $k$ según una escalera adaptada a cada dataset.
+El $k$ de referencia para el modelado es el mayor $k \le 10$ que implica
+una reducción real del espacio: 10 en los tres conjuntos grandes, y 5 en
+las dos formulaciones de \textit{Olive Oil}, donde un presupuesto de 10
+no reduciría nada porque solo hay 8 predictoras. Boruta se evalúa al
+tamaño natural de su conjunto confirmado. La cota superior $k \le 10$ es
+coherente con la evidencia de la referencia cuántica, en la que el
+rendimiento se estabiliza más allá de unas siete variables y la ventaja
+del método se concentra en los subconjuntos
+compactos~\cite{orquin2026}. La información mutua se estima
+con la convención única descrita en la sección~\ref{sec:grafo}
+(discretización en cinco intervalos uniformes), compartida por los
+selectores basados en información mutua y por las matrices que alimentan
+el método cuántico. Para acotar el coste, los métodos no lineales se
+ajustan en \textit{Customer Churn} sobre una muestra estratificada de
+5\,000 filas de entrenamiento cuya representatividad se verifica.
+
+Además del ranking se miden tres propiedades de calidad. La
+\emph{estabilidad} entre semillas (tres semillas independientes) se
+cuantifica con el índice de Jaccard entre dos subconjuntos $A$ y $B$,
+\begin{equation}
+  \label{eq:jaccard}
+  J(A,B) = \frac{|A \cap B|}{|A \cup B|},
+\end{equation}
+y con el índice de Kuncheva~\cite{kuncheva2007}, que para dos
+subconjuntos de tamaño $k$ con $r$ variables en común, extraídos de un
+espacio de $p$ variables, corrige el solape esperado por azar:
+\begin{equation}
+  \label{eq:kuncheva}
+  K = \frac{r - k^2/p}{k - k^2/p}.
+\end{equation}
+A diferencia de Jaccard, $K$ vale cero cuando el solape coincide con el
+esperado al azar y uno cuando es total. La \emph{separación frente
+al azar} contrasta la hipótesis nula de que la puntuación de un selector
+no es mayor que la que obtendría sobre un target sin relación con las
+variables. Esa distribución nula se construye empíricamente permutando
+el target 20 veces y recalculando las puntuaciones; una variable se
+considera señal solo si su puntuación real supera el percentil 95 de la
+distribución nula (resolución mínima del p-valor empírico
+$1/21 \approx 0{,}048$). Este control se emplea como pantalla operativa
+de separación frente al azar en la fase de selección; la evidencia
+inferencial principal se obtiene después sobre las predicciones de prueba
+mediante \textit{bootstrap} y permutaciones pareadas. La \emph{redundancia interna} de cada subconjunto
+se mide como el cambio de la correlación absoluta media entre sus
+variables respecto al espacio completo.
+
+\section{Construcción del grafo de características}
+\label{sec:grafo}
+
+El puente entre la selección clásica y la cuántica es un grafo de
+características construido exclusivamente con la partición de
+entrenamiento. Para cada formulación se calculan el vector de
+relevancias $I_i = I(x_i; y)$, la información mutua de cada variable
+con el target, y la matriz de redundancias $R_{ij} = I(x_i; x_j)$, la
+información mutua entre pares de variables~\cite{cover2006}. La
+estimación de la información mutua replica la de la implementación de
+referencia~\cite{orquin2026}: las variables continuas se discretizan en
+cinco intervalos uniformes y la información mutua se estima sobre los
+datos discretizados, de forma consistente para los selectores clásicos
+basados en información mutua y para las matrices que alimentan el método
+cuántico, de modo que ambos comparten exactamente la misma cantidad. Las
+variables son los nodos, ponderados por $I_i$; las redundancias altas
+definen las aristas. Sobre ese grafo, el compromiso
+relevancia--redundancia se expresa como la función de coste
+\begin{equation}
+  \label{eq:qfs}
+  Q(x;\alpha) \;=\; -\alpha \sum_{i} I_i\, x_i \;+\;
+  (1-\alpha) \sum_{i<j} R_{ij}\, x_i x_j,
+\end{equation}
+donde $x_i \in \{0,1\}$ indica si la variable $i$ se selecciona y
+$\alpha \in [0,1]$ regula el compromiso. Se trata de la instancia
+QUBO descrita en la sección~\ref{sec:mt-qubo}; su materialización en
+átomos neutros aproxima un problema MWIS físico al convertir
+redundancias altas en proximidad y bloqueo. Es también la versión global
+del criterio que \texttt{mrmr\_approx} aproxima de forma voraz.
+
+El vector y la matriz de cada formulación se calculan durante la fase
+de selección clásica. De este
+modo, el método cuántico consume exactamente las mismas cantidades
+informacionales que los métodos clásicos de referencia, y cualquier
+diferencia de resultados será atribuible al procedimiento de
+optimización y no a las entradas.
+
+\section{Método cuántico basado en el bloqueo de Rydberg}
+\label{sec:qfs}
+
+El método QFS evaluado en este trabajo~\cite{orquin2026} resuelve la
+ecuación~\ref{eq:qfs} sobre una matriz de átomos neutros, aplicando la
+correspondencia descrita en el marco teórico
+(secciones~\ref{sec:mt-adiabatica} y~\ref{sec:mt-rydberg}).
+
+\subsection{Codificación física y protocolo}
+
+Cada variable se representa con un átomo. La relevancia $I_i$ se
+codifica en la amplitud del \textit{detuning} local aplicado a cada
+átomo, y la redundancia $R_{ij}$ se traduce en distancias espaciales:
+en la correspondencia física de referencia, las parejas muy
+redundantes se colocan más cerca mediante una distancia base
+$d_{ij}\propto R_{ij}^{-1/6}$ y, por tanto, quedan más expuestas al
+bloqueo de Rydberg, que impide su excitación simultánea y actúa como
+restricción dura de exclusión~\cite{orquin2026}. En este trabajo esa
+correspondencia se conserva como núcleo del embebido, pero se evalúa
+una variante operativa trazada que añade un término de separación
+dependiente de la relevancia. En la ecuación se usan las cantidades
+normalizadas $\widehat R_{ij}$ y $\widehat I_i$, con el término de
+relevancia activo solo cuando $\beta>0$:
+\begin{equation}
+  \label{eq:qfs-distancia-beta}
+  \tilde d_{ij} = \widehat R_{ij}^{-1/6} +
+  \beta\,(1+\widehat I_i)(1+\widehat I_j),
+  \qquad d_{ij}\in[d_{\min},d_{\max}].
+\end{equation}
+El parámetro $\beta$ no se interpreta como una nueva magnitud física,
+sino como un grado de libertad experimental para estudiar si separar
+pares de variables relevantes modifica las densidades de Rydberg y la
+selección final. En la implementación, $I_i$ y $R_{ij}$ se normalizan a
+$[0,1]$ con mínimos y máximos calculados en entrenamiento, de modo que
+la potencia inversa actúa sobre la redundancia ya normalizada. El caso
+$\widehat R_{ij}=0$ (sin redundancia estimada entre el par) se trata
+aparte: a esa pareja se le asigna directamente la distancia máxima
+$d_{\max}$, que representa separación máxima sin bloqueo, sin evaluar la
+potencia inversa, que en ese punto divergiría; la expresión anterior
+solo rige para los pares con redundancia no nula. La matriz cruda
+$\tilde d_{ij}$ se reescala después al intervalo $[d_{\min},d_{\max}]$
+que determina el radio de bloqueo y solo entonces se aplica escalado
+multidimensional (MDS), reteniendo embebidos que satisfacen la
+separación mínima entre átomos.
+
+El sistema evoluciona adiabáticamente desde el estado fundamental hasta
+el hamiltoniano final mediante un protocolo temporal de dos pasos sobre
+los campos de control: la frecuencia de Rabi $\Omega(t)$, que mide la
+intensidad del acoplamiento láser; el \textit{detuning} global
+$\Delta(t)$, que desplaza por igual la energía de todos los átomos; y el
+\textit{detuning} local, que aplica a cada átomo un sesgo proporcional a
+su relevancia $I_i$~\cite{orquin2026}. La
+Figura~\ref{fig:qfs-adiabatica} muestra estos tres perfiles a lo largo
+de los 4~$\mu$s de evolución. La medición repetida produce
+una distribución de cadenas de bits, y las densidades de Rydberg
+medias sobre las configuraciones de menor energía proporcionan un
+ranking de variables del que se derivan subconjuntos para cada
+cardinalidad $k$. Conviene aclarar el papel de $\alpha$ en este
+contexto: el recorrido de $\alpha$ en el QUBO puro produce una escalera
+discreta de óptimos, pero esa escalera puede saltar presupuestos. Por
+ello, el control exacto usado en este trabajo combina el barrido de
+$Q^*(\alpha)$ con una restricción explícita de cardinalidad cuando debe
+compararse a un $k$ fijado. La implementación de referencia sobre átomos
+neutros~\cite{orquin2026} fija $\alpha$ en un valor representativo y
+obtiene los subconjuntos por corte top-$k$ sobre la densidad de Rydberg
+media. En este trabajo se evalúan ambos mecanismos: se ejecuta el
+protocolo operativo del simulador analógico con $\alpha$ fija, y se
+reproduce además el recorrido de $\alpha$ propuesto por
+Mücke~\cite{mucke2023} resolviendo $Q^*(\alpha)$ por enumeración
+exhaustiva o programación entera dentro de la envolvente operativa
+(sección~\ref{sec:contrato}). El segundo procedimiento no compite con
+el primero: actúa como referencia exacta del criterio QUBO sobre la
+misma función de coste, lo que permite separar la calidad del
+optimizador analógico de la calidad del propio criterio. El segundo
+grado de libertad es el parámetro $\beta$ introducido en la
+ecuación~\ref{eq:qfs-distancia-beta}, que se barre por validación en
+$\{0, 0{,}1, 0{,}2, \ldots, 1\}$. Esta extensión se declara separadamente
+del mapeo base del artículo para evitar una lectura de reproducción
+literal: el objetivo no es cambiar el criterio QUBO, sino comprobar si
+la geometría operacional del simulador analógico altera el
+\textit{readout}. La dinámica se simula con el módulo de simulación
+analógica hamiltoniana de Amazon Braket en su simulador local.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.86\textwidth]{ev5_evolucion_adiabatica.png}
+  \caption[Perfiles temporales de los campos de control]{Perfiles temporales de los campos de control durante los
+    4~$\mu$s de evolución adiabática simulada. El eje horizontal es el
+    tiempo, en microsegundos; las curvas muestran la frecuencia de Rabi
+    $\Omega(t)$, el \textit{detuning} global $\Delta(t)$ y el
+    \textit{detuning} local que codifica la relevancia de cada variable.
+    Su forma escalonada en dos pasos es la que lleva el sistema desde el
+    estado fundamental inicial hasta la configuración de mínima energía
+    que codifica el subconjunto seleccionado.}
+  \label{fig:qfs-adiabatica}
+\end{figure}
+
+\subsection{Envolvente operativa y contrato de evaluación}
+\label{sec:contrato}
+
+La simulación clásica de la dinámica analógica limita el número de
+átomos tratables, y la implementación de referencia se ha validado con
+problemas de hasta una veintena de variables~\cite{orquin2026}. La
+envolvente operativa queda por tanto fijada en torno a veinte
+variables: las formulaciones que caben en ella (\textit{Olive Oil},
+con 8 variables, y \textit{Customer Churn}, con 10 predictoras crudas
+que se materializan como 15 columnas tras la codificación
+\textit{one-hot} ajustada en entrenamiento) entran directamente; las
+que la exceden (\textit{Breast Cancer}, 30;
+\textit{Madelon}, 500) requieren una preselección clásica previa que
+reduce el espacio a unas 20 variables antes de la fase cuántica. Esa
+preselección emplea \texttt{mrmr\_approx}, el análogo voraz del mismo
+criterio de relevancia y redundancia que usa el método cuántico, para no
+sesgar la entrada hacia un criterio distinto del que se evalúa; se ajusta
+solo con entrenamiento y se documenta como parte del método híbrido
+resultante. Esta elección evita introducir un criterio ajeno, pero no
+elimina una dependencia importante: si la preselección descarta variables
+verdaderamente relevantes (algo posible en \textit{Madelon}, donde la
+señal reside en interacciones que un criterio par a par no captura), el
+método cuántico no puede recuperarlas y hereda ese sesgo desde el inicio.
+El alcance de este efecto se discute con los resultados de \textit{Madelon}
+y se recoge entre las limitaciones; una mitigación natural sería
+preseleccionar con la unión de varios criterios o con uno sensible a
+interacciones de orden superior. Los parámetros de simulación se heredan
+de la implementación de referencia~\cite{orquin2026}: una evolución
+adiabática de 4~$\mu$s (tiempo total de evolución, elegido dentro del
+régimen operativo considerado en dicha implementación), la retención del
+10\,\% de configuraciones de menor
+energía y 100
+inicializaciones independientes del escalado multidimensional. El número
+de mediciones por configuración se eleva de las 1\,000 de la referencia
+a 10\,000 para reducir la varianza muestral del histograma de
+\textit{bitstrings}.
+
+Hay una condición geométrica del protocolo de átomos neutros. Tras el
+embebido por MDS, las posiciones se reescalan para que la distancia
+mínima entre dos átomos sea una fracción del radio de bloqueo $R_b$,
+fijada en $1/\sqrt{2}$ como en la implementación de
+referencia~\cite{orquin2026}; esa fracción determina cuántos pares
+quedan dentro del volumen de bloqueo y, por tanto, cuántas exclusiones
+impone la física. No siempre existe un embebido bidimensional que
+respete esa separación, porque la matriz de redundancia no tiene por qué
+ser realizable como grafo de discos unitarios~\cite{nguyen2023,
+bermot2025}; en este banco, sin embargo, las cinco formulaciones
+admiten un embebido válido a $1/\sqrt{2}$, que se conserva sin
+relajación. La calidad del embebido se verifica después con el error MDS y
+con la comparación frente al oráculo exacto, de modo que cualquier
+deterioro de QFS no se atribuye a la geometría sin contrastarlo
+explícitamente.
+
+Las 100 inicializaciones del escalado multidimensional se realizan como
+100 ejecuciones con semillas independientes. Para que el parámetro
+interno \texttt{n\_init} de scikit-learn no multiplique de forma
+implícita el número de arranques ni dependa de la versión de la
+biblioteca, se fija \texttt{n\_init=1} dentro de ese bucle de 100
+semillas, de modo que cada semilla equivale a un arranque independiente,
+en correspondencia exacta con las 100 corridas del protocolo de
+referencia. El error de embebido resultante queda trazado para el
+análisis de resultados.
+
+El tamaño de la envolvente habilita además un control de calidad
+específico: con una veintena de variables, el óptimo exacto de la
+ecuación~\ref{eq:qfs} es computable por enumeración exhaustiva, de
+modo que puede medirse la distancia entre el subconjunto devuelto por
+la evolución adiabática y el mínimo de la función de coste. Esta
+comprobación, alineada con la validación mediante optimización exacta
+empleada en la propuesta original~\cite{orquin2026}, separa dos
+preguntas que la comparación final no debe confundir: si el método
+cuántico optimiza bien su criterio y si ese criterio produce
+subconjuntos predictivos. Su evidencia se materializa en el control de
+calidad de la Tabla~\ref{tab:qfs-control} y en la descomposición
+criterio--optimizador de la Tabla~\ref{tab:atribucion}
+(sección~\ref{sec:diagnostico-qfs}).
+
+El contrato de evaluación hereda íntegramente el diseño del bloque
+clásico: las entradas del método son el grafo de características de la
+sección~\ref{sec:grafo}. La configuración operativa sobre átomos neutros, QFS-NA, fija
+$\alpha=0{,}5$ y obtiene la cardinalidad mediante un corte top-$k$ sobre
+la densidad de Rydberg, en lugar de recorrer $\alpha$. Ese recorrido,
+que en el QUBO exacto produce una escalera discreta de presupuestos
+observados (sección~\ref{sec:mt-qubo}), se reserva al oráculo exacto
+como control del criterio y no se presenta como salida del simulador
+analógico. Cuando la escalera salta el presupuesto de referencia, el
+oráculo se calcula con la restricción explícita $\sum_i x_i=k$. Sobre
+la configuración operativa se barre el parámetro $\beta$ y se elige su
+valor exclusivamente con la partición de validación, usando
+\textit{random forest} como evaluador fijo para no convertir el bloque
+cuántico en otro barrido de modelos; el conjunto de prueba no interviene
+en ninguna elección. Una vez fijados los subconjuntos, el rendimiento se
+evalúa con el protocolo de la sección~\ref{sec:protocolo} (mismos
+modelos, macro-F1, intervalos \textit{bootstrap}, comparaciones pareadas
+y contrastes de permutación) sobre los presupuestos de variables
+fijados en la sección~\ref{sec:clasicos} ($k=10$ en los conjuntos
+grandes y $k=5$ en \textit{Olive Oil}).
+
+\section{Diseño experimental}
+\label{sec:diseno}
+
+Sobre todo el diseño se aplica una regla transversal, cuyo fundamento
+se ha presentado en la sección~\ref{sec:mt-validacion}: ningún
+hallazgo del bloque se acepta sin contraste estadístico; toda batería
+de contrastes univariantes se corrige por multiplicidad; todo
+contraste se acompaña de su tamaño de efecto; y, donde la distribución
+nula no es conocida, se construye empíricamente por permutación. Las
+subsecciones siguientes concretan esa regla en cada eslabón de la
+cadena experimental.
+
+El diseño experimental se organiza como una cadena de diez fases. Las
+siete primeras construyen una referencia clásica contrastada, las dos
+siguientes ejecutan, evalúan e integran el método cuántico contra esa
+referencia, y la última fase sintetiza el recorrido sin reentrenar
+modelos ni reejecutar QFS\@. Cada fase produce salidas verificables que se
+encadenan con la fase siguiente: particiones, subconjuntos
+seleccionados, predicciones, contrastes estadísticos, diagnósticos de
+calidad, errores de embebido y figuras de cierre.
+
+\begin{enumerate}
+\item \textbf{Análisis exploratorio del dato crudo}: estructura,
+  calidad, distribución del target, normalidad, asociación
+  variable--target con corrección por contrastes múltiples, magnitud
+  del efecto, redundancia, dimensionalidad y riesgos de
+  \textit{leakage} potencial.
+\item \textbf{Preprocesado estructural}: normalización de nombres,
+  exclusión de identificadores, codificación determinista del target y
+  caracterización de valores atípicos, sin imputación, escalado ni
+  codificación global de predictoras.
+\item \textbf{Comprobación posterior al preprocesado}: verificación de que el
+  preprocesado no alteró distribuciones, target, asociación
+  variable--target ni estructura de redundancia.
+\item \textbf{Particionado y verificación de las particiones}: creación de las
+  particiones de entrenamiento (70\,\%), validación (15\,\%) y prueba
+  (15\,\%), estratificadas por target, y verificación de solapes,
+  conservación del target, \textit{drift} univariante,
+  representatividad multivariante, \textit{leakage} y separabilidad
+  adversarial.
+\item \textbf{Selección clásica de características}: ejecución y
+  caracterización de los doce selectores bajo contrato
+  \textit{train-only}, incluida la construcción del grafo de
+  características de la sección~\ref{sec:grafo}.
+\item \textbf{Modelado y evaluación estadística}: comparación de los
+  subconjuntos seleccionados frente al espacio completo con cuatro
+  modelos y contrastes sobre el conjunto de prueba.
+\item \textbf{Comparación final y mapa de evidencia}: integración de
+  los resultados de las fases anteriores, veredicto por dataset y
+  preparación de la referencia para la fase cuántica.
+\item \textbf{Ejecución QFS}: preselección híbrida cuando la envolvente
+  operativa lo exige, barrido de $\beta$, simulación analógica
+  hamiltoniana, embebido MDS con 100 inicializaciones
+  independientes, adaptación geométrica trazada y control frente al
+  óptimo exacto del QUBO.
+\item \textbf{Evaluación e integración cuántica}: evaluación de los
+  subconjuntos QFS, modelado con el mismo protocolo de la referencia
+  clásica, comparación pareada frente al baseline e integración en la
+  tabla final.
+\item \textbf{Síntesis visual y verificación final}: lectura conjunta de
+  los artefactos ya generados para construir el diagnóstico
+  multidimensional régimen--mecanismo--resultado, incluyendo posición de
+  QFS frente a los doce métodos, trayectorias en $k$, escalera
+  $\alpha$, efecto de $\beta$, error MDS, atribuciones SHAP
+  (\textit{SHapley Additive exPlanations}), métricas y consistencia.
+\end{enumerate}
+
+\subsection{Preprocesado y comprobación de datos}
+
+El preprocesado se diseña bajo un criterio de intervención mínima y
+sin ajuste global: normalización de nombres, exclusión de
+identificadores estructurales y codificación determinista del target,
+sin imputación, winsorización, escalado ni codificación de predictoras
+sobre el conjunto completo; esas transformaciones se posponen a los
+pipelines posteriores al particionado. Cada decisión se comprueba en la
+fase siguiente comparando el dataset procesado con el crudo en
+dimensiones, distribución del target, distribuciones numéricas, orden
+de asociación variable--target y estructura de redundancia. Este doble
+paso garantiza que los problemas llegan al particionado sin
+alteraciones que pudieran favorecer a ningún método de selección.
+
+\subsection{Control de fuga de información}
+
+Todo ajuste dependiente de los datos se realiza exclusivamente con la
+partición de entrenamiento. En el preprocesado, las predictoras
+categóricas se conservan sin codificar hasta después del particionado,
+de modo que los codificadores \textit{one-hot} y los escaladores se
+ajustan con entrenamiento y se aplican después a validación y prueba.
+En la selección de características, cada selector se ajusta con
+$X_{train}$ e $y_{train}$; validación y prueba solo reciben las
+columnas ya seleccionadas. En el modelado, la elección de
+configuraciones se realiza con validación y el conjunto de prueba se
+utiliza una única vez, sobre candidatos fijados de antemano. Además,
+se excluyen del espacio de predictores los identificadores, el índice
+de trazabilidad de las particiones y, en \textit{Olive Oil}, las
+etiquetas alternativas y su proxy.
+
+\subsection{Validación estructural y de particiones}
+
+La verificación de las particiones combina comprobaciones exactas y
+diagnósticos estadísticos. Las exactas verifican ausencia de solapes
+de filas entre particiones y conservación de todas las clases. Las
+estadísticas comparan
+entrenamiento frente a validación y prueba mediante: el contraste
+$\chi^2$ y la diferencia máxima de proporciones para el target; los
+estadísticos de Kolmogorov--Smirnov, la distancia de Wasserstein
+estandarizada y el índice de estabilidad poblacional (PSI) para las
+variables numéricas; y el contraste $\chi^2$ con distancia de
+proporciones y PSI categórico para las variables discretas. Como
+diagnóstico global de representatividad se emplea una validación
+adversarial: un clasificador que intenta distinguir filas de
+entrenamiento y prueba, cuyo AUC (área bajo la curva ROC) se interpreta como no accionable si
+queda cerca de 0{,}5 bajo el umbral operativo fijado para la verificación.
+Como pantalla de \textit{leakage} se calcula,
+para cada variable, el AUC univariante absoluto y la información mutua
+normalizada con el target, marcando para revisión los valores
+superiores a 0{,}99. Los resultados de esta verificación se sintetizan en la
+Tabla~\ref{tab:particiones} de la sección~\ref{sec:res-base}.
+
+\subsection{Protocolo de modelado y contrastes estadísticos}
+\label{sec:protocolo}
+
+La fase de modelado cruza, por dataset, el espacio completo de
+variables (\textit{baseline}) y los doce subconjuntos clásicos de
+la fase de selección con cuatro modelos de familias distintas:
+regresión logística, SVM lineal, \textit{random
+forest}~\cite{breiman2001} y \textit{XGBoost}~\cite{chen2016}, todos
+con hiperparámetros fijos y pesos de clase balanceados. No se realiza
+búsqueda de hiperparámetros: el objeto de estudio es el espacio de
+variables, y el baseline comparte modelo e hiperparámetros con cada
+subconjunto, de modo que las diferencias observadas son atribuibles a
+las variables. La inclusión de \textit{XGBoost} responde a un criterio
+explícito de comparabilidad con la evaluación original del método
+cuántico, que emplea ese mismo clasificador~\cite{orquin2026}, mientras
+que las tres familias adicionales extienden la cobertura a modelos
+lineales y de conjunto bajo el mismo protocolo. El método cuántico se
+evaluará con estos mismos modelos (sección~\ref{sec:contrato}), de modo
+que la comparación clásico--cuántico de este trabajo queda
+internamente homogénea sin renunciar al puente con las cifras
+preliminares de la referencia.
+
+La métrica primaria es el macro-F1, que pondera por igual todas las
+clases, con la exactitud balanceada como criterio de desempate. Esta
+elección se justifica porque el banco de este trabajo incluye problemas
+multiclase y desbalanceados en los que el AUC binario empleado en la
+evaluación original del método cuántico~\cite{orquin2026} no es
+aplicable de forma directa. En los dos conjuntos binarios del banco
+(\textit{Breast Cancer Wisconsin} y \textit{Customer Churn}) se
+registra adicionalmente el AUC-ROC como métrica de contexto frente a
+las cifras preliminares de la referencia, pero no se utiliza como criterio primario de
+decisión, que se mantiene homogéneo entre todos los datasets.
+Por dataset pasan a la evaluación final el mejor baseline y los dos
+mejores subconjuntos en validación. Como evidencia de explicabilidad,
+para cada configuración evaluada se calculan los valores
+SHAP~\cite{lundberg2017} con el explicador nativo de cada familia de
+modelo (\textit{TreeExplainer} para los bosques aleatorios y
+\textit{LinearExplainer} para la regresión logística y la SVM lineal),
+estimados sobre la partición de validación con un fondo tomado del
+entrenamiento, junto con las matrices de confusión de prueba; estos
+resultados permiten comprobar qué variables sostienen cada subconjunto
+seleccionado.
+
+Sobre las predicciones de prueba se calculan: intervalos de confianza
+del 95\,\% por \textit{bootstrap}~\cite{efron1979} (400 remuestreos);
+la comparación pareada candidato--baseline, con intervalo bootstrap de
+la diferencia de macro-F1 y un contraste de permutación de signos
+sobre los aciertos por fila (2\,000 permutaciones); y un contraste de
+permutación de etiquetas (500 permutaciones, resolución mínima del
+p-valor $1/501 \approx 0{,}002$) que verifica que el rendimiento
+observado no es compatible con el azar. La selección se declara mejora
+significativa únicamente si supera al baseline, el intervalo de la
+diferencia pareada excluye el cero y el p-valor del contraste de
+signos es inferior a 0{,}05. Cuando varias configuraciones se contrastan
+contra el baseline dentro de una misma familia (en la comparación final
+del método cuántico, las cinco formulaciones por cada configuración
+evaluada), los p-valores pareados se corrigen por multiplicidad con el
+procedimiento de Benjamini--Hochberg~\cite{benjamini1995} como ajuste
+primario y con la corrección de Holm como control más conservador; un
+veredicto de mejora o deterioro exige sobrevivir a esa corrección, no solo
+al contraste sin ajustar. Las comparaciones pareadas se calculan sobre
+las mismas filas de prueba para todos los métodos; de este modo, la
+incorporación posterior del método cuántico no requiere modificar las
+configuraciones de referencia y la comparación se mantiene homogénea
+fila a fila.
+
+\subsection{Entorno y reproducibilidad}
+
+Todos los experimentos se ejecutan en un entorno Conda con Python 3{,}12
+y scikit-learn~\cite{pedregosa2011}, con semillas fijas en todos los
+procesos aleatorios y separando la lógica reutilizable de la ejecución
+de cada fase. Las condiciones detalladas de reproducción, el coste
+computacional por bloque y el índice de trazabilidad que asocia cada
+cifra de la memoria con su artefacto de origen se recogen en el
+apéndice~\ref{cap:apendice}.

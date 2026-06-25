@@ -1,0 +1,6 @@
+dataset,status,motivo_bloqueo,handoff_fase5,estado_split_fase4,n_train,n_validation,n_test,n_features_all,n_classes,target_column,principal_para_modelado,auxiliar_exploratorio,warnings_heredados,fase5_checklist_ok,incidencias_abiertas,decision
+breast_cancer_wisconsin,apto_con_cautela,,listo_con_cautela,aceptado con cautela,397,86,86,31,2,target,4,38,2,True,,entrenar sin reajustar selectores
+customer_churn,apto_con_cautela,,listo_con_cautela,aceptado con cautela,308582,66125,66125,11,2,target,4,31,2,True,categoricas codificadas con one-hot fit solo en train,entrenar sin reajustar selectores
+madelon,apto_con_cautela,,listo_con_cautela,aceptado con cautela,1400,300,300,501,2,target,4,45,2,True,,entrenar sin reajustar selectores
+olive_oil_3class,apto_con_cautela,,listo_con_cautela,aceptado con cautela,400,86,86,9,3,area,4,17,3,True,formulaciones no intercambiables,entrenar sin reajustar selectores
+olive_oil_9class,apto_con_cautela,,listo_con_cautela,aceptado con cautela,400,86,86,9,9,target,4,17,3,True,formulaciones no intercambiables,entrenar sin reajustar selectores

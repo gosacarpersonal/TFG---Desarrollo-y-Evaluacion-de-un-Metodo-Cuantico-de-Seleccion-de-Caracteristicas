@@ -1,0 +1,217 @@
+{
+  "outputs_without_observation": [],
+  "n_observations": 18,
+  "observation_numeric_ratio": 0.9444444444444444,
+  "repeated_long_phrases": {},
+  "section_intros": [
+    {
+      "section": "6.1",
+      "word_count": 52,
+      "mentions_method": true,
+      "ok": true
+    },
+    {
+      "section": "6.2",
+      "word_count": 34,
+      "mentions_method": true,
+      "ok": true
+    },
+    {
+      "section": "6.3",
+      "word_count": 123,
+      "mentions_method": true,
+      "ok": true
+    },
+    {
+      "section": "6.4",
+      "word_count": 60,
+      "mentions_method": true,
+      "ok": true
+    },
+    {
+      "section": "6.5",
+      "word_count": 40,
+      "mentions_method": true,
+      "ok": true
+    },
+    {
+      "section": "6.6",
+      "word_count": 35,
+      "mentions_method": true,
+      "ok": true
+    },
+    {
+      "section": "6.7",
+      "word_count": 52,
+      "mentions_method": true,
+      "ok": true
+    },
+    {
+      "section": "6.8",
+      "word_count": 29,
+      "mentions_method": true,
+      "ok": true
+    },
+    {
+      "section": "6.9",
+      "word_count": 34,
+      "mentions_method": true,
+      "ok": true
+    },
+    {
+      "section": "6.10",
+      "word_count": 50,
+      "mentions_method": true,
+      "ok": true
+    },
+    {
+      "section": "6.11",
+      "word_count": 105,
+      "mentions_method": true,
+      "ok": true
+    },
+    {
+      "section": "6.12",
+      "word_count": 39,
+      "mentions_method": true,
+      "ok": true
+    },
+    {
+      "section": "6.13",
+      "word_count": 38,
+      "mentions_method": true,
+      "ok": true
+    }
+  ],
+  "figures": {
+    "saved_png": 27,
+    "saved_pdf": 27,
+    "displayed_images": 27,
+    "png_without_pdf": [],
+    "pdf_without_png": [],
+    "ok": true
+  },
+  "execution_errors": [],
+  "visible_text": {
+    "pipeline_words": [],
+    "internal_words": [],
+    "table_words": []
+  },
+  "source": {
+    "big_bang_hits": [],
+    "src_import": true
+  },
+  "grid": {
+    "per_dataset": [
+      {
+        "dataset": "breast_cancer_wisconsin",
+        "feature_sets": 13,
+        "experiments": 52
+      },
+      {
+        "dataset": "customer_churn",
+        "feature_sets": 13,
+        "experiments": 52
+      },
+      {
+        "dataset": "madelon",
+        "feature_sets": 13,
+        "experiments": 52
+      },
+      {
+        "dataset": "olive_oil_3class",
+        "feature_sets": 13,
+        "experiments": 52
+      },
+      {
+        "dataset": "olive_oil_9class",
+        "feature_sets": 13,
+        "experiments": 52
+      }
+    ],
+    "all_13_sets": true,
+    "selectors": [
+      "boruta",
+      "f_classif",
+      "feature_similarity",
+      "l1_logistic",
+      "linear_svm",
+      "mrmr_approx",
+      "mutual_correlation",
+      "mutual_info",
+      "random_forest",
+      "rfe",
+      "rrfs",
+      "variance"
+    ],
+    "roster_ok": true,
+    "boruta_ok": true
+  },
+  "predictions": {
+    "validation_rows": 3467464,
+    "test_rows": 200049,
+    "validation_columns_ok": true,
+    "test_columns_ok": true,
+    "validation_experiments": 260,
+    "test_experiments": 15,
+    "ok": true
+  },
+  "stable_config": {
+    "models": [
+      "linear_svm",
+      "logistic_regression",
+      "random_forest",
+      "xgboost"
+    ],
+    "baseline_rows": 20,
+    "validation_rows": 260,
+    "ok": true
+  },
+  "shap_real": {
+    "import_shap": true,
+    "tree_explainer": true,
+    "linear_explainer": true,
+    "old_function_absent": true,
+    "surrogate_absent": true,
+    "ok": true
+  },
+  "shap_coverage": {
+    "rows": 665,
+    "candidates": 15,
+    "explained_candidates": 15,
+    "random_forest_candidates": 0,
+    "random_forest_explained": 0,
+    "columns_ok": true,
+    "missing_candidates": [],
+    "missing_random_forest": [],
+    "ok": true
+  },
+  "determinism": {
+    "reference": "results/logs/06_modeling_shap_reference/modeling_test_results_candidates_before_shap.csv",
+    "reference_exists": true,
+    "rows_current": 15,
+    "rows_previous": 15,
+    "changed_rows": [],
+    "ok": true
+  },
+  "checks": {
+    "a_outputs_have_observation": true,
+    "b_no_repeated_long_phrases": true,
+    "c_numeric_observations_ge_70pct": true,
+    "d_section_intros_ok": true,
+    "e_figures_saved_match_displayed": true,
+    "f_execution_clean": true,
+    "g_no_big_bang": true,
+    "h_no_internal_audit_visible": true,
+    "i_no_forbidden_visible_tables": true,
+    "j_src_import_present": true,
+    "k_no_pipeline_vocabulary": true,
+    "l_grid_baseline_plus_12": true,
+    "m_boruta_confirmed_sizes": true,
+    "n_predictions_by_row": true,
+    "o_stable_model_config": true,
+    "p_shap_real_library_used": true,
+    "q_shap_values_for_all_candidates": true,
+    "r_test_candidates_deterministic": true
+  }
+}

@@ -1,0 +1,16 @@
+criterio,cumple,evidencia
+splits cargados correctamente,True,fs_input_load_check.csv
+selección ajustada solo con train,True,fs_experiment_log.csv
+métodos registrados,True,fs_method_registry.csv
+k definidos por dataset,True,fs_k_values_by_dataset.csv
+muestreo documentado,True,fs_sampling_plan.csv
+rankings y subconjuntos guardados,True,fs_all_rankings.csv
+tiempos guardados,True,fs_all_execution_times.csv
+estabilidad analizada,True,fs_jaccard_stability.csv
+permutaciones ejecutadas,True,fs_permutation_summary.csv
+redundancia medida,True,fs_redundancy_vs_full.csv
+cruce con EDA generado,True,fs_selection_vs_eda_evidence.csv
+datasets reducidos creados,True,fs_reduced_datasets_log.csv
+figuras auditadas,True,fs_visual_audit.csv
+informe trazable generado,True,fase5_feature_selection_report.md
+handoff a Fase 6 creado,True,fs_phase5_handoff_to_phase6.csv

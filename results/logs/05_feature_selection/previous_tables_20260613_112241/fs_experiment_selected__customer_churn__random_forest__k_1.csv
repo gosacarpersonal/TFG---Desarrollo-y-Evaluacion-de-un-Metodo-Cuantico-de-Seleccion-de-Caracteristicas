@@ -1,0 +1,4 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+customer_churn,random_forest,embedded,13,1,support_calls,1,0.2822860804827794,True,0.685444082133472,5000,ok
+customer_churn,random_forest,embedded,42,1,support_calls,1,0.2880677490820594,True,0.8118288777768612,5000,ok
+customer_churn,random_forest,embedded,97,1,support_calls,1,0.28939368506836244,True,0.7671998403966427,5000,ok

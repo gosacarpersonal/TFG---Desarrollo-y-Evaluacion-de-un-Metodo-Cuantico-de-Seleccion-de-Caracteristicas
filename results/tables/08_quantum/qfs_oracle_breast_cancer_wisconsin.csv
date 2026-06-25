@@ -1,0 +1,13 @@
+dataset,mode,alpha,k_target,cardinality,q_opt,bitstring,selected_features,elapsed_seconds
+breast_cancer_wisconsin,alpha_grid,0.0,,0,0.0,00000000000000000000,,0.08081167563796043
+breast_cancer_wisconsin,alpha_grid,0.1,,1,-0.04147792823357896,10000000000000000000,concave_points_worst,0.07785223983228207
+breast_cancer_wisconsin,alpha_grid,0.2,,1,-0.08295585646715792,10000000000000000000,concave_points_worst,0.07793659716844559
+breast_cancer_wisconsin,alpha_grid,0.3,,1,-0.12443378470073688,10000000000000000000,concave_points_worst,0.07779899425804615
+breast_cancer_wisconsin,alpha_grid,0.4,,1,-0.16591171293431584,10000000000000000000,concave_points_worst,0.07724266685545444
+breast_cancer_wisconsin,alpha_grid,0.5,,1,-0.2073896411678948,10000000000000000000,concave_points_worst,0.07807914353907108
+breast_cancer_wisconsin,alpha_grid,0.6,,2,-0.26082484293035824,00110000000000000000,texture_worst|concave_points_mean,0.07772286143153906
+breast_cancer_wisconsin,alpha_grid,0.7,,2,-0.35193958486782007,00001000000000001000,radius_worst|concavity_worst,0.07717449683696032
+breast_cancer_wisconsin,alpha_grid,0.8,,3,-0.5189498714376676,10101000000000000000,concave_points_worst|texture_worst|radius_worst,0.07751662377268076
+breast_cancer_wisconsin,alpha_grid,0.9,,6,-0.9371042554237727,10110010000000101000,concave_points_worst|texture_worst|concave_points_mean|radius_mean|area_worst|concavity_worst,0.07792790420353413
+breast_cancer_wisconsin,alpha_grid,1.0,,20,-4.074674655443783,11111111111111111111,concave_points_worst|smoothness_se|texture_worst|concave_points_mean|radius_worst|symmetry_worst|radius_mean|fractal_dimension_se|perimeter_worst|texture_se|concavity_mean|perimeter_mean|symmetry_se|smoothness_worst|area_worst|texture_mean|concavity_worst|area_mean|fractal_dimension_worst|symmetry_mean,0.07771269790828228
+breast_cancer_wisconsin,mucke_k,0.953125,10.0,10,-1.7560878947411291,10111110001000101100,concave_points_worst|texture_worst|concave_points_mean|radius_worst|symmetry_worst|radius_mean|concavity_mean|area_worst|concavity_worst|area_mean,0.5429644100368023

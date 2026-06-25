@@ -1,0 +1,16 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+breast_cancer_wisconsin,random_forest,embedded,13,5,perimeter_worst,1,0.14879243463930525,True,0.5642961766570807,398,ok
+breast_cancer_wisconsin,random_forest,embedded,13,5,radius_worst,2,0.12967113504433883,True,0.5642961766570807,398,ok
+breast_cancer_wisconsin,random_forest,embedded,13,5,area_worst,3,0.10272520244977472,True,0.5642961766570807,398,ok
+breast_cancer_wisconsin,random_forest,embedded,13,5,concave_points_mean,4,0.09736107935343989,True,0.5642961766570807,398,ok
+breast_cancer_wisconsin,random_forest,embedded,13,5,concave_points_worst,5,0.09580478755305383,True,0.5642961766570807,398,ok
+breast_cancer_wisconsin,random_forest,embedded,42,5,perimeter_worst,1,0.16145230392386514,True,0.5842342553660274,398,ok
+breast_cancer_wisconsin,random_forest,embedded,42,5,area_worst,2,0.1591788380732633,True,0.5842342553660274,398,ok
+breast_cancer_wisconsin,random_forest,embedded,42,5,concave_points_worst,3,0.11856862980047124,True,0.5842342553660274,398,ok
+breast_cancer_wisconsin,random_forest,embedded,42,5,concave_points_mean,4,0.08193819163744258,True,0.5842342553660274,398,ok
+breast_cancer_wisconsin,random_forest,embedded,42,5,concavity_mean,5,0.06908968045916176,True,0.5842342553660274,398,ok
+breast_cancer_wisconsin,random_forest,embedded,97,5,perimeter_worst,1,0.15560940700004994,True,0.5301231881603599,398,ok
+breast_cancer_wisconsin,random_forest,embedded,97,5,radius_worst,2,0.13767638008872327,True,0.5301231881603599,398,ok
+breast_cancer_wisconsin,random_forest,embedded,97,5,area_worst,3,0.11587740212111725,True,0.5301231881603599,398,ok
+breast_cancer_wisconsin,random_forest,embedded,97,5,concave_points_mean,4,0.10183265495999266,True,0.5301231881603599,398,ok
+breast_cancer_wisconsin,random_forest,embedded,97,5,concave_points_worst,5,0.07540026008774806,True,0.5301231881603599,398,ok

@@ -1,0 +1,5 @@
+dataset,predictoras_sin_onehot,predictoras_categoricas,predictoras_si_onehot
+breast_cancer_wisconsin,30,0,30
+customer_churn,10,3,15
+madelon,500,0,500
+olive_oil,10,0,10

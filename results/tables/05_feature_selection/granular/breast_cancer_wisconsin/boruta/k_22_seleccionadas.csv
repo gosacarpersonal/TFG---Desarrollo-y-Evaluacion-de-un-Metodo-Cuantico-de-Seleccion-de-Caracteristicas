@@ -1,0 +1,23 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+breast_cancer_wisconsin,boruta,wrapper all-relevant,42,22,area_mean,1,30.0,True,10.284270507283509,398,ok
+breast_cancer_wisconsin,boruta,wrapper all-relevant,42,22,area_se,1,30.0,True,10.284270507283509,398,ok
+breast_cancer_wisconsin,boruta,wrapper all-relevant,42,22,area_worst,1,30.0,True,10.284270507283509,398,ok
+breast_cancer_wisconsin,boruta,wrapper all-relevant,42,22,compactness_mean,1,30.0,True,10.284270507283509,398,ok
+breast_cancer_wisconsin,boruta,wrapper all-relevant,42,22,compactness_worst,1,30.0,True,10.284270507283509,398,ok
+breast_cancer_wisconsin,boruta,wrapper all-relevant,42,22,concave_points_mean,1,30.0,True,10.284270507283509,398,ok
+breast_cancer_wisconsin,boruta,wrapper all-relevant,42,22,concave_points_worst,1,30.0,True,10.284270507283509,398,ok
+breast_cancer_wisconsin,boruta,wrapper all-relevant,42,22,concavity_mean,1,30.0,True,10.284270507283509,398,ok
+breast_cancer_wisconsin,boruta,wrapper all-relevant,42,22,concavity_se,1,30.0,True,10.284270507283509,398,ok
+breast_cancer_wisconsin,boruta,wrapper all-relevant,42,22,concavity_worst,1,30.0,True,10.284270507283509,398,ok
+breast_cancer_wisconsin,boruta,wrapper all-relevant,42,22,fractal_dimension_worst,1,30.0,True,10.284270507283509,398,ok
+breast_cancer_wisconsin,boruta,wrapper all-relevant,42,22,perimeter_mean,1,30.0,True,10.284270507283509,398,ok
+breast_cancer_wisconsin,boruta,wrapper all-relevant,42,22,perimeter_se,1,30.0,True,10.284270507283509,398,ok
+breast_cancer_wisconsin,boruta,wrapper all-relevant,42,22,perimeter_worst,1,30.0,True,10.284270507283509,398,ok
+breast_cancer_wisconsin,boruta,wrapper all-relevant,42,22,radius_mean,1,30.0,True,10.284270507283509,398,ok
+breast_cancer_wisconsin,boruta,wrapper all-relevant,42,22,radius_se,1,30.0,True,10.284270507283509,398,ok
+breast_cancer_wisconsin,boruta,wrapper all-relevant,42,22,radius_worst,1,30.0,True,10.284270507283509,398,ok
+breast_cancer_wisconsin,boruta,wrapper all-relevant,42,22,smoothness_mean,1,30.0,True,10.284270507283509,398,ok
+breast_cancer_wisconsin,boruta,wrapper all-relevant,42,22,smoothness_worst,1,30.0,True,10.284270507283509,398,ok
+breast_cancer_wisconsin,boruta,wrapper all-relevant,42,22,symmetry_worst,1,30.0,True,10.284270507283509,398,ok
+breast_cancer_wisconsin,boruta,wrapper all-relevant,42,22,texture_mean,1,30.0,True,10.284270507283509,398,ok
+breast_cancer_wisconsin,boruta,wrapper all-relevant,42,22,texture_worst,1,30.0,True,10.284270507283509,398,ok

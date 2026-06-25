@@ -1,0 +1,16 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+madelon,linear_svm,embedded,13,5,feat_442,1,0.560606649777224,True,0.03707137331366539,1400,ok
+madelon,linear_svm,embedded,13,5,feat_48,2,0.27645887432185173,True,0.03707137331366539,1400,ok
+madelon,linear_svm,embedded,13,5,feat_378,3,0.24619393215742028,True,0.03707137331366539,1400,ok
+madelon,linear_svm,embedded,13,5,feat_453,4,0.2239597148941745,True,0.03707137331366539,1400,ok
+madelon,linear_svm,embedded,13,5,feat_153,5,0.1648765266177143,True,0.03707137331366539,1400,ok
+madelon,linear_svm,embedded,42,5,feat_442,1,0.560606649777224,True,0.03526807948946953,1400,ok
+madelon,linear_svm,embedded,42,5,feat_48,2,0.27645887432185173,True,0.03526807948946953,1400,ok
+madelon,linear_svm,embedded,42,5,feat_378,3,0.24619393215742028,True,0.03526807948946953,1400,ok
+madelon,linear_svm,embedded,42,5,feat_453,4,0.2239597148941745,True,0.03526807948946953,1400,ok
+madelon,linear_svm,embedded,42,5,feat_153,5,0.1648765266177143,True,0.03526807948946953,1400,ok
+madelon,linear_svm,embedded,97,5,feat_442,1,0.560606649777224,True,0.03489059302955866,1400,ok
+madelon,linear_svm,embedded,97,5,feat_48,2,0.27645887432185173,True,0.03489059302955866,1400,ok
+madelon,linear_svm,embedded,97,5,feat_378,3,0.24619393215742028,True,0.03489059302955866,1400,ok
+madelon,linear_svm,embedded,97,5,feat_453,4,0.2239597148941745,True,0.03489059302955866,1400,ok
+madelon,linear_svm,embedded,97,5,feat_153,5,0.1648765266177143,True,0.03489059302955866,1400,ok

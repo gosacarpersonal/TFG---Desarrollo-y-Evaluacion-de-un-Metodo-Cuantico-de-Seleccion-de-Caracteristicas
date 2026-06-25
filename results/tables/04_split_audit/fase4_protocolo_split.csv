@@ -1,0 +1,6 @@
+dataset,train_pct,validation_pct,test_pct,stratify,random_state,min_clase
+breast_cancer_wisconsin,0.7,0.15,0.15,True,2026,212
+customer_churn,0.7,0.15,0.15,True,2026,190833
+madelon,0.7,0.15,0.15,True,2026,1000
+olive_oil_3class,0.7,0.15,0.15,True,2026,98
+olive_oil_9class,0.7,0.15,0.15,True,2026,25

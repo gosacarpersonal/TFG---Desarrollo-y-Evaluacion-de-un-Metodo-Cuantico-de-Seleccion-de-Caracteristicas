@@ -1,0 +1,5 @@
+dataset,filas,columnas_totales,features,target,variables_numericas,variables_categoricas,posibles_identificadores,nombres_posibles_identificadores,ratio_features_muestras,filas_por_feature
+breast_cancer_wisconsin,569,32,31,target,31,0,1,id,0.054481546572934976,18.35483870967742
+customer_churn,440832,12,11,Churn,8,3,1,CustomerID,2.495281649245064e-05,40075.63636363636
+madelon,2000,501,500,target,500,0,0,,0.25,4.0
+olive_oil,572,12,11,target,11,0,1,id,0.019230769230769232,52.0

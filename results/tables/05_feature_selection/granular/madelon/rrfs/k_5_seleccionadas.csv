@@ -1,0 +1,16 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+madelon,rrfs,relevancia-redundancia,13,5,feat_241,1,500.0256757706106,True,1.616640699096024,1400,ok
+madelon,rrfs,relevancia-redundancia,13,5,feat_338,2,499.01233103104465,True,1.616640699096024,1400,ok
+madelon,rrfs,relevancia-redundancia,13,5,feat_475,3,498.0116008670258,True,1.616640699096024,1400,ok
+madelon,rrfs,relevancia-redundancia,13,5,feat_64,4,497.0092049424379,True,1.616640699096024,1400,ok
+madelon,rrfs,relevancia-redundancia,13,5,feat_128,5,496.00821731091577,True,1.616640699096024,1400,ok
+madelon,rrfs,relevancia-redundancia,42,5,feat_241,1,500.0256757706106,True,1.6095826858654618,1400,ok
+madelon,rrfs,relevancia-redundancia,42,5,feat_338,2,499.01233103104465,True,1.6095826858654618,1400,ok
+madelon,rrfs,relevancia-redundancia,42,5,feat_475,3,498.0116008670258,True,1.6095826858654618,1400,ok
+madelon,rrfs,relevancia-redundancia,42,5,feat_64,4,497.0092049424379,True,1.6095826858654618,1400,ok
+madelon,rrfs,relevancia-redundancia,42,5,feat_128,5,496.00821731091577,True,1.6095826858654618,1400,ok
+madelon,rrfs,relevancia-redundancia,97,5,feat_241,1,500.0256757706106,True,1.62565494235605,1400,ok
+madelon,rrfs,relevancia-redundancia,97,5,feat_338,2,499.01233103104465,True,1.62565494235605,1400,ok
+madelon,rrfs,relevancia-redundancia,97,5,feat_475,3,498.0116008670258,True,1.62565494235605,1400,ok
+madelon,rrfs,relevancia-redundancia,97,5,feat_64,4,497.0092049424379,True,1.62565494235605,1400,ok
+madelon,rrfs,relevancia-redundancia,97,5,feat_128,5,496.00821731091577,True,1.62565494235605,1400,ok

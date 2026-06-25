@@ -1,0 +1,5 @@
+dataset,variables_a_revisar,solo_significativa_sin_fdr,significativa_efecto_minimo,efecto_casi_perfecto
+breast_cancer_wisconsin,1,0,0,1
+customer_churn,1,0,1,0
+madelon,25,25,0,0
+olive_oil,2,0,0,2

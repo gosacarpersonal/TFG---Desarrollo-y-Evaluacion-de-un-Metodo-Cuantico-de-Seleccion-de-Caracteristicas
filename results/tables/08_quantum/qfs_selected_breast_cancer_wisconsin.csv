@@ -1,0 +1,3 @@
+dataset,configuration,alpha,beta,k,n_features,selected_features,validation_macro_f1,validation_balanced_accuracy,validation_accuracy,fit_seconds
+breast_cancer_wisconsin,qfs_na,0.5,0.1,10,10,texture_worst|concave_points_mean|radius_mean|fractal_dimension_se|concavity_mean|smoothness_worst|area_worst|texture_mean|concavity_worst|area_mean,0.9749410377358491,0.9749410377358491,0.9764705882352941,0.26712516974657774
+breast_cancer_wisconsin,qfs_oracle_mucke,0.953125,,10,10,concave_points_worst|texture_worst|concave_points_mean|radius_worst|symmetry_worst|radius_mean|concavity_mean|area_worst|concavity_worst|area_mean,0.9256993006993006,0.9310141509433962,0.9294117647058824,0.26741018425673246

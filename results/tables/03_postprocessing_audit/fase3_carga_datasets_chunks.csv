@@ -1,0 +1,9 @@
+dataset,origen,chunks,filas,columnas,chunk_size
+breast_cancer_wisconsin,raw,1,569,32,50000
+breast_cancer_wisconsin,processed,1,569,31,50000
+customer_churn,raw,9,440832,12,50000
+customer_churn,processed,9,440832,11,50000
+madelon,raw,1,2000,501,50000
+madelon,processed,1,2000,501,50000
+olive_oil,raw,1,572,12,50000
+olive_oil,processed,1,572,11,50000

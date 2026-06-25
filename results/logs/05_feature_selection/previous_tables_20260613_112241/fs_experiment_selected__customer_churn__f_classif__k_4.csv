@@ -1,0 +1,13 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+customer_churn,f_classif,filtros supervisados,13,4,support_calls,1,151840.66427183928,True,0.02929611038416624,308582,ok
+customer_churn,f_classif,filtros supervisados,13,4,contract_length_Monthly,2,71347.55848281378,True,0.02929611038416624,308582,ok
+customer_churn,f_classif,filtros supervisados,13,4,total_spend,3,69932.80693593084,True,0.02929611038416624,308582,ok
+customer_churn,f_classif,filtros supervisados,13,4,payment_delay,4,33227.99896740087,True,0.02929611038416624,308582,ok
+customer_churn,f_classif,filtros supervisados,42,4,support_calls,1,151840.66427183928,True,0.030310441739857197,308582,ok
+customer_churn,f_classif,filtros supervisados,42,4,contract_length_Monthly,2,71347.55848281378,True,0.030310441739857197,308582,ok
+customer_churn,f_classif,filtros supervisados,42,4,total_spend,3,69932.80693593084,True,0.030310441739857197,308582,ok
+customer_churn,f_classif,filtros supervisados,42,4,payment_delay,4,33227.99896740087,True,0.030310441739857197,308582,ok
+customer_churn,f_classif,filtros supervisados,97,4,support_calls,1,151840.66427183928,True,0.026408076286315918,308582,ok
+customer_churn,f_classif,filtros supervisados,97,4,contract_length_Monthly,2,71347.55848281378,True,0.026408076286315918,308582,ok
+customer_churn,f_classif,filtros supervisados,97,4,total_spend,3,69932.80693593084,True,0.026408076286315918,308582,ok
+customer_churn,f_classif,filtros supervisados,97,4,payment_delay,4,33227.99896740087,True,0.026408076286315918,308582,ok

@@ -1,0 +1,8 @@
+elemento,fuente_decision,criterio,restriccion
+seleccion_configuraciones,validation,Macro F1 como criterio primario; Balanced Accuracy como desempate prudente.,test prohibido
+baseline,train->validation,Entrenar all_features con los mismos modelos que las features seleccionadas.,obligatorio
+subconjuntos,Fase 5,Usar solo rol_fase6=principal_para_modelado; no reajustar selectores.,validation/test no deciden columnas
+modelos,train,"Regresión logística, SVM lineal y random forest con hiperparámetros fijos.",sin búsqueda en test
+candidatos_test,validation,Máximo tres por dataset: mejor baseline y dos mejores subconjuntos seleccionados.,test solo evaluación final
+incertidumbre,validation/test,Bootstrap estratificado/pareado sobre predicciones ya generadas.,no reentrena modelos
+permutation_test,test final,Permutar etiquetas frente a predicción fija de candidatos test.,solo contraste final

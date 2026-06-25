@@ -1,0 +1,23 @@
+{
+  "notebook_exists": true,
+  "model_results_exists": true,
+  "contrasts_exists": true,
+  "operative_comparison_exists": true,
+  "config_comparison_exists": true,
+  "extended_fase7_exists": true,
+  "test_predictions_exists": true,
+  "validation_predictions_exists": true,
+  "qfs_results_40_rows": true,
+  "qfs_results_models_complete": true,
+  "qfs_results_no_missing_metrics": true,
+  "contrasts_40_rows": true,
+  "contrasts_columns_present": true,
+  "contrasts_no_missing_stats": true,
+  "operative_5_rows": true,
+  "operative_all_qfs_na": true,
+  "operative_verdicts_valid": true,
+  "config_two_per_dataset": true,
+  "config_has_oracle_and_na": true,
+  "extended_contains_fase9_qfs": true,
+  "all_evidence_figures_exist": true
+}

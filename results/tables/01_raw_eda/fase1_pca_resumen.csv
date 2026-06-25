@@ -1,0 +1,5 @@
+dataset,componentes_80,componentes_90,n_variables_pca,n_filas_pca
+breast_cancer_wisconsin,5,7,30,569
+customer_churn,6,7,7,5000
+madelon,295,369,500,2000
+olive_oil,3,5,10,572

@@ -1,0 +1,6 @@
+dataset,x_train_exists,x_validation_exists,x_test_exists,y_train_exists,status
+breast_cancer_wisconsin,True,True,True,True,ok
+customer_churn,True,True,True,True,ok
+madelon,True,True,True,True,ok
+olive_oil_3class,True,True,True,True,ok
+olive_oil_9class,True,True,True,True,ok

@@ -1,0 +1,146 @@
+% Capítulo 6: Conclusiones y trabajo futuro.
+
+Este capítulo recapitula lo realizado y lo observado en relación con
+los objetivos planteados al inicio. La primera sección sintetiza las
+conclusiones del trabajo, distinguiendo lo que sostienen los resultados
+de lo que queda como interpretación prudente. La segunda recoge las
+líneas de trabajo futuro derivadas de las limitaciones detectadas.
+
+\section{Conclusiones}
+
+El trabajo ha construido una referencia clásica rigurosa de selección de
+características y la ha utilizado para evaluar un método QFS basado en
+átomos neutros. La conclusión principal no es que QFS gane o pierda en
+un marcador agregado, sino que la referencia clásica permite leer el
+proceso: primero caracteriza el régimen del dato, después sitúa cada
+selector en el compromiso relevancia--redundancia y, finalmente,
+permite separar si un deterioro procede del criterio QUBO o de la
+optimización analógica.
+
+El primer resultado es metodológico. La cadena experimental de diez
+fases deja trazado cada eslabón: análisis del dato crudo,
+preprocesado conservador, comprobación posterior al preprocesado, particiones sin
+solapes ni \textit{leakage} detectable, selección clásica con doce
+métodos, modelado con contrastes, comparación final, ejecución QFS,
+integración cuántica y síntesis visual. Esta estructura evita que la
+fase cuántica se evalúe sobre datos sin contexto. La corrección FDR, los
+tamaños de efecto, los VIF, la PCA, el \textit{drift}, la validación
+adversarial y las permutaciones no son controles accesorios: son los que
+permiten interpretar después cada resultado de QFS como consecuencia de
+un régimen medido.
+
+Sobre la pregunta central (si el método cuántico mejora o empeora a la
+selección clásica), la conclusión de esta evaluación es directa y
+prudente: QFS \emph{no supera} a la selección de características clásica.
+En los regímenes con señal clara (\textit{Breast Cancer} y las dos
+formulaciones de \textit{Olive Oil}) iguala tanto a la referencia clásica
+como al uso de todas las variables, sin mejorarlos de forma
+significativa; en los regímenes difíciles (\textit{Madelon} y
+\textit{Customer Churn}) se deteriora. La selección
+clásica, en cambio, iguala o mejora al uso de todas las variables en
+todas las formulaciones y aporta una ganancia sustancial cuando abundan
+los distractores. En los conjuntos y el protocolo evaluados, por tanto,
+QFS es en el mejor de los casos competitivo con la selección clásica,
+pero no la aventaja. Este resultado negativo parcial no resta valor al
+estudio, sino que delimita con precisión el alcance del método: QFS no
+aparece como un sustituto general de la selección clásica, sino como una
+formulación cuyo interés depende del régimen del dato y de la separación
+entre criterio y optimización.
+
+El resultado más informativo, sin embargo, no es ese veredicto agregado,
+sino su descomposición. Comparar el método cuántico con el óptimo exacto
+de su propia función objetivo revela que, cuando QFS se deteriora, el control exacto distingue dos
+mecanismos según el régimen, en lugar de una regla general. En
+\textit{Madelon}, el deterioro procede del criterio (la relevancia y la
+redundancia estimadas mediante información mutua entre pares de variables),
+que no captura la señal cuando esta depende de interacciones de orden
+superior: el óptimo exacto ya queda lejos del baseline. En \textit{Customer
+Churn}, en cambio, el criterio casi alcanza al baseline y la pérdida se
+concentra en la lectura analógica de densidades (el \textit{readout}), no
+en el criterio. El cuello de botella, por tanto, no es único: en los
+regímenes de señal escasa es de formulación del criterio, mientras que en
+los de baja redundancia es de lectura del optimizador analógico. La vía de
+mejora se diagnostica por separado en cada caso. Los detalles por conjunto
+que sostienen esta lectura (qué variables retiene cada subconjunto, dónde se
+concentra el deterioro y por qué) se desarrollan en el capítulo de
+resultados y discusión.
+
+El resultado final responde a los objetivos del TFG\@. Se ha revisado y
+ejecutado una referencia clásica amplia; se han seleccionado datasets
+que cubren regímenes distintos; se ha comparado el rendimiento de los
+selectores bajo un protocolo común; se ha implementado y evaluado QFS
+conservando el núcleo del método de referencia y declarando sus
+adaptaciones operativas; y se ha comparado frente a los clásicos con
+una lectura atribuible. La aportación específica es metodológica: el
+bloque clásico se convierte en un instrumento para predecir por régimen y
+atribuir por mecanismo, más allá de su papel de referencia de
+rendimiento.
+
+Más allá del diagnóstico, que QFS pueda igualar a la selección clásica en
+varios regímenes tiene una lectura computacional relevante de cara al
+hardware real. La formulación sobre átomos neutros asigna un átomo (un
+cúbit) a cada variable candidata, de modo que un dispositivo de $n$
+cúbits puede seleccionar características sobre un espacio de hasta $n$
+variables resolviendo el compromiso relevancia--redundancia de forma
+global y en un tiempo de ejecución muy corto, frente al coste
+combinatorio de la búsqueda exacta clásica. Las plataformas industriales
+de átomos neutros más habituales operan ya con cientos de cúbits
+accesibles en la nube (el procesador Aquila de QuEra, de 256 cúbits, está
+disponible sobre Amazon Braket~\cite{wurtz2023}) y han superado el millar
+de átomos atrapados en un solo disparo en laboratorio~\cite{pasqal2024},
+con demostraciones de cúbits lógicos corregidos sobre esta misma
+tecnología~\cite{bluvstein2024}. El escalado previsto apunta a los miles
+de cúbits en los próximos años, lo que permite considerar esta línea como
+una proyección experimental plausible, aunque su viabilidad práctica
+dependerá de las restricciones de ruido, conectividad efectiva,
+calibración, escalado del embebido y coste de repetición de medidas. Que el criterio resulte competitivo es, por
+tanto, la condición necesaria para que esa ventaja de eficiencia merezca
+llevarse a hardware físico, y es lo que dota de sentido práctico a la
+proyección que se plantea a continuación.
+
+\section{Trabajo futuro}
+
+La primera línea futura afecta al criterio. \textit{Madelon} muestra que
+una formulación basada en información mutua por pares puede quedarse
+corta cuando la señal depende de interacciones de orden superior. Una
+extensión natural es estudiar criterios de relevancia conjunta,
+términos de orden mayor o formulaciones HUBO (\textit{Higher-order
+Unconstrained Binary Optimization}) que permitan capturar esas
+interacciones antes de llevar el problema al optimizador cuántico. Esta
+dirección está alineada con la evolución natural de la formulación QUBO,
+pero debe evaluarse con el mismo tipo de control frente al óptimo exacto.
+
+La segunda línea afecta al readout y a la dinámica analógica en regímenes
+de baja redundancia. \textit{Customer Churn} no apunta a un fallo
+geométrico del MDS, pero sí a un déficit leve del optimizador cuando el
+criterio es casi correcto y el baseline está saturado. Un estudio
+dirigido podría analizar variantes de lectura de densidades, protocolos
+de \textit{driving}, escalado de distancias o presupuestos de shots para
+comprobar si el hueco frente al oráculo se reduce.
+
+La tercera línea es una ablación de preprocesado, acotada a
+\textit{Customer Churn}. El \textit{one-hot} utilizado en este trabajo es
+defendible para variables nominales y para los modelos clásicos, pero
+crea grupos de dummies que compiten por el presupuesto de QFS\@. Una
+comparación específica entre \textit{one-hot}, \textit{one-hot}
+\texttt{drop\_first} y \textit{label encoding} permitiría separar el
+efecto de la codificación del régimen intrínseco de baja redundancia, sin
+reabrir todo el banco experimental.
+
+La cuarta línea es la consistencia fuerte. El estudio actual mide
+estabilidad de selección con tres semillas y robustez estadística por
+bootstrap y permutación; QFS usa 100 inicializaciones MDS, pero no se ha
+realizado un experimento multi-semilla completo de modelado y QFS\@. Si el
+coste computacional lo permite, varias reejecuciones completas de fase
+8--9 permitirían cuantificar la variabilidad del readout analógico y no
+solo su error frente al óptimo exacto.
+
+Por último, la ejecución sobre hardware real de átomos neutros queda
+como proyección natural. La implementación evaluada opera en simulador,
+como la referencia metodológica disponible, pero incorpora decisiones
+operativas propias (preselección híbrida, codificación \textit{one-hot}
+en \textit{Customer Churn} y barrido de $\beta$). El salto a hardware
+físico introduciría ruido, calibración y
+restricciones experimentales propias, y debería plantearse como una
+extensión del estudio, no como una condición para validar las
+conclusiones aquí obtenidas.

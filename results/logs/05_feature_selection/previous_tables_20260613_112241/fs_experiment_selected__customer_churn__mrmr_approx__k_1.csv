@@ -1,0 +1,4 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+customer_churn,mrmr_approx,relevancia-redundancia,13,1,support_calls,1,15.19623683895033,True,0.10218016058206558,5000,ok
+customer_churn,mrmr_approx,relevancia-redundancia,42,1,total_spend,1,15.192373417258125,True,0.1024121344089508,5000,ok
+customer_churn,mrmr_approx,relevancia-redundancia,97,1,total_spend,1,15.192698092789763,True,0.10244592186063528,5000,ok

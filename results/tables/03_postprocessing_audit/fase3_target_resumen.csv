@@ -1,0 +1,5 @@
+dataset,clases,proporcion_minima,proporcion_maxima,max_delta_proporcion,ratio_mayoritaria_minoritaria,chi2_p_value,fisher_p_value,delta_ratio_may_min,delta_entropia
+breast_cancer_wisconsin,2,0.37258347978910367,0.6274165202108963,0.0,1.6839622641509435,1.0,1.0,0.0,0.0
+customer_churn,2,0.4328928027003484,0.5671071972996515,0.0,1.3100407162283252,1.0,1.0,0.0,0.0
+madelon,2,0.5,0.5,0.0,1.0,1.0,1.0,0.0,0.0
+olive_oil,9,0.043706293706293704,0.36013986013986016,0.0,8.24,1.0,,0.0,0.0

@@ -1,0 +1,2 @@
+experiment_id,dataset,feature_set,selector,k,model_name,candidate_label,validation_macro_f1,validation_balanced_accuracy,test_macro_f1,test_balanced_accuracy,test_accuracy,test_auc_roc,n_test,n_features_used
+olive_oil_9class__l1_logistic_k5__xgboost,olive_oil_9class,l1_logistic_k5,l1_logistic,5,xgboost,subconjunto_top_1_validation,0.9552399634366847,0.9527649769585254,0.954272887606221,0.9583333333333334,0.9651162790697675,,86,5

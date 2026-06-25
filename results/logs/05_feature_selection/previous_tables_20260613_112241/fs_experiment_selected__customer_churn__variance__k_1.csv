@@ -1,0 +1,4 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+customer_churn,variance,filtros,13,1,usage_frequency,1,1.0000032406402213,True,0.031685831025242805,308582,ok
+customer_churn,variance,filtros,42,1,usage_frequency,1,1.0000032406402213,True,0.031286382116377354,308582,ok
+customer_churn,variance,filtros,97,1,usage_frequency,1,1.0000032406402213,True,0.031526606529951096,308582,ok

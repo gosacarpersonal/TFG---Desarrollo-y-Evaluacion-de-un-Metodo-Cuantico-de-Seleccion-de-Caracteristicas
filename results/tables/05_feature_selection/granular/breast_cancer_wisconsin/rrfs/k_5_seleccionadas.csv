@@ -1,0 +1,16 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+breast_cancer_wisconsin,rrfs,relevancia-redundancia,13,5,concave_points_worst,1,30.293175965689144,True,0.02865835279226303,398,ok
+breast_cancer_wisconsin,rrfs,relevancia-redundancia,13,5,radius_worst,2,29.184159806518057,True,0.02865835279226303,398,ok
+breast_cancer_wisconsin,rrfs,relevancia-redundancia,13,5,concave_points_mean,3,28.172730435390523,True,0.02865835279226303,398,ok
+breast_cancer_wisconsin,rrfs,relevancia-redundancia,13,5,perimeter_worst,4,27.163016809838343,True,0.02865835279226303,398,ok
+breast_cancer_wisconsin,rrfs,relevancia-redundancia,13,5,area_worst,5,26.149264591976173,True,0.02865835279226303,398,ok
+breast_cancer_wisconsin,rrfs,relevancia-redundancia,42,5,concave_points_worst,1,30.293175965689144,True,0.02869366481900215,398,ok
+breast_cancer_wisconsin,rrfs,relevancia-redundancia,42,5,radius_worst,2,29.184159806518057,True,0.02869366481900215,398,ok
+breast_cancer_wisconsin,rrfs,relevancia-redundancia,42,5,concave_points_mean,3,28.172730435390523,True,0.02869366481900215,398,ok
+breast_cancer_wisconsin,rrfs,relevancia-redundancia,42,5,perimeter_worst,4,27.163016809838343,True,0.02869366481900215,398,ok
+breast_cancer_wisconsin,rrfs,relevancia-redundancia,42,5,area_worst,5,26.149264591976173,True,0.02869366481900215,398,ok
+breast_cancer_wisconsin,rrfs,relevancia-redundancia,97,5,concave_points_worst,1,30.293175965689144,True,0.02853376604616642,398,ok
+breast_cancer_wisconsin,rrfs,relevancia-redundancia,97,5,radius_worst,2,29.184159806518057,True,0.02853376604616642,398,ok
+breast_cancer_wisconsin,rrfs,relevancia-redundancia,97,5,concave_points_mean,3,28.172730435390523,True,0.02853376604616642,398,ok
+breast_cancer_wisconsin,rrfs,relevancia-redundancia,97,5,perimeter_worst,4,27.163016809838343,True,0.02853376604616642,398,ok
+breast_cancer_wisconsin,rrfs,relevancia-redundancia,97,5,area_worst,5,26.149264591976173,True,0.02853376604616642,398,ok

@@ -1,0 +1,4 @@
+seccion,dataset,decision,evidencia,status
+S0-S4.15,GLOBAL,ejecución completa,"tablas, figuras, splits, logs e informe de Fase 4",ok
+S4.14,GLOBAL,documento para memoria generado,Plantilla_Latex_GCD/tfgs/tex/resultados_fase4.tex,ok
+S4.14,GLOBAL,requisitos para Fase 5/6/7 registrados,split_downstream_phase_requirements.csv,ok

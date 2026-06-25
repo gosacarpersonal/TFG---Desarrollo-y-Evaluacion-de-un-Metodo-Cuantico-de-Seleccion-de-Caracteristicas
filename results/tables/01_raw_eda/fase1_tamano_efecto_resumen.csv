@@ -1,0 +1,6 @@
+nombre_tamano_efecto,variables,efecto_abs_mediano,efecto_abs_maximo,dataset
+cliffs_delta,30,0.6540946567306167,0.9509011151630464,breast_cancer_wisconsin
+cliffs_delta,7,0.2285100680964367,0.6458392939261024,customer_churn
+cramers_v,3,0.17539471194052156,0.4335529788314116,customer_churn
+cliffs_delta,500,0.019452499999999984,0.262096,madelon
+epsilon_squared,10,0.7972340579423285,0.9999999999999998,olive_oil

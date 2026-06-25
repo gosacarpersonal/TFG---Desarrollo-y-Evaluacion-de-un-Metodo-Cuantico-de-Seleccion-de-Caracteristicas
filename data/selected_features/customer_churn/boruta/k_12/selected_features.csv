@@ -1,0 +1,13 @@
+feature,rank
+age,1
+tenure,2
+usage_frequency,3
+support_calls,4
+payment_delay,5
+total_spend,6
+last_interaction,7
+gender_Female,8
+gender_Male,9
+contract_length_Annual,10
+contract_length_Monthly,11
+contract_length_Quarterly,12

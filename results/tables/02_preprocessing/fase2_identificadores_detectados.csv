@@ -1,0 +1,4 @@
+dataset,variable_original,variable_procesada,valores_unicos,ratio_valores_unicos,nulos
+breast_cancer_wisconsin,id,id,569,1.0,0
+customer_churn,CustomerID,customer_id,440832,1.0,0
+olive_oil,id,id,572,1.0,0

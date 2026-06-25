@@ -1,0 +1,9 @@
+dataset,feature,I_i
+olive_oil_3class,palmitoleic,0.4914645211367894
+olive_oil_3class,stearic,0.5640604350897842
+olive_oil_3class,oleic,0.28463251808089307
+olive_oil_3class,linoleic,0.5187257793213045
+olive_oil_3class,linolenic,0.4051646513704985
+olive_oil_3class,arachidic,0.4500508882055603
+olive_oil_3class,eicosenoic,0.30475393321159183
+olive_oil_3class,other,0.6633268070809273

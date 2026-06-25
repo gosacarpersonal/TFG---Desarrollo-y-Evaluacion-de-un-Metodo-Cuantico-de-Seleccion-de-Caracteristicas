@@ -1,0 +1,10 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+olive_oil_9class,rrfs,relevancia-redundancia,13,3,linolenic,1,8.464440269267852,True,0.008105413056910038,400,ok
+olive_oil_9class,rrfs,relevancia-redundancia,13,3,other,2,7.411185938589319,True,0.008105413056910038,400,ok
+olive_oil_9class,rrfs,relevancia-redundancia,13,3,stearic,3,6.296627815948865,True,0.008105413056910038,400,ok
+olive_oil_9class,rrfs,relevancia-redundancia,42,3,linolenic,1,8.464440269267852,True,0.008202916942536831,400,ok
+olive_oil_9class,rrfs,relevancia-redundancia,42,3,other,2,7.411185938589319,True,0.008202916942536831,400,ok
+olive_oil_9class,rrfs,relevancia-redundancia,42,3,stearic,3,6.296627815948865,True,0.008202916942536831,400,ok
+olive_oil_9class,rrfs,relevancia-redundancia,97,3,linolenic,1,8.464440269267852,True,0.008101778104901314,400,ok
+olive_oil_9class,rrfs,relevancia-redundancia,97,3,other,2,7.411185938589319,True,0.008101778104901314,400,ok
+olive_oil_9class,rrfs,relevancia-redundancia,97,3,stearic,3,6.296627815948865,True,0.008101778104901314,400,ok

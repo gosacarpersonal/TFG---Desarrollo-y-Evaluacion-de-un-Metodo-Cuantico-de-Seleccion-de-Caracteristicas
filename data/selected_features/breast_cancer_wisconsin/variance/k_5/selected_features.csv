@@ -1,0 +1,6 @@
+feature,rank
+area_mean,1
+area_se,2
+concave_points_worst,3
+texture_mean,4
+concave_points_mean,5

@@ -1,0 +1,13 @@
+dataset,mode,alpha,k_target,cardinality,q_opt,bitstring,selected_features,elapsed_seconds
+customer_churn,alpha_grid,0.0,,0,0.0,000000000000000,,0.0018517617136240005
+customer_churn,alpha_grid,0.1,,1,-0.02285340673246118,000100000000000,support_calls,0.0014929305762052536
+customer_churn,alpha_grid,0.2,,1,-0.04570681346492236,000100000000000,support_calls,0.0014651771634817123
+customer_churn,alpha_grid,0.3,,2,-0.07085985933028968,000100000000010,support_calls|contract_length_Monthly,0.00144288782030344
+customer_churn,alpha_grid,0.4,,3,-0.11605888668032523,000101000000010,support_calls|total_spend|contract_length_Monthly,0.0014493940398097038
+customer_churn,alpha_grid,0.5,,4,-0.1890915770625963,000111000000010,support_calls|payment_delay|total_spend|contract_length_Monthly,0.0014427537098526955
+customer_churn,alpha_grid,0.6,,5,-0.28110696886117736,100111000000010,age|support_calls|payment_delay|total_spend|contract_length_Monthly,0.0014486052095890045
+customer_churn,alpha_grid,0.7,,7,-0.38951107602783747,110111001000010,age|tenure|support_calls|payment_delay|total_spend|gender_Male|contract_length_Monthly,0.00144980289041996
+customer_churn,alpha_grid,0.8,,8,-0.5008708464827197,110111101000010,age|tenure|support_calls|payment_delay|total_spend|last_interaction|gender_Male|contract_length_Monthly,0.0014439988881349564
+customer_churn,alpha_grid,0.9,,10,-0.6162130239110348,111111101100010,age|tenure|usage_frequency|support_calls|payment_delay|total_spend|last_interaction|gender_Male|subscription_type_Basic|contract_length_Monthly,0.0014500077813863754
+customer_churn,alpha_grid,1.0,,15,-0.7790308573246094,111111111111111,age|tenure|usage_frequency|support_calls|payment_delay|total_spend|last_interaction|gender_Female|gender_Male|subscription_type_Basic|subscription_type_Premium|subscription_type_Standard|contract_length_Annual|contract_length_Monthly|contract_length_Quarterly,0.0014552883803844452
+customer_churn,mucke_k,0.875,10.0,10,-0.5872182015509445,111111101010010,age|tenure|usage_frequency|support_calls|payment_delay|total_spend|last_interaction|gender_Male|subscription_type_Premium|contract_length_Monthly,0.005792220123112202

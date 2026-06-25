@@ -1,0 +1,12 @@
+archivo,existe,filas,columnas
+fase2_carga_datasets.csv,True,4,6
+fase2_recarga_datasets.csv,True,4,8
+fase2_transformaciones_estructurales.csv,True,4,10
+fase2_impacto_estructura.csv,True,4,9
+fase2_codificacion_target.csv,True,15,6
+fase2_categorias_predictoras.csv,True,8,5
+fase2_dimensionalidad_encoding.csv,True,4,4
+fase2_rangos_numericos.csv,True,547,7
+fase2_target_shift.csv,True,15,5
+fase2_correlation_shift.csv,True,4,4
+fase2_renombrado_columnas.csv,True,557,4

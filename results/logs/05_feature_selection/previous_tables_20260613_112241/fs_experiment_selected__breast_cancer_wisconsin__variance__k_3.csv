@@ -1,0 +1,10 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+breast_cancer_wisconsin,variance,filtros,13,3,area_mean,1,1.0025188916876577,True,0.00027108006179332733,398,ok
+breast_cancer_wisconsin,variance,filtros,13,3,area_se,2,1.0025188916876577,True,0.00027108006179332733,398,ok
+breast_cancer_wisconsin,variance,filtros,13,3,concave_points_worst,3,1.0025188916876577,True,0.00027108006179332733,398,ok
+breast_cancer_wisconsin,variance,filtros,42,3,area_mean,1,1.0025188916876577,True,0.0001255609095096588,398,ok
+breast_cancer_wisconsin,variance,filtros,42,3,area_se,2,1.0025188916876577,True,0.0001255609095096588,398,ok
+breast_cancer_wisconsin,variance,filtros,42,3,concave_points_worst,3,1.0025188916876577,True,0.0001255609095096588,398,ok
+breast_cancer_wisconsin,variance,filtros,97,3,area_mean,1,1.0025188916876577,True,0.00012273341417312622,398,ok
+breast_cancer_wisconsin,variance,filtros,97,3,area_se,2,1.0025188916876577,True,0.00012273341417312622,398,ok
+breast_cancer_wisconsin,variance,filtros,97,3,concave_points_worst,3,1.0025188916876577,True,0.00012273341417312622,398,ok

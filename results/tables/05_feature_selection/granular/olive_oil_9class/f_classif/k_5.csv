@@ -1,0 +1,25 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+olive_oil_9class,f_classif,relevancia pura,13,5,other,1,325.17996409917197,True,0.0005674930289387703,400,ok
+olive_oil_9class,f_classif,relevancia pura,13,5,linolenic,2,273.0220167817817,True,0.0005674930289387703,400,ok
+olive_oil_9class,f_classif,relevancia pura,13,5,linoleic,3,243.8873164415498,True,0.0005674930289387703,400,ok
+olive_oil_9class,f_classif,relevancia pura,13,5,stearic,4,166.65275629847937,True,0.0005674930289387703,400,ok
+olive_oil_9class,f_classif,relevancia pura,13,5,palmitoleic,5,124.89180636169499,True,0.0005674930289387703,400,ok
+olive_oil_9class,f_classif,relevancia pura,13,5,eicosenoic,6,103.7793493387404,False,0.0005674930289387703,400,ok
+olive_oil_9class,f_classif,relevancia pura,13,5,arachidic,7,82.21459019853043,False,0.0005674930289387703,400,ok
+olive_oil_9class,f_classif,relevancia pura,13,5,oleic,8,30.77178270741913,False,0.0005674930289387703,400,ok
+olive_oil_9class,f_classif,relevancia pura,42,5,other,1,325.17996409917197,True,0.0005104281008243561,400,ok
+olive_oil_9class,f_classif,relevancia pura,42,5,linolenic,2,273.0220167817817,True,0.0005104281008243561,400,ok
+olive_oil_9class,f_classif,relevancia pura,42,5,linoleic,3,243.8873164415498,True,0.0005104281008243561,400,ok
+olive_oil_9class,f_classif,relevancia pura,42,5,stearic,4,166.65275629847937,True,0.0005104281008243561,400,ok
+olive_oil_9class,f_classif,relevancia pura,42,5,palmitoleic,5,124.89180636169499,True,0.0005104281008243561,400,ok
+olive_oil_9class,f_classif,relevancia pura,42,5,eicosenoic,6,103.7793493387404,False,0.0005104281008243561,400,ok
+olive_oil_9class,f_classif,relevancia pura,42,5,arachidic,7,82.21459019853043,False,0.0005104281008243561,400,ok
+olive_oil_9class,f_classif,relevancia pura,42,5,oleic,8,30.77178270741913,False,0.0005104281008243561,400,ok
+olive_oil_9class,f_classif,relevancia pura,97,5,other,1,325.17996409917197,True,0.0005116825923323631,400,ok
+olive_oil_9class,f_classif,relevancia pura,97,5,linolenic,2,273.0220167817817,True,0.0005116825923323631,400,ok
+olive_oil_9class,f_classif,relevancia pura,97,5,linoleic,3,243.8873164415498,True,0.0005116825923323631,400,ok
+olive_oil_9class,f_classif,relevancia pura,97,5,stearic,4,166.65275629847937,True,0.0005116825923323631,400,ok
+olive_oil_9class,f_classif,relevancia pura,97,5,palmitoleic,5,124.89180636169499,True,0.0005116825923323631,400,ok
+olive_oil_9class,f_classif,relevancia pura,97,5,eicosenoic,6,103.7793493387404,False,0.0005116825923323631,400,ok
+olive_oil_9class,f_classif,relevancia pura,97,5,arachidic,7,82.21459019853043,False,0.0005116825923323631,400,ok
+olive_oil_9class,f_classif,relevancia pura,97,5,oleic,8,30.77178270741913,False,0.0005116825923323631,400,ok

@@ -1,0 +1,8 @@
+method,has_randomness
+variance,False
+f_classif,False
+mutual_info,True
+mrmr_approx,True
+l1_logistic,True
+random_forest,True
+linear_svm,True

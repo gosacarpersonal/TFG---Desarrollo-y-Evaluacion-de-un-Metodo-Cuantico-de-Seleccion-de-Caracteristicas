@@ -1,0 +1,5 @@
+dataset,filas,duplicados_exactos,pct_duplicados_exactos
+breast_cancer_wisconsin,569,0,0.0
+customer_churn,440832,0,0.0
+madelon,2000,0,0.0
+olive_oil,572,0,0.0

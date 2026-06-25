@@ -1,0 +1,2 @@
+experiment_id,dataset,feature_set,selector,k,model_name,candidate_label,validation_macro_f1,validation_balanced_accuracy,test_macro_f1,test_balanced_accuracy,test_accuracy,test_auc_roc,n_test,n_features_used
+olive_oil_3class__l1_logistic_k5__linear_svm,olive_oil_3class,l1_logistic_k5,l1_logistic,5,linear_svm,subconjunto_top_2_validation,1.0,1.0,1.0,1.0,1.0,,86,5

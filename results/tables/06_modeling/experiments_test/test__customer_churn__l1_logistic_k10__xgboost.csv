@@ -1,0 +1,2 @@
+experiment_id,dataset,feature_set,selector,k,model_name,candidate_label,validation_macro_f1,validation_balanced_accuracy,test_macro_f1,test_balanced_accuracy,test_accuracy,test_auc_roc,n_test,n_features_used
+customer_churn__l1_logistic_k10__xgboost,customer_churn,l1_logistic_k10,l1_logistic,10,xgboost,subconjunto_top_1_validation,0.9992455381383969,0.9993466666666666,0.9991377826701863,0.9992533333333333,0.9991531190926276,0.9999592826783116,66125,10

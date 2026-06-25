@@ -1,0 +1,6 @@
+dataset,same_columns_train_validation_test,x_y_train_aligned,target_not_in_features,status
+breast_cancer_wisconsin,True,True,True,ok
+customer_churn,True,True,True,ok
+madelon,True,True,True,ok
+olive_oil_3class,True,True,True,ok
+olive_oil_9class,True,True,True,ok

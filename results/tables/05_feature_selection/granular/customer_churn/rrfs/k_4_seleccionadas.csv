@@ -1,0 +1,13 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+customer_churn,rrfs,relevancia-redundancia,13,4,support_calls,1,15.18662085297536,True,0.015044423751533031,5000,ok
+customer_churn,rrfs,relevancia-redundancia,13,4,total_spend,2,14.116645645304526,True,0.015044423751533031,5000,ok
+customer_churn,rrfs,relevancia-redundancia,13,4,contract_length_Monthly,3,13.096098847502539,True,0.015044423751533031,5000,ok
+customer_churn,rrfs,relevancia-redundancia,13,4,age,4,12.070620036057147,True,0.015044423751533031,5000,ok
+customer_churn,rrfs,relevancia-redundancia,42,4,support_calls,1,15.185161676768637,True,0.015139225870370865,5000,ok
+customer_churn,rrfs,relevancia-redundancia,42,4,total_spend,2,14.120915102843705,True,0.015139225870370865,5000,ok
+customer_churn,rrfs,relevancia-redundancia,42,4,contract_length_Monthly,3,13.095443683866737,True,0.015139225870370865,5000,ok
+customer_churn,rrfs,relevancia-redundancia,42,4,payment_delay,4,12.073462397287745,True,0.015139225870370865,5000,ok
+customer_churn,rrfs,relevancia-redundancia,97,4,support_calls,1,15.179177859111102,True,0.015161235816776752,5000,ok
+customer_churn,rrfs,relevancia-redundancia,97,4,total_spend,2,14.119202921889219,True,0.015161235816776752,5000,ok
+customer_churn,rrfs,relevancia-redundancia,97,4,contract_length_Monthly,3,13.098509689138305,True,0.015161235816776752,5000,ok
+customer_churn,rrfs,relevancia-redundancia,97,4,payment_delay,4,12.073758826053043,True,0.015161235816776752,5000,ok

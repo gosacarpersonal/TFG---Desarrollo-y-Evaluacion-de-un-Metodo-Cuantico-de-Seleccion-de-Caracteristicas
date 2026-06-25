@@ -1,0 +1,1498 @@
+% Capítulo 5: Resultados y discusión.
+
+Este capítulo presenta los resultados como un recorrido que va de la
+base experimental al diagnóstico final. Se describe primero la
+construcción y verificación de los datos y la caracterización de los
+regímenes de cada formulación. Sobre esa base se evalúan los métodos
+clásicos y, después, el método cuántico, antes de compararlos bajo un
+protocolo común. Las dos últimas secciones separan el diagnóstico entre
+fallo del criterio y fallo del optimizador, y examinan la consistencia
+de los resultados junto con sus limitaciones.
+
+\section{Construcción y verificación de la base experimental}
+\label{sec:res-base}
+
+El primer resultado del trabajo es la propia base experimental: antes
+de comparar selectores se verificó que los datos, el preprocesado y
+las particiones no introducen sesgos que contaminen la comparación.
+
+\subsection{Análisis exploratorio de los datos crudos}
+
+El análisis exploratorio no detectó incidencias de calidad básicas
+(ningún conjunto presenta valores ausentes, filas duplicadas ni columnas
+constantes) y marcó para exclusión los identificadores estructurales
+(\texttt{id} en \textit{Breast Cancer} y \textit{Olive Oil},
+\texttt{CustomerID} en \textit{Customer Churn}). Resuelta esa
+verificación, el interés está en la presión dimensional de partida que
+resume la Figura~\ref{fig:dimensionalidad}: \textit{Madelon} dispone de
+solo 4 filas por variable predictora, frente a las más de 44\,000 de
+\textit{Customer Churn}.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{F01_banco_regimenes.pdf}
+  \caption[Composición del banco experimental]{Composición del banco experimental. El plano sitúa cada
+    formulación dataset--target por número de muestras y de predictoras
+    en escala logarítmica; el panel central muestra el ratio de
+    desbalance mayoría--minoría en entrenamiento, que descarta la
+    \textit{accuracy} como métrica común; y el panel derecho resume el
+    porcentaje de variables con señal univariante tras corrección FDR\@.
+    Esta heterogeneidad justifica usar macro-F1 como métrica común.}
+  \label{fig:dimensionalidad}
+\end{figure}
+\FloatBarrier
+
+La asociación univariante con el target, evaluada con los contrastes
+descritos en la sección~\ref{sec:mt-validacion}
+(Mann--Whitney/Kruskal--Wallis para variables numéricas y $\chi^2$ para
+categóricas), mostró perfiles muy distintos. En \textit{Breast Cancer}
+y \textit{Olive Oil} abundan variables con tamaños de efecto altos,
+varios de ellos casi perfectos, lo que obligó a una revisión semántica
+de posibles proxies; en \textit{Olive Oil} esa revisión condujo a la
+separación de problemas descrita en la
+sección~\ref{sec:oliveoil}. En \textit{Customer Churn}, el gran tamaño
+muestral hace que todas las variables resulten estadísticamente
+significativas, por lo que la lectura se desplazó a la magnitud del
+efecto. La corrección de Benjamini--Hochberg~\cite{benjamini1995}
+cuantifica esos perfiles (Figura~\ref{fig:senal-fdr-efecto}): sobreviven
+27 de 30 variables en \textit{Breast
+Cancer} (efecto absoluto mediano 0{,}65), las 10 de 10 en \textit{Customer
+Churn} y \textit{Olive Oil} (efecto 0{,}20 y 0{,}80 respectivamente), pero
+solo \textbf{13 de las 500} de \textit{Madelon}, con un efecto mediano de
+apenas 0{,}02. Esta última cifra es la primera evidencia de que la señal
+de \textit{Madelon} apenas es univariante (reside en interacciones de
+orden superior), un diagnóstico que anticipa por qué los criterios
+basados en información mutua, clásicos y cuántico, encontrarán ahí su
+límite. La redundancia, medida con correlaciones de Spearman, resultó
+estructural en \textit{Breast Cancer} (pares con $|\rho| > 0{,}95$ entre
+medidas de la misma familia) y en la composición química de
+\textit{Olive Oil}. La Tabla~\ref{tab:senal} sintetiza estos perfiles
+de señal y redundancia por conjunto.
+
+\begin{table}[!htbp]
+  \centering
+  \caption[Señal univariante y redundancia por conjunto]{Señal
+    univariante y redundancia de los datos crudos. ``Signif.\ FDR'' es el
+    número de variables que conservan asociación con el target tras la
+    corrección de Benjamini--Hochberg sobre las contrastadas; el efecto
+    mediano es el tamaño de efecto absoluto (delta de Cliff en problemas
+    binarios numéricos, V de Cramér en categóricas y épsilon cuadrado en
+    multiclase); la última columna cuenta los pares de variables con
+    correlación de Spearman $|\rho|\ge0{,}85$.}
+  \label{tab:senal}
+  \scriptsize
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{lrrrrr}
+    \toprule
+    Dataset & Variables & Signif.\ sin corr. & Signif.\ FDR &
+    Efecto mediano & Pares $|\rho|\ge0{,}85$ \\
+    \midrule
+    Breast Cancer Wisconsin & 30 & 27 & 27 & 0{,}65 & 29 \\
+    Customer Churn & 10 & 10 & 10 & 0{,}23 & 0 \\
+    Madelon & 500 & 38 & 13 & 0{,}02 & 12 \\
+    Olive Oil & 10 & 10 & 10 & 0{,}80 & 2 \\
+    \bottomrule
+  \end{tabular}%
+  }
+\end{table}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{F02_senal_fdr_efecto.pdf}
+  \caption[Señal supervisada univariante]{Señal supervisada univariante por dataset. El panel de FDR
+    muestra cuántas variables mantienen asociación con el target tras
+    corregir multiplicidad; el panel de efecto separa significancia de
+    magnitud. \textit{Madelon} queda resaltado porque casi no presenta
+    señal univariante, anticipando el límite del criterio QFS.}
+  \label{fig:senal-fdr-efecto}
+\end{figure}
+\FloatBarrier
+
+\subsection{Preprocesado y comprobación posterior al preprocesado}
+
+El preprocesado fue deliberadamente conservador: exclusión de
+identificadores, normalización de nombres y codificación determinista
+del target, sin imputación (no había nulos), sin tratamiento de
+valores atípicos (se caracterizaron como evidencia descriptiva) y sin
+codificación ni escalado global de predictoras, que se pospusieron al
+interior de los pipelines posteriores al particionado.
+
+La comprobación posterior verificó que esta intervención mínima no alteró
+el problema (Tabla~\ref{tab:postproc}). Las proporciones del target se
+conservaron exactamente en los cuatro conjuntos (diferencia máxima de
+proporciones nula, contrastes $\chi^2$ y de Fisher con $p=1{,}0$ y delta
+de entropía nula); las variables numéricas comparables mantuvieron
+mediana y dispersión (Kolmogorov--Smirnov, Wasserstein y PSI nulos en
+los cuatro conjuntos); y el orden de asociación variable--target se
+conservó casi de forma perfecta, con una correlación de Spearman entre
+los \textit{rankings} antes y después del preprocesado de 0{,}988 en el
+peor caso (\textit{Olive Oil}) y una variación media de información
+mutua inferior a 0{,}02. La estructura de redundancia tampoco se modificó,
+y \textit{Customer Churn} llegó al particionado con sus tres predictoras
+categóricas sin codificar, como exige el control de \textit{leakage}.
+
+\begin{table}[!htbp]
+  \centering
+  \caption[Invarianza del preprocesado]{Verificación de invarianza del
+    preprocesado. Todas las métricas comparan el dato crudo con el
+    procesado: la correlación de Spearman entre los \textit{rankings} de
+    asociación variable--target debe ser cercana a $1$, y el resto de
+    estadísticos de desplazamiento (KS, Wasserstein, PSI) y la variación
+    de redundancia deben ser nulos si el preprocesado no alteró el
+    problema.}
+  \label{tab:postproc}
+  \scriptsize
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{lrrrr}
+    \toprule
+    Dataset & $\rho$ Spearman \textit{rankings} & $\Delta$ MI media &
+    KS / Wass.\ / PSI máx & $\Delta$ pares redund. \\
+    \midrule
+    Breast Cancer Wisconsin & 0{,}9996 & 0{,}002 & 0{,}00 & 0 \\
+    Customer Churn & 1{,}000 & 0{,}003 & 0{,}00 & 0 \\
+    Madelon & 1{,}000 & 0{,}000 & 0{,}00 & 0 \\
+    Olive Oil & 0{,}988 & 0{,}018 & 0{,}00 & 0 \\
+    \bottomrule
+  \end{tabular}%
+  }
+\end{table}
+\FloatBarrier
+
+\subsection{Particionado y verificación de las particiones}
+
+El particionado generó particiones 70/15/15 estratificadas para las
+cinco formulaciones operativas. Las comprobaciones exactas no detectaron
+solapes de filas entre particiones ni pérdida de clases: las nueve
+regiones de \texttt{olive\_oil\_9class} están presentes en
+entrenamiento, validación y prueba.
+
+Una partición solo es informativa si entrenamiento, validación y prueba
+proceden de la misma distribución; de lo contrario, el rendimiento medido
+en prueba no sería extrapolable. El \emph{drift} es justamente ese
+desplazamiento de la distribución de una variable entre dos particiones.
+Se cribó variable a variable comparando las muestras de entrenamiento y
+prueba con los mismos estadísticos de desplazamiento del preprocesado
+(Kolmogorov--Smirnov, Wasserstein y PSI), de modo que una variable se
+marca cuando alguno supera su umbral. Un número alto de marcas no
+invalida la partición, pero obliga a leerlo como una cautela de
+representatividad, sobre todo en conjuntos pequeños, donde una única
+región mal repartida basta para disparar el contraste. La
+Tabla~\ref{tab:particiones} recoge esta verificación para las cinco
+formulaciones.
+
+\begin{table}[!htbp]
+  \centering
+  \caption[Verificación de las particiones]{Verificación de las cinco
+    particiones. La diferencia máxima de proporciones del target y el
+    PSI máximo miden el desplazamiento entre particiones; el AUC
+    adversarial (clasificador entrenamiento--prueba con validación
+    cruzada) se interpreta como no accionable cuando queda cerca de 0{,}5
+    bajo el umbral operativo de la verificación; la última columna cuenta variables señaladas por la
+    pantalla de \textit{leakage} (AUC o información mutua normalizada
+    $\ge0{,}99$).}
+  \label{tab:particiones}
+  \scriptsize
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{lrrrrr}
+    \toprule
+    Formulación & $\Delta$ máx target & Vars \textit{drift} & PSI máx &
+    AUC adversarial & Vars \textit{leakage} \\
+    \midrule
+    Breast Cancer Wisconsin & 0{,}005 & 25 & 0{,}50 & 0{,}52 & 0 \\
+    Customer Churn & 0{,}000 & 0 & 0{,}00 & 0{,}52 & 0 \\
+    Madelon & 0{,}000 & 41 & 0{,}18 & 0{,}48 & 0 \\
+    Olive Oil (3 clases) & 0{,}012 & 7 & 0{,}34 & 0{,}51 & 0 \\
+    Olive Oil (9 clases) & 0{,}012 & 6 & 0{,}33 & 0{,}54 & 0 \\
+    \bottomrule
+  \end{tabular}%
+  }
+\end{table}
+\FloatBarrier
+
+El cribado univariante de \textit{drift} marcó para revisión algunas
+variables (25 en \textit{Breast Cancer}, 41 en \textit{Madelon},
+ninguna en \textit{Customer Churn}), con PSI máximo de 0{,}50; estas
+marcas se interpretaron como cautelas de representatividad en conjuntos
+pequeños, no como defectos del particionado. La validación adversarial
+(Figura~\ref{fig:adversarial}) cierra la verificación: el AUC quedó entre
+0{,}476 (\textit{Madelon}) y 0{,}535 (\texttt{olive\_oil\_9class}), en todos
+los casos dentro del umbral operativo $|AUC-0{,}5|<0{,}05$ usado como señal
+no accionable de distinguibilidad entre particiones. La pantalla de \textit{leakage} no encontró ninguna
+variable con AUC o información mutua normalizada $\ge 0{,}99$ una vez
+excluidos los proxies de \textit{Olive Oil}.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{F03_base_confiable.pdf}
+  \caption[Fiabilidad de la base experimental]{Fiabilidad de la base experimental. La figura cierra la
+    puerta a explicaciones triviales antes de modelar: las particiones no
+    son distinguibles de forma accionable (AUC adversarial cercano a
+    $0{,}5$), el \textit{drift} se interpreta como cautela de
+    representatividad y no como fuga, y la conservación de los rankings de
+    información mutua muestra que el preprocesado no fabricó ni destruyó
+    la señal que después reciben los selectores.}
+  \label{fig:adversarial}
+\end{figure}
+\FloatBarrier
+
+\subsection{Regímenes de los conjuntos de datos como predictores}
+\label{sec:regimenes-predictor}
+
+El análisis de las cuatro primeras fases no se interpreta solo como un
+control de calidad. Sus métricas definen el régimen en el que se evaluará
+QFS y, por tanto, anticipan qué componente del método puede convertirse
+en cuello de botella. La Tabla~\ref{tab:regimenes} resume esa lectura
+con cuatro ejes:
+magnitud de señal, multicolinealidad, dimensionalidad intrínseca y
+representatividad de las particiones. La multicolinealidad se mide con el
+\emph{factor de inflación de la varianza} (VIF): para cada variable,
+cuantifica cuánto aumenta la varianza de su coeficiente de regresión por
+estar correlacionada con el resto. Un VIF igual a~$1$ indica ausencia de
+colinealidad, y como umbrales habituales se toman valores por encima
+de~$5$ (o de~$10$ en criterios más laxos) como señal de
+multicolinealidad apreciable~\cite{james2013}.
+
+\begin{table}[!htbp]
+  \centering
+  \caption[Regímenes del dato antes de QFS]{Regímenes del dato antes de
+    ejecutar QFS\@. El efecto mediano resume la magnitud de la señal
+    supervisada; el VIF máximo y el número de variables con VIF$\ge10$
+    miden la multicolinealidad; los componentes principales para explicar
+    el 80\,\% de la varianza aproximan la dimensionalidad intrínseca. Las
+    dos formulaciones de \textit{Olive Oil} comparten predictoras.}
+  \label{tab:regimenes}
+  \scriptsize
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{lrrrr}
+    \toprule
+    Dataset & Efecto mediano & VIF máx & Vars VIF$\ge10$ &
+    Comp.\ PCA (80\,\%) \\
+    \midrule
+    Breast Cancer Wisconsin & 0{,}65 & 3806 & 23 & 5 \\
+    Customer Churn & 0{,}23 & 1{,}1 & 0 & 6 \\
+    Madelon & 0{,}02 & 117 & 20 & 295 \\
+    Olive Oil & 0{,}80 & 326 & 5 & 3 \\
+    \bottomrule
+  \end{tabular}%
+  }
+\end{table}
+\FloatBarrier
+
+En \textit{Breast Cancer Wisconsin}, la señal supervisada vive en las
+medidas morfológicas de la familia de tamaño y borde: entre las
+relevancias $I_i$ más altas aparecen
+\varname{concave_points_worst} ($0{,}415$),
+\varname{radius_worst} ($0{,}404$) y
+\varname{concave_points_mean} ($0{,}398$). El régimen no es difícil por
+falta de señal, sino por redundancia: las familias
+\texttt{radius}--\texttt{perimeter}--\texttt{area} alcanzan VIF máximo
+de 3806 y 23 variables superan VIF 10. Esta estructura predice que un
+selector de relevancia pura tenderá a escoger variables equivalentes,
+mientras que mRMR y QFS deberían aportar si penalizan redundancia sin
+perder la señal principal.
+
+En \textit{Customer Churn}, la asociación con el target está concentrada
+en pocas variables continuas o binarias interpretables:
+\texttt{support\_calls} ($I_i=0{,}229$) domina, seguida de
+\texttt{total\_spend} ($0{,}164$),
+\texttt{contract\_length\_Monthly} ($0{,}130$),
+\texttt{payment\_delay} ($0{,}092$) y \texttt{age} ($0{,}086$).
+La redundancia es casi nula en las variables continuas (VIF máximo
+1{,}1), pero la codificación \textit{one-hot} introduce grupos de dummies
+mutuamente excluyentes, en especial \texttt{gender\_Female} frente a
+\texttt{gender\_Male}. El régimen predice un criterio QUBO relativamente
+fácil (hay poca redundancia que resolver) y un margen predictivo muy
+pequeño porque el baseline roza la separación perfecta. Si aparece un
+deterioro, debe buscarse en el readout u optimización, no en una falta
+de señal del criterio.
+
+\textit{Madelon} presenta el régimen opuesto. Solo 13 de 500 variables
+superan FDR tras corrección, el efecto mediano es 0{,}02 y las relevancias
+$I_i$ son casi planas: la mejor variable del handoff QFS,
+\texttt{feat\_241}, alcanza $0{,}026$, y las siguientes
+\texttt{feat\_475} y \texttt{feat\_338} quedan en $0{,}023$ y $0{,}020$.
+Además, la PCA requiere 295 componentes para explicar el 80\,\% de la
+varianza. La dificultad no es una multicolinealidad masiva que el término
+de redundancia pueda depurar, sino un desierto de distractores donde la
+señal útil depende de interacciones que una información mutua par a par
+no ordena bien. Por ello, antes de ejecutar QFS ya se espera un fallo de
+criterio si el QUBO hereda esas relevancias.
+
+La Tabla~\ref{tab:relevancias} reúne, por conjunto, las variables de mayor
+relevancia $I_i$ (información mutua con el target, calculada solo con
+entrenamiento), que sostienen las lecturas anteriores y son las que el
+método cuántico hereda como término lineal del QUBO\@. La
+Figura~\ref{fig:ap-handoff} resume estas entradas de forma agregada: la
+relevancia media $I_i$ y la redundancia media $R_{ij}$ por formulación,
+tal como las recibe la fase cuántica.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.86\textwidth]{a6_handoff_ir.png}
+  \caption[Handoff de relevancia y redundancia hacia QFS]{Entradas que
+    recibe QFS: relevancia media $I_i$ con el target y redundancia media
+    $R_{ij}$ entre pares de variables, por formulación. El orden por
+    relevancia deja visible el contraste de regímenes: \textit{Olive Oil}
+    y \textit{Breast Cancer} llegan con señal clara, mientras que
+    \textit{Madelon} entra casi plano; por eso, si QFS falla allí, la
+    primera sospecha debe recaer en el criterio que hereda esas
+    relevancias, no en el gráfico ni en el clasificador posterior.}
+  \label{fig:ap-handoff}
+\end{figure}
+\FloatBarrier
+
+\begin{table}[!htbp]
+  \centering
+  \caption[Variables de mayor relevancia por conjunto]{Tres variables de
+    mayor relevancia $I_i$ (información mutua con el target) por
+    formulación, con su valor entre paréntesis. Es el vector que QFS recibe
+    como término lineal del QUBO\@. La diferencia de escala entre conjuntos
+    es informativa: en \textit{Customer Churn} \texttt{support\_calls}
+    domina con holgura, mientras que en \textit{Madelon} ninguna variable
+    supera $0{,}03$, lo que anticipa el límite del criterio.}
+  \label{tab:relevancias}
+  \small
+  \begin{tabularx}{\textwidth}{@{}l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+    \toprule
+    Formulación & 1.\textsuperscript{a} & 2.\textsuperscript{a} & 3.\textsuperscript{a} \\
+    \midrule
+    Breast Cancer & \varname{concave_points_worst} (0,41) & \varname{radius_worst} (0,40) & \varname{concave_points_mean} (0,40) \\
+    Customer Churn & \varname{support_calls} (0,23) & \varname{total_spend} (0,16) & \varname{contract_length_M.} (0,13) \\
+    Madelon & \varname{feat_241} (0,026) & \varname{feat_475} (0,023) & \varname{feat_338} (0,020) \\
+    Olive Oil (3 cl.) & \varname{other} (0,62) & \varname{linoleic} (0,41) & \varname{stearic} (0,36) \\
+    Olive Oil (9 cl.) & \varname{linolenic} (0,87) & \varname{other} (0,78) & \varname{linoleic} (0,76) \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+\FloatBarrier
+
+En \textit{Olive Oil}, las ocho variables son porcentajes de ácidos
+grasos y forman un régimen composicional. Las relevancias se concentran
+en \texttt{other}, \texttt{linolenic}, \texttt{linoleic} y
+\texttt{stearic}; la redundancia es moderada y estructural porque los
+ácidos forman partes de una composición. La formulación de tres clases
+es casi separable. La de nueve clases mantiene las mismas variables,
+pero el conjunto de prueba contiene solo 86 filas y varias regiones
+químicamente próximas, de modo que el resultado debe leerse con
+prudencia. Este régimen predice equivalencia o mejora no concluyente,
+no un fallo atribuible del método.
+
+En conjunto, la base experimental no define un único problema de
+selección, sino cinco regímenes distintos: \textit{Breast Cancer} y las
+dos formulaciones de \textit{Olive Oil} representan escenarios con señal
+clara; \textit{Customer Churn}, un régimen de techo predictivo casi
+saturado y baja redundancia; y \textit{Madelon}, un caso adverso para los
+criterios marginales o par a par. Esta clasificación condiciona la
+interpretación posterior de los métodos clásicos y del método cuántico:
+no se espera el mismo comportamiento en todos los conjuntos, sino que el
+protocolo permita identificar dónde y por qué aparece cada limitación.
+
+\section{Evaluación de los métodos clásicos}
+
+Esta sección evalúa los doce selectores clásicos sobre las cinco
+formulaciones del banco. En primer lugar se caracteriza qué selecciona
+cada método en el plano relevancia--redundancia; después se modela con
+esos subconjuntos y se contrasta su rendimiento mediante intervalos de
+confianza y pruebas pareadas. Las dos últimas subsecciones resumen la
+comparación final en un mapa de evidencia y leen el espacio de métodos
+clásicos como espejo del comportamiento esperable de QFS.
+
+\subsection{Caracterización de la selección}
+
+Los doce selectores del repertorio (sección~\ref{sec:clasicos}) se
+ejecutaron sobre las cinco formulaciones, con tres semillas
+independientes para los once que recorren una escalera de presupuestos y
+una ejecución por dataset para Boruta, que confirma un conjunto de tamaño
+fijo. Tres propiedades caracterizan la selección clásica más allá de los
+rankings: la estabilidad entre semillas, la redundancia interna del
+subconjunto y el coste de ajuste. La Tabla~\ref{tab:perfil} reúne las
+tres por método y la Figura~\ref{fig:perfil-selectores} las representa.
+
+\begin{table}[!htbp]
+  \centering
+  \caption[Perfil de los doce selectores]{Perfil de los doce selectores,
+    promediado sobre las cinco formulaciones. El \emph{Jaccard medio} es
+    el solape $|A\cap B|/|A\cup B|$ entre los subconjuntos obtenidos con
+    pares de semillas distintas al presupuesto de referencia: vale $1$
+    cuando la selección es idéntica entre semillas. La \emph{redundancia
+    interna} es la correlación absoluta media entre las variables
+    seleccionadas (menor es mejor). El \emph{coste} es el tiempo medio de
+    ajuste por ejecución. Boruta no recorre semillas, por lo que no tiene
+    Jaccard medio.}
+  \label{tab:perfil}
+  \small
+  \begin{tabular}{lrrr}
+    \toprule
+    Método & Jaccard medio & Redundancia interna & Coste (s) \\
+    \midrule
+    \texttt{variance}            & 1{,}00 & 0{,}220 & 0{,}007 \\
+    \texttt{f\_classif}          & 1{,}00 & 0{,}389 & 0{,}006 \\
+    \texttt{mutual\_info}        & 0{,}99 & 0{,}388 & 0{,}102 \\
+    \texttt{mutual\_correlation} & 1{,}00 & 0{,}365 & 0{,}116 \\
+    \texttt{feature\_similarity} & 1{,}00 & 0{,}230 & 0{,}106 \\
+    \texttt{mrmr\_approx}        & 0{,}95 & 0{,}167 & 0{,}265 \\
+    \texttt{rrfs}                & 0{,}99 & 0{,}357 & 0{,}335 \\
+    \texttt{l1\_logistic}        & 0{,}99 & 0{,}202 & 0{,}195 \\
+    \texttt{linear\_svm}         & 0{,}99 & 0{,}276 & 0{,}011 \\
+    \texttt{random\_forest}      & 0{,}89 & 0{,}384 & 0{,}560 \\
+    \texttt{rfe}                 & 1{,}00 & 0{,}297 & 0{,}905 \\
+    Boruta                       & ---  & 0{,}315 & 6{,}543 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\FloatBarrier
+
+\textbf{Estabilidad.} La selección es estable en las cinco
+formulaciones: el Jaccard medio (solape entre los subconjuntos elegidos
+con semillas distintas) es 1{,}0 en la mayoría de los métodos y solo baja
+de forma apreciable en \textit{random forest} (0{,}89 de media, y 0{,}78 en
+\textit{Madelon}). No aparece ningún régimen de inestabilidad, de modo
+que los subconjuntos son reproducibles y el criterio que distingue a los
+métodos no es la estabilidad, sino la redundancia interna.
+
+Esta lectura admite una cautela. El Jaccard no corrige el solape
+esperable por azar, que crece cuando el presupuesto es grande frente al
+número de variables, como en \textit{Olive Oil} con sus ocho predictoras.
+Por ello la estabilidad se contrastó también con el índice de
+Kuncheva~\cite{kuncheva2007}, que sí corrige ese azar: coincide con el
+Jaccard en los filtros y los métodos \emph{embedded}, pero rebaja la
+estabilidad media de mRMR (de 0{,}95 a 0{,}62) y de la información mutua (de
+0{,}99 a 0{,}64). Parte del solape entre semillas de esos dos criterios es,
+por tanto, atribuible al azar en los conjuntos de pocas variables. Un
+segundo índice independiente, la correlación de Spearman entre los
+rankings de relevancia obtenidos con semillas distintas, apunta en la
+misma dirección (0{,}75 y 0{,}74 de media para esos dos métodos), lo que
+confirma que el efecto es real y no un artefacto de un único índice. Esta
+menor estabilidad conviene tenerla presente al interpretar QFS, que se
+apoya en ese mismo criterio de relevancia--redundancia; no afecta, en
+cambio, a los veredictos de rendimiento, que se sostienen sobre p-valores
+corregidos (FDR y Holm) e intervalos bootstrap, y no sobre la estabilidad
+de la selección.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{F04_perfil_selectores.pdf}
+  \caption[Perfil de los doce selectores]{Perfil de los doce selectores. Los tres paneles usan el mismo
+    orden para que la lectura sea comparativa: la línea discontinua marca
+    la referencia de cada eje (redundancia media del espacio completo,
+    coste de un segundo y estabilidad perfecta). La conclusión operativa
+    es que \texttt{mrmr\_approx} ocupa el extremo de menor redundancia con
+    coste moderado, mientras que Boruta paga mucha más computación por un
+    perfil de redundancia menos favorable.}
+  \label{fig:perfil-selectores}
+\end{figure}
+\FloatBarrier
+
+Para que esa estabilidad no oculte la dificultad del problema, la Figura~\ref{fig:ap-organismo-seleccion} abre la caja negra de \textit{Madelon}: doce selectores recorren las
+mismas 500 variables a lo largo de la escalera de presupuestos y tres
+semillas. El consenso no se reparte de forma homogénea, sino que aparece
+concentrado en un pequeño frente de variables mientras el resto del
+espacio queda como distractor. Esta estructura explica por qué la
+selección clásica puede mejorar el baseline y, a la vez, anticipa el
+límite posterior de QFS: un criterio basado en información mutua por
+pares puede ordenar bien parte del frente, pero no capturar todas las
+interacciones que hacen útil a cada variable en este problema.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{o1_organismo_seleccion.png}
+  \caption[Organismo de selección en \textit{Madelon}]{Organismo de selección en \textit{Madelon}: frecuencia con
+    que cada selector elige cada variable al recorrer presupuestos y
+    semillas. La lámina conserva el frente de consenso que el cuerpo
+    resume sin desplegar las 500 variables.}
+  \label{fig:ap-organismo-seleccion}
+\end{figure}
+\FloatBarrier
+
+El contraste por permutaciones del target aportó evidencia de cribado
+compatible con señal en los cinco problemas: la mediana del p-valor
+empírico de las variables seleccionadas alcanzó el mínimo posible
+($\approx 0{,}048$) en todas las
+formulaciones, incluida \textit{Madelon}. La mayoría de los métodos
+aumenta la redundancia interna al concentrar variables correlacionadas,
+mientras que \texttt{mrmr\_approx} es el único con un cambio
+sistemáticamente nulo o negativo, confirmando el valor de penalizar la
+redundancia de forma explícita.
+
+\textbf{Coste y redundancia.} El perfil completo de los doce selectores
+(coste, estabilidad y redundancia interna) se conserva en la Tabla~\ref{tab:perfil}; la lectura por ingrediente es la que importa
+aquí. Los filtros univariantes son baratos (del orden de $0{,}007$\,s) pero
+concentran redundancia ($\approx 0{,}39$ de correlación media), y los
+\textit{wrappers} son dos a tres órdenes de magnitud más lentos (Boruta,
+$6{,}5$\,s de media); frente a ellos, \texttt{mrmr\_approx} logra la menor
+redundancia interna ($0{,}167$) a coste moderado. El método cuántico
+persigue precisamente esa baja redundancia de \texttt{mrmr\_approx}
+resolviendo el compromiso de forma global.
+
+El cruce de las variables seleccionadas con la evidencia de las
+comprobaciones previas no encontró ninguna variable con patrón de
+identificador o etiqueta: las exclusiones del particionado llegaron
+intactas a la selección. Los 168 subconjuntos (dataset~$\times$~método~$\times$~$k$)
+mantienen columnas consistentes entre particiones y se acompañan del
+grafo de características de la sección~\ref{sec:grafo} (vector $I_i$ y
+matriz $R_{ij}$ por formulación, calculados solo con entrenamiento).
+
+La evolución completa de la redundancia interna frente al presupuesto
+$k$ queda como evidencia de control en la Figura~\ref{fig:ap-redundancia-k}; en el cuerpo basta con fijar la
+conclusión que conecta con QFS: la penalización explícita de redundancia
+es el ingrediente que distingue a \texttt{mrmr\_approx} de los filtros de
+relevancia pura.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{f5_coste_rendimiento.png}
+  \caption[Redundancia interna frente a $k$]{Redundancia interna al crecer el presupuesto $k$ de
+    variables. Las líneas grises muestran el contexto de selectores
+    clásicos; \texttt{mrmr\_approx} y Boruta quedan resaltados como dos
+    referencias de lectura. La comparación muestra por qué el criterio de
+    redundancia importa para QFS: mRMR mantiene subconjuntos compactos y
+    poco correlacionados, mientras que Boruta actúa como referencia
+    \textit{wrapper} más costosa y no siempre más limpia en redundancia.}
+  \label{fig:ap-redundancia-k}
+\end{figure}
+\FloatBarrier
+
+\subsection{Modelado y evaluación estadística}
+
+El modelado cruzó la parrilla de 260 experimentos (5 formulaciones
+$\times$ 13 espacios de variables, el conjunto completo más los doce
+selectores, $\times$ 4 modelos: regresión logística, SVM lineal,
+\textit{random forest} y \textit{XGBoost}) y evaluó en prueba los 15
+candidatos fijados con validación. La inclusión de \textit{XGBoost}
+proporciona el anclaje de comparabilidad con la evaluación original del
+método cuántico~\cite{orquin2026} y, al ser un clasificador de gradiente
+robusto en alta dimensión, eleva de forma apreciable el rendimiento del
+baseline en \textit{Madelon} (de 0{,}613 con modelos lineales o de bosque
+a 0{,}813), lo que reduce, sin anularlo, el margen de mejora atribuible a la
+selección. La Tabla~\ref{tab:comparacion} resume la comparación final por
+dataset y la Figura~\ref{fig:test} muestra los intervalos de confianza
+(el detalle por modelo y métrica de cada candidato se detalla en la Tabla~\ref{tab:candidatos}).
+
+\begin{table}[!htbp]
+  \centering
+  \caption[Candidatos evaluados en prueba por dataset y modelo]{Candidatos
+    evaluados en prueba: el mejor baseline y los dos mejores subconjuntos
+    seleccionados en validación, con el modelo que los gana, el número de
+    variables y las métricas en el conjunto de prueba. El AUC-ROC solo
+    aplica a los dos problemas binarios; en los multiclase la métrica
+    primaria es el macro-F1. En \textit{Customer Churn} las 10 predictoras
+    crudas se materializan como 15 columnas tras la codificación
+    \textit{one-hot}.}
+  \label{tab:candidatos}
+  \footnotesize
+  \begin{tabular}{lllrrr}
+    \toprule
+    Dataset & Configuración & Modelo & vars & macro-F1 & AUC \\
+    \midrule
+    \multirow{3}{*}{Breast Cancer W.}
+      & baseline      & SVM lineal & 30 & 0{,}937 & 0{,}976 \\
+      & Boruta        & SVM lineal & 22 & 0{,}950 & 0{,}975 \\
+      & \texttt{linear\_svm} & XGBoost & 10 & 0{,}950 & 0{,}970 \\
+    \midrule
+    \multirow{3}{*}{Customer Churn}
+      & baseline      & XGBoost & 15 & 1{,}000 & 1{,}000 \\
+      & $\ell_1$ logística & XGBoost & 10 & 0{,}999 & 1{,}000 \\
+      & \texttt{mrmr\_approx} & XGBoost & 10 & 0{,}999 & 1{,}000 \\
+    \midrule
+    \multirow{3}{*}{Madelon}
+      & baseline      & XGBoost & 500 & 0{,}813 & --- \\
+      & Boruta        & XGBoost & 19 & 0{,}907 & --- \\
+      & \texttt{rfe}  & XGBoost & 10 & 0{,}900 & --- \\
+    \midrule
+    \multirow{3}{*}{Olive Oil (3 cl.)}
+      & baseline      & SVM lineal & 8 & 1{,}000 & --- \\
+      & F de ANOVA    & SVM lineal & 5 & 1{,}000 & --- \\
+      & $\ell_1$ logística & SVM lineal & 5 & 1{,}000 & --- \\
+    \midrule
+    \multirow{3}{*}{Olive Oil (9 cl.)}
+      & baseline      & SVM lineal & 8 & 0{,}839 & --- \\
+      & $\ell_1$ logística & XGBoost & 5 & 0{,}954 & --- \\
+      & Boruta        & SVM lineal & 8 & 0{,}839 & --- \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\FloatBarrier
+
+\begin{table}[!htbp]
+  \centering
+  \caption[Comparación final en test]{Comparación final en el conjunto de prueba: baseline con
+    todas las variables frente al mejor subconjunto seleccionado. Se
+    reporta el macro-F1, la diferencia pareada $\Delta$ con su p-valor
+    corregido por comparaciones múltiples (Benjamini--Hochberg) y el
+    veredicto. Un veredicto es de mejora o deterioro solo cuando el
+    intervalo bootstrap del 95\,\% de $\Delta$ excluye el cero y la
+    corrección lo confirma; en \textit{Customer Churn} la diferencia es
+    significativa pero tan pequeña que se lee como empate práctico.}
+  \label{tab:comparacion}
+  \small
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{lrrlrrrl}
+    \toprule
+    Dataset & \multicolumn{2}{c}{Baseline} &
+    \multicolumn{3}{c}{Mejor selección} & $\Delta$ F1 ($p_{\text{FDR}}$) & Veredicto \\
+    & vars & F1 & método & vars & F1 & & \\
+    \midrule
+    Breast Cancer W. & 30 & 0{,}937 & Boruta & 22 & 0{,}950 & $+0{,}013$ ($1{,}00$) & equivalente \\
+    Customer Churn & 15 & 1{,}000 & $\ell_1$ logística & 10 & 0{,}999 & $-0{,}001$ ($0{,}001$) & empate práctico \\
+    Madelon & 500 & 0{,}813 & Boruta & 19 & 0{,}907 & $+0{,}094$ ($0{,}001$) & mejora \\
+    Olive Oil (3 clases) & 8 & 1{,}000 & F de ANOVA & 5 & 1{,}000 & $0{,}000$ ($1{,}00$) & equivalente \\
+    Olive Oil (9 clases) & 8 & 0{,}839 & $\ell_1$ logística & 5 & 0{,}954 & $+0{,}116$ ($0{,}71$) & no concluyente \\
+    \bottomrule
+  \end{tabular}%
+  }
+\end{table}
+\FloatBarrier
+
+Los subconjuntos ganadores son interpretables variable a variable. En
+\textit{Customer Churn}, la $\ell_1$ logística retiene
+\varname{support_calls}, \varname{total_spend}, \varname{payment_delay},
+\varname{age}, \varname{tenure}, \varname{last_interaction}, una dummy de
+\varname{gender} y una de \varname{subscription_type}, junto a
+\varname{contract_length_Monthly}: las continuas informativas más
+representantes categóricos. En \textit{Olive Oil} de tres clases el
+subconjunto de F de ANOVA es \{\varname{linoleic}, \varname{linolenic},
+\varname{other}, \varname{palmitoleic}, \varname{stearic}\}, y en la
+formulación de nueve clases la $\ell_1$ logística cambia
+\varname{palmitoleic} y \varname{linoleic} por \varname{eicosenoic} y
+\varname{oleic}. En \textit{Breast Cancer}, el conjunto confirmado por
+Boruta (22 de 30) abarca las familias de \varname{radius}, \varname{area},
+\varname{perimeter}, \varname{concavity} y \varname{concave_points} en
+sus variantes \texttt{mean}, \texttt{se} y \texttt{worst}, y solo
+descarta ocho medidas redundantes. En \textit{Madelon}, las 19 variables
+de Boruta reúnen tanto la cabeza de la información mutua
+(\varname{feat_241}, \varname{feat_475}) como las que el modelo realmente
+explota (\varname{feat_336}, \varname{feat_105}, \varname{feat_153}), un
+detalle que reaparece en el diagnóstico de la
+sección~\ref{sec:diagnostico-qfs}. El roster completo por método se
+conserva en la Figura~\ref{fig:ap-roster}.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{a3_roster_completo.png}
+  \caption[Consenso de selección por variable]{Consenso de la selección
+    clásica: para cada variable, cuántos de los doce selectores la eligen
+    en su presupuesto de referencia. Las barras de la izquierda (rojo)
+    son variables que casi nadie elige (distractores); hacia la
+    derecha, variables de consenso. En \textit{Madelon} domina el pico de
+    variables elegidas por un solo método (el desierto de distractores),
+    mientras que en los conjuntos con señal clara el consenso se reparte
+    hacia la derecha.}
+  \label{fig:ap-roster}
+\end{figure}
+\FloatBarrier
+
+El veredicto por dataset aplica una regla de decisión con tres
+condiciones simultáneas (diferencia positiva, intervalo bootstrap de la
+diferencia pareada que excluye el cero y p-valor pareado corregido por
+multiplicidad inferior a 0{,}05) y un umbral de efecto práctico de
+$0{,}01$ en macro-F1: una diferencia estadísticamente significativa pero
+de magnitud inferior a ese umbral se declara empate práctico. El valor
+$0{,}01$ (un punto porcentual de macro-F1) se fija como mínima diferencia
+operativamente relevante para preferir un conjunto de variables sobre
+otro; por debajo de él, una diferencia puede ser significativa por el
+tamaño muestral sin tener consecuencias prácticas, como ilustra
+\textit{Customer Churn}.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{F07_significancia_magnitud.pdf}
+  \caption[Diferencia pareada en test]{Diferencia pareada de macro-F1 en test entre la mejor
+    selección y el baseline, con intervalo \textit{bootstrap} del
+    95\,\%. La línea discontinua marca el umbral práctico de 0{,}01, que
+    separa la significancia estadística de la magnitud útil.}
+  \label{fig:test}
+\end{figure}
+\FloatBarrier
+
+El patrón es consistente (Tabla~\ref{tab:comparacion}): en cuatro de los
+cinco problemas la selección iguala al baseline con menos variables, sin
+que el intervalo de la diferencia pareada excluya el cero (en
+\texttt{olive\_oil\_9class} la mejora aparente a 0{,}954 no es afirmable por
+las 86 filas de prueba). \textit{Customer Churn} ilustra el umbral
+práctico: el baseline saturado (1{,}000) supera al subconjunto (0{,}999) por
+una diferencia significativa pero despreciable, que se declara empate.
+
+\textit{Madelon} es el caso diferencial: el baseline con las 500
+variables alcanza 0{,}813 y el conjunto confirmado por Boruta (19
+variables) sube a 0{,}907. Es la única mejora estadísticamente
+significativa del bloque tras corregir por comparaciones múltiples
+($+0{,}094$, IC 95\,\% $[0{,}053, 0{,}140]$, p-valor corregido $0{,}001$ con FDR
+y $0{,}005$ con Holm) y cuantifica el daño que los distractores infligen al
+modelo completo, una vez que \textit{XGBoost} ya absorbe buena parte de
+ese daño en el baseline. Los 15 candidatos superaron el contraste de
+permutación de etiquetas con $p = 0{,}002$ (el mínimo alcanzable): ningún
+resultado es compatible con un clasificador aleatorio. Las matrices de
+confusión finales no muestran colapso de clases minoritarias; en
+\texttt{olive\_oil\_9class} la confusión se concentra en dos regiones
+que se reparten con sus vecinas.
+
+La magnitud de la mejora de \textit{Madelon} depende del modelo. Antes
+de fijar \textit{XGBoost} como baseline de comparación con QFS, los
+modelos lineales o de bosque sufrían más los 480 distractores y la
+selección producía mejoras cercanas a 0{,}28 de macro-F1. Con
+\textit{XGBoost}, el baseline completo sube a 0{,}813 y la mejora de
+Boruta se reduce a 0{,}094. Esta reducción no elimina el valor de
+seleccionar, pero muestra que parte de la señal de interacción puede ser
+recuperada por el modelo incluso cuando el criterio univariante no la
+ordena. La comparación posterior con QFS debe leerse en ese contexto:
+si el modelo usa variables que la información mutua de pares no sitúa
+arriba, el límite será el criterio de selección, no la capacidad del
+clasificador.
+
+\textbf{Interpretabilidad.} Para cada candidato evaluado se calcularon
+los valores SHAP (\textit{SHapley Additive exPlanations})~\cite{lundberg2017}
+con el explicador nativo de su familia de modelo (\textit{TreeExplainer}
+para bosques aleatorios y \textit{XGBoost}, \textit{LinearExplainer} para
+regresión logística y SVM lineal), conservando la matriz completa por
+instancia (y por clase en los problemas multiclase), no solo la
+importancia media (Figura~\ref{fig:shap-variables}). Esta
+evidencia confirma que las variables que sostienen cada modelo coinciden
+con las que la selección retuvo y con las señaladas por la asociación
+univariante del análisis exploratorio, cerrando el círculo entre
+relevancia estadística, selección y contribución al modelo. En las formulaciones de
+\textit{Olive Oil} el desglose por clase muestra que distintas regiones
+se apoyan en ácidos grasos distintos, lo que explica la confusión
+residual entre regiones vecinas. La lectura por instancia, además, es la
+base de interpretabilidad sobre la que se comparará el subconjunto del
+método cuántico.
+
+La excepción que da sentido al diagnóstico posterior es
+\textit{Madelon}. En ese dataset, los mayores valores SHAP incluyen
+\texttt{feat\_336}, \texttt{feat\_105} y \texttt{feat\_153}, variables
+que el vector $I_i$ de QFS no coloca en la cabeza con la misma claridad
+que \texttt{feat\_241}. Esta discrepancia entre lo que el modelo usa y
+lo que la relevancia por pares ordena es la huella variable a variable
+del fallo de criterio que se observa después en el óptimo exacto del
+QUBO.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{F06_shap_beeswarm_instancias.pdf}
+  \caption[Variables que sostienen los modelos]{Variables que sostienen los modelos elegidos por validación:
+    distribución de valores SHAP por instancia (\textit{beeswarm}) en
+    \textit{Breast Cancer}, \textit{Customer Churn} y \textit{Madelon}.
+    Cada punto es una instancia del candidato seleccionado y el color
+    codifica el valor de la variable, de bajo (azul) a alto (rojo).}
+  \label{fig:shap-variables}
+\end{figure}
+\FloatBarrier
+
+\subsection{Comparación final y mapa de evidencia}
+
+La aportación de la selección clásica no es uniforme entre regímenes: es
+máxima cuando abundan los distractores (\textit{Madelon}), neutra cuando
+el problema ya es casi separable (\textit{Breast Cancer} y \textit{Olive
+Oil} de tres clases) y apenas mueve el rendimiento cuando el baseline
+está saturado (\textit{Customer Churn}). Esta lectura por regímenes es la
+que condiciona después la comparación con el método cuántico.
+
+La comparación final consolida la lectura conjunta del bloque sobre las
+cuatro coordenadas que articulan la tesis. La
+Figura~\ref{fig:perfil-selectores}, la Tabla~\ref{tab:perfil} y el
+detalle de la Figura~\ref{fig:ap-redundancia-k} muestran que la estabilidad entre semillas es
+uniforme y alta en todos los métodos, de modo que no discrimina entre
+ellos; el verdadero diferenciador es la redundancia interna y su relación
+con el rendimiento, a coste contenido salvo en los \textit{wrappers}.
+Este contraste es el que conecta con el método cuántico, cuyo valor
+diferencial es la optimización global del compromiso
+relevancia--redundancia.
+
+Como cierre operativo, el bloque clásico fija la referencia que el método
+cuántico debe igualar o superar, y lo hace en las mismas cuatro
+coordenadas, no solo en rendimiento: presupuesto de $k=10$ variables en
+los tres conjuntos grandes y $k=5$ en las formulaciones de
+\textit{Olive Oil}, macro-F1 de prueba de la Tabla~\ref{tab:comparacion},
+redundancia interna comparable a la de \texttt{mrmr\_approx},
+estabilidad de la selección y los mismos contrastes estadísticos de este
+bloque. En cuatro problemas el objetivo es igualar el rendimiento con
+igual o menor redundancia interna y un subconjunto más compacto; en
+\textit{Madelon}, igualar o superar la mejora del mejor selector
+clásico. Además de la
+referencia de rendimiento, el bloque fija las entradas del método
+cuántico (el grafo de características de la sección~\ref{sec:grafo}),
+de modo que la fase cuántica no necesita recalcular ninguna cantidad
+informacional y cualquier diferencia de resultados será atribuible al
+método de optimización y no a las entradas.
+
+\section{Evaluación del método cuántico}
+\label{sec:res-cuantico}
+
+Conviene fijar antes la notación que se repite en esta sección y en la
+comparación posterior: \emph{QFS-NA} designa el subconjunto que devuelve
+la simulación analógica de átomos neutros; el \emph{oráculo} (o
+\emph{QFS-oráculo}) designa el óptimo exacto de la misma función QUBO al
+presupuesto fijado, que sirve de control para separar el criterio del
+optimizador; $\alpha$ controla en ese QUBO exacto el balance entre
+relevancia y redundancia, y con él la cardinalidad del subconjunto; y
+$\beta$ es el grado de libertad operativo del embebido que separa pares
+de variables relevantes.
+
+El método QFS se ejecutó conforme al diseño de la sección~\ref{sec:qfs}.
+Las formulaciones que caben en la envolvente operativa entraron
+directamente: \textit{Olive Oil}, con sus 8 predictores finales tras
+excluir la etiqueta alternativa y el proxy \varname{palmitic}
+(\varname{palmitoleic}, \varname{stearic}, \varname{oleic},
+\varname{linoleic}, \varname{linolenic}, \varname{arachidic},
+\varname{eicosenoic} y \varname{other}), y \textit{Customer Churn},
+cuyas 10 predictoras crudas se materializan como 15 columnas tras la
+codificación \textit{one-hot} de \varname{gender}, \varname{subscription_type}
+y \varname{contract_length} (sección~\ref{sec:regimenes-predictor}). Las
+que exceden la envolvente recibieron una preselección clásica previa con
+\texttt{mrmr\_approx}, ajustada solo con entrenamiento (\textit{Breast
+Cancer}, $30\rightarrow20$; \textit{Madelon}, $500\rightarrow20$),
+declarada como parte del método híbrido. Por cada formulación se barrió el parámetro
+$\beta$ en $\{0, 0{,}1, \ldots, 1\}$ y se eligió su valor con la
+partición de validación usando \textit{random forest} como evaluador
+fijo. La Figura~\ref{fig:qfs-beta} no resume solo un ajuste de
+hiperparámetros: separa los dos mandos del método, el control exacto de
+la cardinalidad mediante $\alpha$ en el QUBO y la reordenación operativa
+inducida por $\beta$ en las densidades de Rydberg.
+
+El embebido por escalado multidimensional se ejecutó con el protocolo
+verificado de 100 inicializaciones independientes y 100 iteraciones
+externas, guardando las posiciones y el error de embebido de cada
+dataset, con la razón de distancia mínima de la referencia, $1/\sqrt{2}$ del
+radio de bloqueo. La geometría se mide explícitamente, pero no se
+utiliza como explicación antes de contrastarla con el error MDS.
+
+\subsection{El mecanismo de QFS sobre los conjuntos de datos}
+\label{sec:mecanismo-qfs}
+
+Antes de leer rendimientos conviene ver \emph{cómo} el método convierte
+cada conjunto en una decisión. La cadena es la misma en las cinco
+formulaciones: el grafo de características (relevancia $I_i$ y redundancia
+$R_{ij}$) se materializa en una matriz de átomos cuyas distancias salen
+del embebido MDS; la evolución adiabática deja a cada átomo con una
+\emph{densidad de Rydberg} media, su propensión a quedar excitado y, por
+tanto, seleccionado; y el corte top-$k$ sobre esa densidad fija el
+subconjunto. La Figura~\ref{fig:organismo-cuantico} hace visible esa
+cadena: cada panel es una formulación, cada punto un átomo en su posición
+real del embebido, el color es la densidad de Rydberg y el anillo marca
+lo que el corte selecciona.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{qfs_organismo_cuantico.pdf}
+  \caption[Organismo cuántico: densidad de Rydberg y selección por
+    formulación]{Organismo cuántico. Para cada formulación, los átomos
+    (variables) se sitúan en su posición del embebido MDS, coloreados por
+    su densidad de Rydberg media; el anillo negro marca los seleccionados
+    por el corte top-$k$. El método elige, en esencia, los átomos de mayor
+    densidad.}
+  \label{fig:organismo-cuantico}
+\end{figure}
+\FloatBarrier
+
+La lectura confirma el mecanismo y anticipa los diagnósticos posteriores.
+El patrón general es nítido: los átomos seleccionados son casi siempre los
+de mayor densidad de Rydberg, de modo que la densidad \emph{es} el ranking
+operativo del método. Sobre ese patrón, cada régimen deja su firma. En
+\textit{Customer Churn}, parte del presupuesto se va a las \textit{dummies}
+de \texttt{subscription\_type} y de \texttt{gender}, que alcanzan densidad
+alta y desplazan a continuas como \texttt{tenure}: es la huella visual del
+déficit de optimizador que se cuantifica en la
+sección~\ref{sec:diagnostico-qfs}. En \textit{Madelon}, el corte sí captura
+átomos de densidad alta (\texttt{feat\_241}, \texttt{feat\_205},
+\texttt{feat\_346}), lo que muestra que el optimizador hace su trabajo; el
+problema, como se verá, es que esa densidad hereda un criterio $I_i$ casi
+plano y no apunta a las variables que el modelo necesita. \textit{Breast
+Cancer} concentra la densidad en la familia de tamaño y borde celular que
+ya dominaba la relevancia, y las dos formulaciones de \textit{Olive Oil}
+muestran un mapa pequeño y composicional donde la selección recae sobre los
+ácidos de mayor densidad (\texttt{other}, \texttt{linolenic},
+\texttt{arachidic}).
+
+\subsection{Parámetros de control de QFS y comparación con el óptimo exacto}
+\label{sec:mandos-control-qfs}
+
+El método tiene dos mandos que conviene no confundir
+(Figura~\ref{fig:qfs-beta}): el parámetro $\alpha$, que en el QUBO exacto
+traza una escalera discreta de cardinalidades, y el parámetro
+$\beta$ de la ejecución analógica, que reordena las densidades de Rydberg.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{F08_mandos_qfs_alpha_beta.pdf}
+  \caption[Mandos de QFS: $\alpha$ y $\beta$]{Mandos de QFS\@. El barrido de $\alpha$ corresponde al óptimo
+    exacto del QUBO y se usa como control clásico del criterio, no como
+    salida del simulador analógico. El barrido de $\beta$ pertenece a la
+    ejecución QFS-NA y modifica la geometría de distancias, el rendimiento
+    de validación y las densidades de Rydberg de las variables.}
+  \label{fig:qfs-beta}
+\end{figure}
+\FloatBarrier
+
+Junto a la ejecución operativa del simulador analógico ($\alpha$ fijo y
+corte top-$k$ sobre la densidad de Rydberg), se resolvió el óptimo exacto
+de la función de coste $Q(x;\alpha)$ por enumeración dentro de la
+envolvente, recorriendo $\alpha$ según el procedimiento de
+Mücke~\cite{mucke2023}. Esta referencia exacta es el mecanismo que
+convierte un posible resultado nulo en evidencia interpretable: permite
+separar si el simulador optimiza bien su criterio y si ese criterio, aun
+optimizado, produce subconjuntos predictivos. La
+Tabla~\ref{tab:qfs-control} resume ese control de calidad.
+
+\begin{table}[!htbp]
+  \centering
+  \caption[Control de calidad del optimizador analógico]{Control de
+    calidad del optimizador analógico frente al control exacto del QUBO a
+    presupuesto fijo, al valor de $\beta$ elegido por validación. La distancia de Hamming
+    cuenta en cuántas variables difiere el subconjunto del simulador
+    (QFS-NA) del control exacto \texttt{mucke\_k} sobre el mismo espacio de
+    la envolvente; el $\Delta$ coste evalúa ambos subconjuntos en
+    $\alpha=0{,}5$ para medir coherencia con la ejecución operativa. Como el
+    control \texttt{mucke\_k} se obtiene con restricción de cardinalidad y
+    un $\alpha$ propio, no es necesariamente el óptimo libre de
+    $\alpha=0{,}5$; por eso $\Delta$ puede ser negativo.}
+  \label{tab:qfs-control}
+  \small
+  \begin{tabular}{lrr}
+    \toprule
+    Dataset & Hamming & $\Delta$ coste \\
+    \midrule
+    Breast Cancer W. & 6 & $-4{,}399$ \\
+    Customer Churn & 6 & $+1{,}194$ \\
+    Madelon & 2 & $-0{,}008$ \\
+    Olive Oil (3 clases) & 2 & $-0{,}165$ \\
+    Olive Oil (9 clases) & 2 & $+0{,}164$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{F09_atribucion_criterio_optimizador.pdf}
+  \caption[Diagnóstico criterio--optimizador]{Diagnóstico criterio--optimizador en unidades de macro-F1. El
+    eje vertical mide la pérdida atribuible al criterio
+    relevancia--redundancia (baseline frente al control exacto del QUBO
+    a presupuesto fijo);
+    el eje horizontal mide la pérdida atribuible al optimizador o lectura
+    analógica (control exacto frente a QFS-NA). Así, \textit{Madelon} y
+    \textit{Customer Churn} no son dos fallos equivalentes: uno queda
+    limitado por el criterio y el otro por la ejecución simulada.}
+  \label{fig:criterio-optimizador}
+\end{figure}
+\FloatBarrier
+
+La lectura del control es diagnóstica, pero no se interpreta de forma
+aislada. En \textit{Madelon}, el coste de QFS-NA no explica el deterioro
+principal: a $\alpha=0{,}5$ la diferencia de coste es prácticamente nula y
+ligeramente favorable ($-0{,}008$), mientras que el óptimo exacto que se evalúa más
+abajo queda lejos del baseline. El problema no es alcanzar el mínimo de
+la función de coste, sino que esa función, construida con $I_i$ casi
+planos, no representa la señal que el modelo necesita. En
+\textit{Customer Churn}, el coste sí queda por encima del óptimo
+($+1{,}194$), pero el deterioro predictivo asociado es pequeño. Esta
+distinción evita leer la evaluación cuántica como dos fallos simétricos:
+uno es un límite del criterio; el otro, un déficit leve del readout u
+optimización analógica.
+
+\section{Comparación entre enfoques}
+\label{sec:res-comparacion}
+
+Los subconjuntos del método cuántico se evaluaron con el protocolo de
+modelado idéntico al del bloque clásico (los cuatro modelos, macro-F1,
+intervalos \textit{bootstrap} y contrastes pareados), reutilizando las predicciones
+por fila ya archivadas para comparar contra el baseline sin reentrenarlo.
+La Tabla~\ref{tab:qfs-comparacion} recoge, por formulación, la mejor
+configuración operativa del QFS y la configuración del control exacto
+(oráculo a presupuesto fijo) frente al baseline.
+
+\begin{table}[!htbp]
+  \centering
+  \caption[Comparación QFS--baseline en test]{Comparación QFS--baseline en prueba (macro-F1). QFS-NA es la
+    ejecución operativa del simulador analógico; QFS-oráculo es el control
+    exacto de $Q(x;\alpha)$ a presupuesto fijo. El veredicto aplica la
+    misma regla de decisión que el bloque clásico.}
+  \label{tab:qfs-comparacion}
+  \small
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{lrrrrl}
+    \toprule
+    Dataset & Baseline & QFS-NA & QFS-oráculo & $\Delta$ QFS-NA ($p_{\text{FDR}}$) & Veredicto (QFS-NA) \\
+    \midrule
+    Breast Cancer W. & 0{,}937 & 0{,}937 & 0{,}937 & $+0{,}000$ ($1{,}00$) & equivalente \\
+    Customer Churn & 1{,}000 & 0{,}987 & 0{,}999 & $-0{,}013$ ($0{,}001$) & deterioro \\
+    Madelon & 0{,}813 & 0{,}647 & 0{,}643 & $-0{,}166$ ($0{,}001$) & deterioro \\
+    Olive Oil (3 clases) & 1{,}000 & 1{,}000 & 1{,}000 & $+0{,}000$ ($1{,}00$) & equivalente \\
+    Olive Oil (9 clases) & 0{,}839 & 0{,}854 & 0{,}906 & $+0{,}016$ ($1{,}00$) & no concluyente \\
+    \bottomrule
+  \end{tabular}%
+  }
+\end{table}
+\FloatBarrier
+
+El veredicto se reporta con el mejor modelo en validación, pero conviene
+comprobar que no depende de esa elección. La Tabla~\ref{tab:qfs-robustez}
+resume el rango de macro-F1 de QFS-NA entre los cuatro modelos: la
+conclusión es estable salvo en \textit{Customer Churn}, donde los modelos
+de árbol sostienen el rendimiento (0{,}99) y los lineales caen a 0{,}89, de
+modo que el deterioro leve es, en parte, una interacción
+modelo--subconjunto. La rejilla completa de los cuatro modelos por
+configuración se conserva en la Tabla~\ref{tab:ap-qfs-modelos}.
+
+\begin{table}[!htbp]
+  \centering
+  \caption[Rendimiento de QFS-NA por modelo]{Macro-F1 de prueba del
+    subconjunto operativo QFS-NA con los cuatro clasificadores, por
+    formulación. Resume la robustez del veredicto frente a la elección de
+    modelo (Tabla~\ref{tab:qfs-robustez} del cuerpo).}
+  \label{tab:ap-qfs-modelos}
+  \small
+  \begin{tabular}{lcccc}
+    \toprule
+    Dataset & Reg.\ logística & SVM lineal & Random forest & XGBoost \\
+    \midrule
+    Breast Cancer W. & 0{,}938 & 0{,}938 & 0{,}937 & 0{,}950 \\
+    Customer Churn & 0{,}889 & 0{,}889 & 0{,}985 & 0{,}987 \\
+    Madelon & 0{,}640 & 0{,}647 & 0{,}610 & 0{,}597 \\
+    Olive Oil (3 clases) & 0{,}989 & 1{,}000 & 1{,}000 & 1{,}000 \\
+    Olive Oil (9 clases) & 0{,}969 & 0{,}874 & 0{,}854 & 0{,}951 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\FloatBarrier
+
+\begin{table}[!htbp]
+  \centering
+  \caption[Robustez del veredicto de QFS-NA entre modelos]{Robustez del
+    veredicto de QFS-NA frente al modelo. Rango de macro-F1 de prueba
+    entre los cuatro clasificadores y modelo que lo maximiza.}
+  \label{tab:qfs-robustez}
+  \small
+  \begin{tabular}{llcc}
+    \toprule
+    Dataset & Mejor modelo & Rango macro-F1 & Veredicto estable \\
+    \midrule
+    Breast Cancer W. & XGBoost & 0{,}937--0{,}950 & sí \\
+    Customer Churn & XGBoost & 0{,}889--0{,}987 & no (lineales caen) \\
+    Madelon & SVM lineal & 0{,}597--0{,}647 & sí (deterioro) \\
+    Olive Oil (3 clases) & SVM/RF/XGB & 0{,}989--1{,}000 & sí \\
+    Olive Oil (9 clases) & reg.\ logística & 0{,}854--0{,}969 & sí (inconcluso) \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{F10_comparacion_final_clasico_qfs.pdf}
+  \caption[Comparación final clásico--QFS en test]{Comparación final en test entre baseline, mejor referencia
+    clásica, QFS-NA y QFS-oráculo. QFS-NA es la ejecución operativa del
+    simulador analógico; QFS-oráculo es el control exacto clásico del
+    QUBO a presupuesto fijo. Las barras horizontales muestran el
+    intervalo bootstrap del
+    delta frente al baseline, y la separación entre QFS-NA y oráculo
+    enlaza con la atribución de la Figura~\ref{fig:criterio-optimizador}.}
+  \label{fig:qfs-vs-clasico}
+\end{figure}
+\FloatBarrier
+
+\clearpage
+
+Para comprobar si el veredicto anterior era solo un punto aislado del
+presupuesto, se realizó un re-modelado dirigido sobre la escalera de
+$k$: baseline, \texttt{mrmr\_approx} y QFS-NA ordenado por densidad de
+Rydberg, manteniendo el \textit{random forest} y la métrica de macro-F1.
+La trayectoria completa de validación se conserva en la Figura~\ref{fig:ap-rendimiento-k}.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{ev6_rendimiento_vs_k.png}
+  \caption[Rendimiento frente al tamaño del subconjunto]{Macro-F1 de validación frente al tamaño del subconjunto en el
+    re-modelado dirigido. Se comparan baseline, mRMR y QFS-NA ordenado
+    por densidad de Rydberg para comprobar si el presupuesto elegido es
+    un punto aislado o parte de una trayectoria estable.}
+  \label{fig:ap-rendimiento-k}
+\end{figure}
+\FloatBarrier
+
+La comparación final (Figura~\ref{fig:qfs-vs-clasico}) admite una lectura
+por regímenes, no una clasificación lineal de ganadores. En los problemas
+con señal clara y espacio reducido (\textit{Breast Cancer}, \textit{Olive
+Oil} de tres clases), el QFS iguala al baseline con subconjuntos
+compactos. En \textit{Olive Oil} de nueve clases, la
+configuración del oráculo sube hasta 0{,}906, pero el reducido conjunto de
+prueba impide afirmar la mejora, en coherencia con la prudencia ya
+aplicada al bloque clásico. Los deterioros informativos son
+\textit{Madelon} y \textit{Customer Churn}, pero no tienen la misma
+magnitud ni el mismo mecanismo.
+
+El presupuesto $k$ y el recorrido de $\alpha$ permiten leer qué variable
+entra antes en el criterio exacto (Figura~\ref{fig:ap-alpha}). En \textit{Customer Churn}, la
+escalera de $\alpha$ comienza con \texttt{support\_calls}; en
+$\alpha=0{,}5$ ya incorpora \texttt{payment\_delay},
+\texttt{total\_spend} y \texttt{contract\_length\_Monthly}; y en
+$\alpha=0{,}7$ añade \texttt{age}, \texttt{tenure} y una sola dummy de
+\texttt{gender}. El orden del oráculo es coherente con el régimen:
+prioriza continuas informativas y solo después introduce representantes
+categóricos. QFS-NA, en cambio, retiene el grupo completo de
+\texttt{subscription\_type} pero ya incorpora \texttt{payment\_delay} y
+\texttt{total\_spend}; deja fuera \texttt{tenure} y
+\texttt{last\_interaction}. El problema no es el
+presupuesto $k$ en abstracto, sino qué cupos se consumen.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{f10_b4_escalera_alpha.png}
+  \caption[Escalera de $\alpha$ del óptimo exacto]{Escalera de $\alpha$ del óptimo exacto. El mecanismo traza una
+    trayectoria discreta de cardinalidad que puede saltar presupuestos;
+    en \textit{Madelon}, además, la entrada $I_i$ es casi plana y el
+    orden de mérito deja de ser informativo.}
+  \label{fig:ap-alpha}
+\end{figure}
+\FloatBarrier
+
+En \textit{Madelon}, la misma escalera muestra otro mecanismo. El óptimo
+exacto selecciona solo \texttt{feat\_241} desde $\alpha=0{,}1$ hasta
+$\alpha=0{,}6$, pasa a dos variables en $\alpha=0{,}7$--$0{,}8$, cuatro en
+$\alpha=0{,}9$ y salta a veinte en $\alpha=1{,}0$. La función de coste traza
+una trayectoria de cardinalidades con saltos; para comparar a $k=10$, el
+control exacto usa la restricción explícita de presupuesto. Aun así,
+recibe un vector $I_i$ casi degenerado: \texttt{feat\_241}=0{,}026,
+\texttt{feat\_475}=0{,}023 y \texttt{feat\_338}=0{,}020. Aumentar $k$ no
+resuelve este caso si el criterio no distingue las variables que
+interaccionan. El fallo de \textit{Madelon} es anterior al optimizador.
+
+El parámetro $\beta$ sí reordena las densidades de Rydberg, pero no
+explica el deterioro de \textit{Customer Churn}. La
+Figura~\ref{fig:ap-beta}
+muestra que los valores elegidos por validación son $\beta=0{,}1$ en
+\textit{Breast Cancer}, $\beta=0{,}9$ en \textit{Customer Churn},
+$\beta=0{,}1$ en \textit{Madelon}, $\beta=0{,}0$ en \textit{Olive Oil} de
+tres clases y $\beta=0{,}2$ en la formulación de nueve clases. Todas las
+configuraciones usan la razón de distancia $1/\sqrt{2}$ de la
+referencia.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{f10_b5_beta_geometria.png}
+  \caption[Densidad de Rydberg frente a $\beta$]{Densidad de Rydberg media de las variables seleccionadas
+    frente al resto al variar $\beta$, por dataset. La figura conserva
+    el detalle operativo del mando geométrico de QFS-NA.}
+  \label{fig:ap-beta}
+\end{figure}
+\FloatBarrier
+
+La comprobación decisiva es el embebido MDS verificado, con 100
+inicializaciones independientes (Tabla~\ref{tab:embedding}). El error
+medio de embebido de \textit{Customer Churn} (0{,}234) es prácticamente
+igual al de \textit{Breast Cancer} (0{,}225), que no se deteriora, y menor
+que el de \textit{Madelon} (0{,}247). Por tanto, los datos verificados no
+respaldan la hipótesis levantada durante el análisis (que el
+\textit{one-hot} generase una geometría especialmente frustrada y
+explicase el deterioro): una diferencia de embebido de una centésima
+frente a un conjunto que iguala al baseline no basta para atribuir la
+caída al MDS\@. El
+\textit{one-hot} sigue siendo una divergencia de preprocesado relevante y
+explica por qué existen grupos de dummies competidores, pero no se
+sostiene como causa geométrica demostrada. El déficit de \textit{Customer
+Churn} debe leerse como optimizador o \textit{readout} en un régimen de
+baja redundancia y techo saturado, no como fallo de MDS\@. El embebido
+atómico verificado queda documentado en la Figura~\ref{fig:ap-atomos-mds}.
+
+
+\begin{table}[!htbp]
+  \centering
+  \caption[Error de embebido MDS por formulación]{Error medio de embebido
+    por escalado multidimensional al $\beta$ elegido por validación, con
+    100 inicializaciones independientes y razón de distancia
+    $1/\sqrt{2}$ del radio de bloqueo. Un error mayor indica una
+    geometría más difícil de realizar en el plano. El error de
+    \textit{Customer Churn} es similar al de \textit{Breast Cancer}
+    (que no se deteriora) y menor que el de \textit{Madelon}, lo que
+    no respalda la geometría como explicación principal de su deterioro.}
+  \label{tab:embedding}
+  \small
+  \begin{tabular}{lrr}
+    \toprule
+    Formulación & $\beta$ elegido & Error MDS medio \\
+    \midrule
+    Breast Cancer Wisconsin & 0{,}1 & 0{,}225 \\
+    Customer Churn & 0{,}9 & 0{,}234 \\
+    Madelon & 0{,}1 & 0{,}247 \\
+    Olive Oil (3 clases) & 0{,}0 & 0{,}125 \\
+    Olive Oil (9 clases) & 0{,}2 & 0{,}127 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\FloatBarrier
+
+\subsection{QFS en el espacio de selectores y en las cuatro coordenadas}
+\label{sec:espacio-metodos-qfs}
+
+La comparación no se agota en el macro-F1. La referencia clásica era un
+sistema de coordenadas (relevancia, redundancia, estabilidad y coste), y
+QFS debe leerse en ellas. En relevancia y redundancia, QFS se comporta
+como una variante de la familia mRMR cuando el régimen lo permite: en
+\textit{Olive Oil} de tres clases, QFS-NA y mRMR coinciden por completo
+(Jaccard $1{,}00$, Tabla~\ref{tab:qfs-solape}) sobre los ácidos de alta
+relevancia. En trazabilidad, el subconjunto QFS-NA comparte entradas
+fijas con el bloque clásico, aunque su reproducibilidad completa no se
+estima porque no se realizaron re-ejecuciones completas de la fase
+cuántica; y en coste, la vía simulada es
+órdenes de magnitud más lenta que cualquier filtro (Figura~\ref{fig:ap-coste-cuantico}), un coste que hoy solo se justifica
+como exploración de viabilidad.
+
+
+La Tabla~\ref{tab:qfs-solape} sitúa el subconjunto operativo frente a su
+propio óptimo exacto y a mRMR (el solape frente a los doce métodos se
+recoge en la Figura~\ref{fig:ap-jaccard-12}). La lectura
+por variable es la informativa: en \textit{Madelon}, QFS-NA y el oráculo
+comparten nueve de diez variables (la planitud de $I_i$ impide fijar un
+subconjunto único, de ahí el bajo solape con mRMR); en \textit{Customer
+Churn}, QFS-NA coincide con el oráculo solo en siete de diez: retiene
+\varname{payment_delay} y \varname{total_spend} pero gasta cupo en
+\textit{dummies} de \texttt{subscription\_type} y deja fuera
+\texttt{tenure} y \varname{last_interaction}, que sí entran en el óptimo
+exacto. Ese desplazamiento anticipa, sin probar todavía nada geométrico,
+el déficit leve de optimizador del diagnóstico siguiente.
+
+
+\begin{table}[!htbp]
+  \centering
+  \caption[Solape del subconjunto QFS-NA con el oráculo y con mRMR]{Solape
+    (Jaccard) del subconjunto operativo QFS-NA con su óptimo exacto
+    (oráculo) y con mRMR, al presupuesto de referencia. La última columna
+    cuenta las variables compartidas con el oráculo.}
+  \label{tab:qfs-solape}
+  \small
+  \begin{tabular}{lccc}
+    \toprule
+    Dataset & $J$(NA, oráculo) & $J$(NA, mRMR) & Comparten c/ oráculo \\
+    \midrule
+    Breast Cancer W. & 0{,}54 & 0{,}25 & 7 / 10 \\
+    Customer Churn & 0{,}54 & 0{,}54 & 7 / 10 \\
+    Madelon & 0{,}82 & 0{,}25 & 9 / 10 \\
+    Olive Oil (3 clases) & 0{,}67 & 1{,}00 & 4 / 5 \\
+    Olive Oil (9 clases) & 0{,}67 & 0{,}43 & 4 / 5 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\FloatBarrier
+
+\section{Diagnóstico criterio--optimizador}
+\label{sec:diagnostico-qfs}
+
+El plano de la Figura~\ref{fig:criterio-optimizador} resume la tesis
+del bloque cuántico, y la Tabla~\ref{tab:atribucion} lo descompone en
+cifras: para cada formulación separa la pérdida atribuible al criterio
+(baseline frente al control exacto del QUBO a presupuesto fijo) de la
+atribuible al optimizador o \textit{readout} (control exacto frente a
+QFS-NA).
+
+\begin{table}[!htbp]
+  \centering
+  \caption[Atribución criterio--optimizador]{Descomposición del
+    rendimiento de QFS en macro-F1 de prueba. $\Delta$ criterio
+    $=$ baseline $-$ oráculo mide cuánto pierde el subconjunto por usar el
+    criterio relevancia--redundancia, aun resuelto de forma exacta;
+    $\Delta$ optimizador $=$ oráculo $-$ QFS-NA mide cuánto pierde además
+    la ejecución analógica respecto a ese óptimo. Un valor negativo indica
+    mejora en lugar de pérdida. La separación entre ambas columnas es lo
+    que distingue un fallo de criterio (\textit{Madelon}) de un déficit de
+    optimizador (\textit{Customer Churn}).}
+  \label{tab:atribucion}
+  \small
+  \begin{tabular}{lrrrrr}
+    \toprule
+    Dataset & Baseline & Oráculo & QFS-NA &
+    $\Delta$ criterio & $\Delta$ optimizador \\
+    \midrule
+    Breast Cancer W. & 0{,}937 & 0{,}937 & 0{,}937 & $0{,}000$ & $0{,}000$ \\
+    Customer Churn & 0{,}9998 & 0{,}9991 & 0{,}987 & $0{,}0007$ & $0{,}012$ \\
+    Madelon & 0{,}813 & 0{,}643 & 0{,}647 & $0{,}170$ & $-0{,}003$ \\
+    Olive Oil (3 clases) & 1{,}000 & 1{,}000 & 1{,}000 & $0{,}000$ & $0{,}000$ \\
+    Olive Oil (9 clases) & 0{,}839 & 0{,}906 & 0{,}854 & $-0{,}067$ & $0{,}052$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\FloatBarrier
+
+En \textit{Madelon}, el baseline con todas las
+variables alcanza 0{,}813, el control exacto del QUBO baja a 0{,}643 y
+QFS-NA queda en 0{,}647. La pérdida total es 0{,}166 de macro-F1, casi toda
+atribuible al criterio (0{,}170): el optimizador no añade pérdida, pues
+QFS-NA iguala al control exacto del QUBO a presupuesto fijo (0{,}647 frente
+a 0{,}643). La explicación a nivel de variable coincide con SHAP: el modelo usa
+\texttt{feat\_336}, \texttt{feat\_105} y \texttt{feat\_153}, entre
+otras, mientras que el criterio MI del QFS rankea primero
+\texttt{feat\_241} y apenas separa el resto. El modelo encuentra señal
+en variables que la relevancia univariante no ordena bien. Por eso el
+fallo de \textit{Madelon} no se corrige con más MDS ni con otro
+$\beta$: es un límite de la formulación basada en información mutua por
+pares.
+
+En \textit{Customer Churn}, la pérdida total es mucho menor. El baseline
+alcanza 0{,}9998, el oráculo 0{,}9991 y QFS-NA 0{,}987: el criterio solo
+explica 0{,}0007 de pérdida, mientras que el optimizador explica 0{,}012.
+El modelo sigue apoyándose en \texttt{support\_calls}, \texttt{age},
+\texttt{total\_spend} y \texttt{contract\_length\_Monthly}, y todas
+ellas permanecen en la selección QFS-NA, lo que explica que el deterioro
+sea leve. La parte que falta se concentra en cupos gastados en el grupo
+de dummies de \texttt{subscription\_type} y en la ausencia de
+\texttt{tenure} y \texttt{last\_interaction}. Esta lectura descarta la simetría de dos
+fallos iguales: \textit{Madelon} es un fallo grande de criterio;
+\textit{Customer Churn} es un déficit leve de optimizador sin evidencia
+geométrica.
+
+El organismo cuántico (Figura~\ref{fig:organismo-cuantico}) hace visible
+esa distinción a nivel de átomo. En \textit{Customer Churn}, las
+\textit{dummies} de \texttt{subscription\_type} alcanzan densidades de
+Rydberg altas y son seleccionadas, mientras que \texttt{tenure} y
+\texttt{last\_interaction}, que el oráculo sí incorpora, quedan con
+densidad baja: el fallo no es que el criterio ignore esas continuas, sino
+que la lectura analógica de densidades las deja por debajo del corte. Es,
+literalmente, un problema de \textit{readout}. En \textit{Madelon}, en
+cambio, el corte selecciona átomos de densidad genuinamente alta
+(\texttt{feat\_241}, \texttt{feat\_205}): el optimizador acierta con su
+objetivo, pero ese objetivo, construido sobre un $I_i$ casi plano, no
+coincide con las variables que el modelo necesita. La misma figura, dos
+diagnósticos opuestos: en Churn la densidad no refleja bien al criterio;
+en Madelon lo refleja con fidelidad, y el criterio es el que falla.
+
+El resto de datasets cierra el marco. \textit{Breast Cancer} iguala al
+baseline y las variables con mayor contribución SHAP
+(\varname{texture_worst}, \varname{radius_worst},
+\varname{area_worst}, \varname{concave_points_worst}) están dentro de
+la familia que QFS retiene. \textit{Olive Oil} de tres clases alcanza
+1{,}000 con ácidos de alta relevancia (\texttt{other},
+\texttt{linolenic}, \texttt{linoleic}, \texttt{stearic}), y la versión
+de nueve clases queda inconclusa por el tamaño de prueba. En este último
+caso, macro-F1 es la métrica primaria porque el AUC binario no aplica a
+la formulación multiclase; en los binarios se registró AUC solo como
+puente con la referencia. \textit{Customer Churn} también cae en AUC
+(0{,}983 frente a 1{,}000), lo que indica que la pérdida no es un artefacto
+de macro-F1, aunque sigue siendo pequeña en un problema casi saturado.
+
+\section{Consistencia, pruebas y discusión}
+\label{sec:consistencia-discusion}
+
+La atribución anterior depende de que se hayan descartado explicaciones
+alternativas. La cadena de tests lo hace de forma explícita
+(Tabla~\ref{tab:cadena-tests}): FDR y tamaño
+de efecto separan señal real de significancia por tamaño muestral; la
+comprobación posterior al preprocesado verifica que el preprocesado no altera
+rankings ni target; la verificación de particiones descarta solapes,
+\textit{leakage} y particiones adversarialmente distinguibles; la
+selección se compara con 20 permutaciones del target, con p-valor mínimo
+$1/21 \approx 0{,}048$; y el modelado se evalúa con 400 remuestreos
+bootstrap, 2\,000 permutaciones de signos y 500 permutaciones de
+etiquetas, cuya resolución mínima es $1/501 \approx 0{,}002$. Estos
+eslabones no son accesorios: autorizan a atribuir \textit{Madelon} al
+criterio y \textit{Customer Churn} al optimizador en lugar de al azar, al
+\textit{split} o a una fuga de información.
+
+\begin{table}[!htbp]
+  \centering
+  \caption[Cadena de controles estadísticos]{Cadena de controles estadísticos que acota las explicaciones alternativas antes del
+    diagnóstico. Cada fila indica qué confusor descarta el control, su
+    parámetro o resolución mínima de p-valor, y la evidencia donde se
+    materializa en la memoria.}
+  \label{tab:cadena-tests}
+  \small
+  \begin{tabular}{p{0.27\textwidth}p{0.34\textwidth}p{0.30\textwidth}}
+    \toprule
+    Control & Qué controla & Parámetro / evidencia \\
+    \midrule
+    Corrección FDR (Benjamini--Hochberg) & Falsos positivos por
+    multiplicidad & $q=0{,}05$; Tabla~\ref{tab:senal} \\
+    Tamaño de efecto & Significancia sin magnitud relevante & Cliff /
+    $\varepsilon^2$ / Cramér; Tabla~\ref{tab:senal} \\
+    Invarianza del preprocesado & Sesgo introducido al procesar &
+    Spearman, KS, PSI; Tabla~\ref{tab:postproc} \\
+    Verificación de particiones & \textit{Leakage}, \textit{drift}, split
+    sesgado & AUC adversarial; Tabla~\ref{tab:particiones} \\
+    Permutación del target (selección) & Señal espuria del selector &
+    20 perm., $p_{\min}=1/21\approx0{,}048$ \\
+    \textit{Bootstrap} de prueba & Incertidumbre de las métricas &
+    400 remuestreos; Figura~\ref{fig:test} \\
+    Permutación de signos pareada & Mejora por azar fila a fila &
+    2\,000 perm.; Tabla~\ref{tab:comparacion} \\
+    Permutación de etiquetas & Compatibilidad con clasificador aleatorio &
+    500 perm., $p_{\min}=1/501\approx0{,}002$ \\
+    Óptimo exacto del QUBO & Confusión criterio vs.\ optimizador &
+    Enumeración; Tablas~\ref{tab:qfs-control} y~\ref{tab:atribucion} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\FloatBarrier
+
+La consistencia se midió donde el diseño lo permite. En selección, tres
+semillas muestran que los filtros y métodos basados en información mutua
+son muy estables entre semillas: su Jaccard medio (Tabla~\ref{tab:perfil}) es 1{,}00 para varios filtros al presupuesto de referencia. Ese solape bruto, sin embargo, sobreestima la estabilidad de mRMR y de la información mutua, cuyo índice de Kuncheva corregido por azar es sensiblemente menor. La variación aparece en métodos
+estocásticos o en empates de variables casi equivalentes: \textit{random
+forest} baja a 0{,}88 en \textit{Madelon} y 0{,}78 en
+\textit{Olive Oil} de nueve clases; mRMR en \textit{Customer Churn}
+queda en 0{,}88. La lectura variable a variable es benigna: en
+\textit{Madelon} cambian representantes redundantes como
+\texttt{feat\_28} y \texttt{feat\_48}; en \textit{Customer Churn} pueden
+alternarse dummies de \texttt{subscription\_type}; en \textit{Olive Oil}
+se intercambian ácidos composicionalmente próximos como
+\texttt{palmitoleic} y \texttt{stearic}. Cambia el representante, no la
+familia de información.
+
+La Figura~\ref{fig:ap-consistencia} muestra esta estabilidad de forma
+granular y contrasta el solape de Jaccard con el índice de Kuncheva: la
+frialdad de mRMR e información mutua en el segundo confirma, conjunto a
+conjunto, la cautela ya señalada sobre su estabilidad. Esta misma
+fragilidad de la información mutua reaparece en el bloque cuántico:
+\textit{Madelon}, donde su estabilidad corregida es mínima, es también el
+conjunto en el que el criterio QUBO basado en información mutua fracasa en
+rendimiento (comparación con el óptimo exacto, sección posterior), de modo
+que estabilidad y rendimiento apuntan a la misma limitación del criterio
+ante señal de orden superior.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\textwidth]{f10_b10_consistencia.png}
+  \caption[Estabilidad de la selección clásica: Jaccard frente a Kuncheva]{Estabilidad
+    de la selección clásica entre semillas. Los dos paneles apilados
+    separan la lectura bruta de la lectura corregida: el Jaccard sugiere
+    estabilidad alta en casi todos los selectores, pero Kuncheva descuenta
+    el solape esperable por azar y enfría mRMR e información mutua (en
+    \textit{Madelon}, hasta $0{,}16$ y $0{,}19$). Esta diferencia es
+    metodológicamente importante porque QFS hereda el mismo tipo de
+    criterio relevancia--redundancia: donde la estabilidad corregida cae,
+    la evidencia posterior debe interpretarse como posible límite del
+    criterio, no como simple variación aleatoria.}
+  \label{fig:ap-consistencia}
+\end{figure}
+\FloatBarrier
+
+La consistencia de modelado y QFS se interpreta con prudencia. El
+modelado no es un experimento multi-semilla; su robustez procede de
+bootstrap, permutaciones pareadas y permutaciones de etiquetas sobre el
+conjunto de prueba. QFS se ejecuta una vez por configuración de
+$\beta$, pero cada embebido usa 100 inicializaciones MDS y 10\,000
+mediciones del simulador. Una consistencia fuerte por múltiples
+re-ejecuciones completas de modelado y QFS sería un experimento nuevo,
+no una propiedad que deba inferirse de los artefactos actuales. Esta
+limitación se declara porque forma parte del camino metodológico:
+primero se aseguró la trazabilidad del criterio, del embebido y de las
+predicciones; después se interpretó lo que esos controles autorizan.
+
+En conjunto, los resultados sostienen una conclusión más precisa que
+``QFS empata o pierde''. El bloque clásico predice el régimen; el espejo
+de doce métodos sitúa a QFS en el compromiso relevancia--redundancia; la
+escalera de $\alpha$ muestra si el criterio tiene un orden de mérito; el
+embebido MDS no aporta evidencia suficiente para explicar geométricamente
+la caída de \textit{Customer Churn}; SHAP muestra si las variables seleccionadas son las que usa el
+modelo; y la cadena de tests permite atribuir con cautela. El resultado
+final es que \textit{Madelon} queda limitado por el criterio, porque la
+MI por pares no ve la señal de interacción; \textit{Customer Churn}
+queda limitado de forma leve por el optimizador o readout en un régimen
+de baja redundancia y techo saturado; \textit{Breast Cancer} y
+\textit{Olive Oil} de tres clases no muestran fallo atribuible; y
+\textit{Olive Oil} de nueve clases sigue abierto por tamaño muestral.
+
+Esta lectura tiene, además, una consecuencia práctica que conviene
+anticipar: allí donde QFS iguala a la selección clásica, el criterio
+cuántico es competitivo, y esa competitividad es precisamente lo que
+justifica explorar su ventaja computacional sobre hardware de átomos
+neutros (seleccionar características sobre tantas variables como cúbits,
+de forma global y en un tiempo de ejecución muy corto). Esta
+proyección, y el estado actual de las plataformas de átomos neutros, se
+desarrollan en el capítulo de conclusiones.

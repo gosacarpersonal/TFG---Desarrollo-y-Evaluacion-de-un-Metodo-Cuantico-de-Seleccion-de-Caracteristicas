@@ -1,0 +1,5 @@
+dataset,filas,features,ratio_features_muestras,filas_por_feature,posibles_identificadores,nulos_totales,filas_duplicadas,variables_constantes,variables_baja_cardinalidad_relativa,n_clases,ratio_mayoritaria_minoritaria,significativas_fdr,reduccion_por_correccion,pares_correlacion_alta,correlacion_abs_maxima,componentes_80,componentes_90
+breast_cancer_wisconsin,569,31,0.054481546572934976,18.35483870967742,1,0,0,0,0,2,1.6839622641509433,27,0,29,0.9996020278067482,5,7
+customer_churn,440832,11,2.495281649245064e-05,40075.63636363636,1,0,0,0,9,2,1.3100407162283252,10,0,0,0.19068916969004562,6,7
+madelon,2000,500,0.25,4.0,0,0,0,0,24,2,1.0,13,25,12,0.996144834595519,295,369
+olive_oil,572,11,0.019230769230769232,52.0,1,0,0,0,1,9,8.24,10,0,2,0.9164743397873972,3,5

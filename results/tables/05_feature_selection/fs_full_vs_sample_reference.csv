@@ -1,0 +1,6 @@
+dataset,max_abs_target_prop_diff,status
+breast_cancer_wisconsin,0.0,ok
+customer_churn,9.303977548924536e-05,ok
+madelon,0.0,ok
+olive_oil_3class,0.0,ok
+olive_oil_9class,0.0,ok

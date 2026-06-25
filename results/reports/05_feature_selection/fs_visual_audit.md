@@ -1,0 +1,32 @@
+# Fase 5. Auditoría visual
+
+Regenerado: 2026-06-16 10:31:31.
+
+Figuras detectadas en `results/figures/05_feature_selection/`: 26.
+
+- results/figures/05_feature_selection/method_feature_heatmaps/breast_cancer_wisconsin_method_feature_heatmap.pdf
+- results/figures/05_feature_selection/method_feature_heatmaps/breast_cancer_wisconsin_method_feature_heatmap.png
+- results/figures/05_feature_selection/method_feature_heatmaps/customer_churn_method_feature_heatmap.pdf
+- results/figures/05_feature_selection/method_feature_heatmaps/customer_churn_method_feature_heatmap.png
+- results/figures/05_feature_selection/method_feature_heatmaps/madelon_method_feature_heatmap.pdf
+- results/figures/05_feature_selection/method_feature_heatmaps/madelon_method_feature_heatmap.png
+- results/figures/05_feature_selection/method_feature_heatmaps/olive_oil_3class_method_feature_heatmap.pdf
+- results/figures/05_feature_selection/method_feature_heatmaps/olive_oil_3class_method_feature_heatmap.png
+- results/figures/05_feature_selection/method_feature_heatmaps/olive_oil_9class_method_feature_heatmap.pdf
+- results/figures/05_feature_selection/method_feature_heatmaps/olive_oil_9class_method_feature_heatmap.png
+- results/figures/05_feature_selection/permutation/fs_permutation_above_null_heatmap.pdf
+- results/figures/05_feature_selection/permutation/fs_permutation_above_null_heatmap.png
+- results/figures/05_feature_selection/redundancy/fs_redundancy_delta.pdf
+- results/figures/05_feature_selection/redundancy/fs_redundancy_delta.png
+- results/figures/05_feature_selection/roster_by_dataset/breast_cancer_wisconsin_roster_comparison.pdf
+- results/figures/05_feature_selection/roster_by_dataset/breast_cancer_wisconsin_roster_comparison.png
+- results/figures/05_feature_selection/roster_by_dataset/customer_churn_roster_comparison.pdf
+- results/figures/05_feature_selection/roster_by_dataset/customer_churn_roster_comparison.png
+- results/figures/05_feature_selection/roster_by_dataset/madelon_roster_comparison.pdf
+- results/figures/05_feature_selection/roster_by_dataset/madelon_roster_comparison.png
+- results/figures/05_feature_selection/roster_by_dataset/olive_oil_3class_roster_comparison.pdf
+- results/figures/05_feature_selection/roster_by_dataset/olive_oil_3class_roster_comparison.png
+- results/figures/05_feature_selection/roster_by_dataset/olive_oil_9class_roster_comparison.pdf
+- results/figures/05_feature_selection/roster_by_dataset/olive_oil_9class_roster_comparison.png
+- results/figures/05_feature_selection/stability/fs_stability_jaccard_heatmap.pdf
+- results/figures/05_feature_selection/stability/fs_stability_jaccard_heatmap.png

@@ -1,0 +1,16 @@
+feature,rank
+contract_length_Monthly,1
+gender_Female,2
+subscription_type_Basic,3
+contract_length_Annual,4
+support_calls,5
+subscription_type_Premium,6
+total_spend,7
+gender_Male,8
+payment_delay,9
+age,10
+tenure,11
+contract_length_Quarterly,12
+last_interaction,13
+usage_frequency,14
+subscription_type_Standard,15

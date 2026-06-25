@@ -1,0 +1,7 @@
+dataset,variable_a,variable_b,incluye_target,cramers_v
+customer_churn,gender,subscription_type,False,0.0025681416782959263
+customer_churn,gender,contract_length,False,0.06760899160608101
+customer_churn,gender,target,True,0.17538844407060097
+customer_churn,subscription_type,contract_length,False,0.0068101904190041454
+customer_churn,subscription_type,target,True,0.020442706182049377
+customer_churn,contract_length,target,True,0.43354823832344724

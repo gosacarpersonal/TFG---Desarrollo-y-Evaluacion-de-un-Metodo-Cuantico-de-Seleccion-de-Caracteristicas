@@ -1,0 +1,5 @@
+dataset,variables_testadas,pct_rechaza_normalidad,n_minimo_usado,n_maximo_usado
+breast_cancer_wisconsin,30,1.0,569,569
+customer_churn,7,1.0,5000,5000
+madelon,500,0.228,2000,2000
+olive_oil,10,1.0,572,572

@@ -1,0 +1,21 @@
+{
+  "f_ejecucion_limpia": true,
+  "g_sin_big_bang": true,
+  "h_sin_maquinaria_en_cuerpo": true,
+  "a_salidas_con_observacion": true,
+  "b_sin_frases_repetidas_ge3": true,
+  "c_ratio_observaciones_con_numeros": 1.0,
+  "c_cumple_70pct": true,
+  "e_png": 8,
+  "e_pdf": 8,
+  "e_png_eq_pdf": true,
+  "e_mostradas": 8,
+  "e_guardadas_eq_mostradas": true,
+  "k_sin_vocabulario_pipeline": true,
+  "i_sin_tablas_prohibidas": true,
+  "l_columnas_multiplicidad": true,
+  "m_p_corregido_disponible": true,
+  "n_boruta_confirmado": true,
+  "o_determinismo_vs_fase6": true,
+  "artefactos_todos_ok": true
+}

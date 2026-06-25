@@ -1,0 +1,4 @@
+dataset,method,family,seed,k,feature,rank,score,selected,elapsed_seconds,sample_size,status
+customer_churn,mutual_info,relevancia pura,13,1,support_calls,1,0.22943894450456798,True,0.01389495749026537,5000,ok
+customer_churn,mutual_info,relevancia pura,42,1,support_calls,1,0.22723731995612287,True,0.013492672704160213,5000,ok
+customer_churn,mutual_info,relevancia pura,97,1,support_calls,1,0.2182907236360168,True,0.013580282218754292,5000,ok

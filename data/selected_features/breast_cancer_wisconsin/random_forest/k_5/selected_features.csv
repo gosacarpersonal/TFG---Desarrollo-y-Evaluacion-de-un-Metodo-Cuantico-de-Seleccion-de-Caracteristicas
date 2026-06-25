@@ -1,0 +1,6 @@
+feature,rank
+perimeter_worst,1
+area_worst,2
+concave_points_worst,3
+concave_points_mean,4
+concavity_mean,5

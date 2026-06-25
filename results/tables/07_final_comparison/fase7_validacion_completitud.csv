@@ -1,0 +1,6 @@
+dataset,candidatos_test,tiene_baseline,n_seleccionados,experimentos_validacion,contrastes_pareados_completos,permutacion_completa,estado
+breast_cancer_wisconsin,3,True,2,15,True,True,ok
+customer_churn,3,True,2,15,True,True,ok
+madelon,3,True,2,15,True,True,ok
+olive_oil_3class,3,True,2,15,True,True,ok
+olive_oil_9class,3,True,2,15,True,True,ok

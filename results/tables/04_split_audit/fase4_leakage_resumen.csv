@@ -1,0 +1,6 @@
+dataset,target_en_X,n_muestras_usadas,nombres_sospechosos,auc_abs_ge_099,nmi_ge_099,categoricas_en_X
+breast_cancer_wisconsin,False,569,0,0,0,0
+customer_churn,False,12000,0,0,0,3
+madelon,False,2000,0,0,0,0
+olive_oil_3class,False,572,0,0,0,0
+olive_oil_9class,False,572,0,0,0,0

@@ -1,0 +1,13 @@
+method,familia,usa_target,salida,criterio_tecnico
+variance,base mínima,False,ranking,varianza tras escalado
+f_classif,relevancia pura,True,ranking,F univariante
+mutual_info,relevancia pura,True,ranking,I(x;y)
+mutual_correlation,redundancia pura,False,ranking,Pearson medio
+feature_similarity,redundancia pura,False,ranking,clusters varianza-covarianza
+mrmr_approx,relevancia-redundancia,True,ranking,MI menos correlación
+rrfs,relevancia-redundancia,True,ranking,Fisher con poda de similitud
+boruta,wrapper all-relevant,True,conjunto natural,shadow features
+rfe,wrapper minimal-optimal,True,ranking,eliminación recursiva
+l1_logistic,embedded,True,ranking,coeficientes L1
+random_forest,embedded,True,ranking,importancia de bosque
+linear_svm,embedded,True,ranking,margen lineal

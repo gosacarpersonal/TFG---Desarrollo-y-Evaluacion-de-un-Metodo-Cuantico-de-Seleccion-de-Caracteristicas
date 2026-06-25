@@ -1,0 +1,5 @@
+dataset,pares_evaluados,pares_correlacion_alta,correlacion_abs_maxima
+breast_cancer_wisconsin,435,29,0.9996020278067482
+customer_churn,21,0,0.19068916969004562
+madelon,124750,12,0.996144834595519
+olive_oil,45,2,0.9164743397873972

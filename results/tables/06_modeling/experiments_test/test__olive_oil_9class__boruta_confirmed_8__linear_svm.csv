@@ -1,0 +1,2 @@
+experiment_id,dataset,feature_set,selector,k,model_name,candidate_label,validation_macro_f1,validation_balanced_accuracy,test_macro_f1,test_balanced_accuracy,test_accuracy,test_auc_roc,n_test,n_features_used
+olive_oil_9class__boruta_confirmed_8__linear_svm,olive_oil_9class,boruta_confirmed_8,boruta,8,linear_svm,subconjunto_top_2_validation,0.9433621353823861,0.9523240598509416,0.8387318563789152,0.8722222222222222,0.9186046511627907,,86,8

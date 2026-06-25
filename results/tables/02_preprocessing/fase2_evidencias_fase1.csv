@@ -1,0 +1,11 @@
+archivo,existe,filas,columnas
+fase1_carga_inicial.csv,True,4,6
+fase1_estructura_datasets.csv,True,4,11
+fase1_calidad_datasets.csv,True,4,6
+fase1_calidad_variables.csv,True,553,9
+fase1_target_resumen.csv,True,4,6
+fase1_target_distribucion.csv,True,15,5
+fase1_distribuciones_numericas.csv,True,547,11
+fase1_variables_revision_riesgos.csv,True,29,12
+fase1_correlaciones_spearman_pares.csv,True,125251,5
+fase1_sintesis_evidencias.csv,True,4,18

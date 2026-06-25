@@ -1,0 +1,28 @@
+{
+  "beta0_matches_og": true,
+  "beta_changes_distance": true,
+  "high_pair": [
+    3,
+    7
+  ],
+  "high_pair_distance_beta0": 1.7721,
+  "high_pair_distance_beta05": 3.4941,
+  "high_pair_distance_non_decrease": true,
+  "mucke_alpha_olive_k5": 0.875,
+  "mucke_cardinality_olive": 5,
+  "mucke_seconds_olive": 0.00036036036908626556,
+  "oracle_q_star_olive_alpha05": -0.34176762018537793,
+  "oracle_cardinality_olive_alpha05": 2,
+  "oracle_seconds_olive_alpha05": 5.574524402618408e-05,
+  "oracle_q_star_churn_alpha05": -0.1890915770625963,
+  "oracle_cardinality_churn_alpha05": 4,
+  "oracle_seconds_churn_alpha05": 0.006005437113344669,
+  "oracle_beats_naive_all_ones": true,
+  "checks": {
+    "a_beta0_reproduces_original_distance": true,
+    "b_beta05_changes_distance_matrix": true,
+    "c_high_relevance_pair_not_closer": true,
+    "d_mucke_returns_target_k": true,
+    "e_oracle_beats_naive_candidate": true
+  }
+}

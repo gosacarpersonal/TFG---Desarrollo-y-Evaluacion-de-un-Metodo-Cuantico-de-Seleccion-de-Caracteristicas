@@ -1,0 +1,4 @@
+dataset,issue,impact,status
+customer_churn,categoricas codificadas con one-hot fit solo en train,Fase 6 debe consumir columnas seleccionadas ya transformadas o replicar el preprocesador,documentado
+GLOBAL,artefactos auxiliares separados de entradas principales,fs_phase6_input_recommendations.csv distingue principal_para_modelado de auxiliar_exploratorio,documentado
+olive_oil_3class|olive_oil_9class,formulaciones no intercambiables,no promediar ni reutilizar rankings entre targets,documentado
